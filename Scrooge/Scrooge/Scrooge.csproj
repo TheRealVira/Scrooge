@@ -63,6 +63,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Booking.cs" />
+    <Compile Include="Service\Definitions\LoggingService.cs" />
+    <Compile Include="Service\Definitions\StorageService.cs" />
+    <Compile Include="Service\Implementations\DebugLoggingService.cs" />
+    <Compile Include="Service\Implementations\MockupStorageService.cs" />
+    <Compile Include="Service\ServiceController.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
