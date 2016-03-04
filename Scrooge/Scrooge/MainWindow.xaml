@@ -10,14 +10,14 @@
         <TabControl x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TabItem Header="Balance">
                 <StackPanel>
-                        <ListView x:Name="listView2">
-                            <ListBoxItem Content="Soll / Haben $ 500"/>
+                    <ListView x:Name="listView2">
+                        <ListBoxItem Content="Erlöse $ 500"/>
                         <ListBoxItem Content="Ausgaben $ 500"/>
                         <ListBoxItem Content="Einkommen $ 500"/>
                         <ListBoxItem Content="Essen $ 50"/>
-                        </ListView>
-                        <Button>Add account</Button>
-                    </StackPanel>
+                    </ListView>
+                    <Button>Add account</Button>
+                </StackPanel>
             </TabItem>
             <TabItem Header="Inventory">
                 <StackPanel>
@@ -27,10 +27,14 @@
                         <ListBoxItem Content="Lamp"/>
                         <ListBoxItem Content="Can"/>
                     </ListView>
-                    <Button>Add inventory</Button>
+                    <Button>Add account</Button>
+                    <Button>Summarize accounts</Button>
                 </StackPanel>
             </TabItem>
+            <TabItem Header="Report" />
         </TabControl>
-
+        <StatusBar Margin="0,486,670,0" >
+            <ListBoxItem Content="Warnings"/>
+        </StatusBar>
     </Grid>
 </Window>
