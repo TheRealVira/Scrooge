@@ -12,10 +12,10 @@
                 <StackPanel>
                         <ListView x:Name="listView2">
                             <ListBoxItem Content="Soll / Haben $ 500"/>
-                            <ListBoxItem Content="Soll / Haben $ 500"/>
-                            <ListBoxItem Content="Soll / Haben $ 500"/>
-                        <ListBoxItem Content="Soll / Haben $ 500"/>
-                    </ListView>
+                        <ListBoxItem Content="Ausgaben $ 500"/>
+                        <ListBoxItem Content="Einkommen $ 500"/>
+                        <ListBoxItem Content="Essen $ 50"/>
+                        </ListView>
                         <Button>Add account</Button>
                     </StackPanel>
             </TabItem>
