@@ -4,10 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Scrooge"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{StaticResource MaterialDesignFont}"
         mc:Ignorable="d"
         Title="Scrooge" Height="549.5" Width="799.5">
-    <Grid>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Grid VerticalAlignment="Top" Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <materialDesign:PackIcon Kind="AlertCircle"/>
+        <TextBlock Grid.Column="1"  Margin="8 0 0 0">Test:</TextBlock>
+        <TextBox Grid.Column="2" Margin="8 0 0 0" VerticalAlignment="Center"></TextBox>
+        <Button Grid.Column="3" Margin="8 0 0 0">Submit</Button>
+        <!--<TabControl x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TabItem Header="Balance">
                 <StackPanel>
                     <ListView x:Name="listView2">
@@ -35,6 +53,6 @@
         </TabControl>
         <StatusBar Margin="0,486,670,0" >
             <ListBoxItem Content="Warnings"/>
-        </StatusBar>
+        </StatusBar>-->
     </Grid>
 </Window>
