@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Scrooge.Service;
+using Scrooge.Service.Definitions;
 
 namespace Scrooge
 {
@@ -13,5 +15,12 @@ namespace Scrooge
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            this.Startup += (sender, args) =>
+            {
+                ServiceController.Instance.InitializeServices();
+            };
+        }
     }
 }
