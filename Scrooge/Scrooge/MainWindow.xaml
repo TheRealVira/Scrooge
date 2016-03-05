@@ -14,18 +14,78 @@
         FontFamily="{StaticResource MaterialDesignFont}"
         mc:Ignorable="d"
         Title="Scrooge" Height="549.5" Width="799.5">
-    <Grid VerticalAlignment="Top" Margin="20">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <materialDesign:PackIcon Kind="AlertCircle"/>
-        <TextBlock Grid.Column="1"  Margin="8 0 0 0">Test:</TextBlock>
-        <TextBox Grid.Column="2" Margin="8 0 0 0" VerticalAlignment="Center"></TextBox>
-        <Button Grid.Column="3" Margin="8 0 0 0">Submit</Button>
-        <!--<TabControl x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_Edit">
+                <MenuItem Header="_Cut" Command="Cut">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ContentCut"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Copy" Command="Copy">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ContentCopy"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Paste" Command="Paste">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ContentPaste"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
+                <Button ToolTip="Lookup Github" Click="GithubButton_Onclick">
+                    <materialDesign:PackIcon Kind="GithubBox"/>
+                </Button>
+            </ToolBar>
+            <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
+                <Button ToolTip="Stackoverflow" Click="StackoverflowButton_Onclick">
+                    <materialDesign:PackIcon Kind="Stackoverflow"/>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <Grid VerticalAlignment="Stretch" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <materialDesign:PackIcon Kind="AlertCircle"/>
+            <TextBlock Grid.Column="1"  Margin="8 0 0 0">Test:</TextBlock>
+            <TextBox Grid.Column="2" Margin="8 0 0 0" VerticalAlignment="Center"></TextBox>
+            <Button Grid.Column="3" Margin="8 0 0 0">Submit</Button>
+
+            <materialDesign:Card Grid.ColumnSpan="4" Margin="32" Grid.Row="1" materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0">
+                    <materialDesign:PackIcon Kind="Twitter" Height="64" Width="64"/>
+                    <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="16 16 0 0">Hey, just don't.</TextBlock>
+                </StackPanel>
+            </materialDesign:Card>
+            <materialDesign:ColorZone Grid.ColumnSpan="4" Margin="32" Grid.Row="2" Height="100" Mode="PrimaryDark" CornerRadius="8" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                <StackPanel Orientation="Horizontal" Margin="16 16 0 0">
+                    <materialDesign:PackIcon Kind="Facebook" Height="64" Width="64" VerticalAlignment="Center"/>
+                    <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="16 16 0 0">DON'T use me ;D.</TextBlock>
+                    <materialDesign:ColorZone Mode="Light">
+                        <StackPanel Orientation="Horizontal" Margin="16">
+                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="Magnify"/>
+                            <TextBox VerticalAlignment="Center" BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Collapsed" materialDesign:TextFieldAssist.Hint="Please enter something to search!" MinWidth="120" Margin="8 0 0 0"></TextBox>
+                            <Button VerticalAlignment="Center" Style="{DynamicResource MaterialDesignToolButton}" Margin="8 0 0 0"> <materialDesign:PackIcon Kind="Microphone"/> </Button>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                </StackPanel>
+            </materialDesign:ColorZone>
+        </Grid>
+    </DockPanel>
+
+    <!--<TabControl x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TabItem Header="Balance">
                 <StackPanel>
                     <ListView x:Name="listView2">
@@ -53,6 +113,6 @@
         </TabControl>
         <StatusBar Margin="0,486,670,0" >
             <ListBoxItem Content="Warnings"/>
-        </StatusBar>-->
-    </Grid>
+        </StatusBar>
+    </Grid>-->
 </Window>
