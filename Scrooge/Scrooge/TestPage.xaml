@@ -41,7 +41,7 @@
                 </ToolBar>
             </ToolBarTray>
 
-            <materialDesign:ColorZone Mode="Dark">
+            <materialDesign:ColorZone>
                 <Grid VerticalAlignment="Stretch" Margin="20">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>

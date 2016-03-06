@@ -13,26 +13,30 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{StaticResource MaterialDesignFont}"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        FontFamily="{StaticResource DefaultFont}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"					  
+        GlowBrush="{DynamicResource AccentColorBrush}"
         mc:Ignorable="d"
-        Title="Scrooge" Height="570" Width="800" MinHeight="570" MinWidth="800">
+        Title="Scrooge" Height="570" Width="1060" MinHeight="570" MinWidth="1060">
 
+    <!--TODO: Maybe add an dark/light toggle switch-->
+    <!--TODO: Add warnings-->
+    <!--TODO: Add question mark symbole-->
     <dragablz:TabablzControl BorderThickness="0"
                                      Margin="0,-1,0,0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
         <dragablz:TabablzControl.InterTabController>
             <dragablz:InterTabController />
         </dragablz:TabablzControl.InterTabController>
-        <TabItem Header="Test" IsSelected="True" >
-            <scrooge:TestPage Margin="8" Width="Auto"/>
+        <TabItem Header="Test" IsSelected="False">
+            <scrooge:TestPage Margin="8 4 8 0" Width="Auto" Height="Auto"/>
         </TabItem>
-        <TabItem Header="Balance" IsSelected="False" Margin="16">
+        <TabItem Header="Balance" IsSelected="False">
             <materialDesign:PackIcon Kind="WaterPump" Height="100" Width="100"></materialDesign:PackIcon>
         </TabItem>
-        <TabItem Header="Inventory" IsSelected="False" Margin="16">
-            <materialDesign:PackIcon Kind="Cat" Height="100" Width="100"></materialDesign:PackIcon>
+        <TabItem Header="Inventory" IsSelected="True">
+            <scrooge:Inventory Margin="8 4 8 0" Width="Auto" Height="Auto"/>
         </TabItem>
-        <TabItem Header="Report" IsSelected="False" Margin="16">
+        <TabItem Header="Report" IsSelected="False">
             <materialDesign:PackIcon Kind="Cake" Height="100" Width="100"></materialDesign:PackIcon>
         </TabItem>
     </dragablz:TabablzControl>

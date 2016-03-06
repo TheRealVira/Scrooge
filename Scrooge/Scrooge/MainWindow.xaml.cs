@@ -10,14 +10,7 @@ namespace Scrooge
     {
         public MainWindow()
         {
-            try
-            {
-                InitializeComponent();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            InitializeComponent();
         }
     }
 }
