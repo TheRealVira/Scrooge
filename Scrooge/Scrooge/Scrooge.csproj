@@ -101,7 +101,7 @@
       <DependentUpon>Inventory.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Booking.cs" />
-    <Compile Include="Model\SelectableViewModel.cs" />
+    <Compile Include="Model\InventoryViewModel.cs" />
     <Compile Include="Service\Definitions\LoggingService.cs" />
     <Compile Include="Service\Definitions\StorageService.cs" />
     <Compile Include="Service\Implementations\DebugLoggingService.cs" />

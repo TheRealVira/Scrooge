@@ -17,58 +17,73 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"					  
         GlowBrush="{DynamicResource AccentColorBrush}"
         mc:Ignorable="d"
-        Title="Scrooge" Height="570" Width="1060" MinHeight="570" MinWidth="1060" Icon="Scrooge.ico" ShowIconOnTitleBar="False">
+        Title="Scrooge" Height="650" Width="1080" MinHeight="650" MinWidth="1080" Icon="Scrooge.ico" ShowIconOnTitleBar="False">
 
-    <!--TODO: Maybe add an dark/light toggle switch-->
-    <!--TODO: Add warnings-->
-    <!--TODO: Add question mark symbole-->
-    <dragablz:TabablzControl BorderThickness="0"
-                                     Margin="0,-1,0,0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
-        <dragablz:TabablzControl.InterTabController>
-            <dragablz:InterTabController />
-        </dragablz:TabablzControl.InterTabController>
-        <TabItem Header="Test" IsSelected="False">
-            <scrooge:TestPage Margin="8 4 8 0" Width="Auto" Height="Auto"/>
-        </TabItem>
-        <TabItem Header="Balance" IsSelected="False">
-            <materialDesign:PackIcon Kind="WaterPump" Height="100" Width="100"></materialDesign:PackIcon>
-        </TabItem>
-        <TabItem Header="Inventory" IsSelected="True">
-            <scrooge:Inventory Margin="8 4 8 0" Width="Auto" Height="Auto"/>
-        </TabItem>
-        <TabItem Header="Report" IsSelected="False">
-            <materialDesign:PackIcon Kind="Cake" Height="100" Width="100"></materialDesign:PackIcon>
-        </TabItem>
-    </dragablz:TabablzControl>
-    <!--<TabControl x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <TabItem Header="Balance">
-                <StackPanel>
-                    <ListView x:Name="listView2">
-                        <ListBoxItem Content="Erlöse $ 500"/>
-                        <ListBoxItem Content="Ausgaben $ 500"/>
-                        <ListBoxItem Content="Einkommen $ 500"/>
-                        <ListBoxItem Content="Essen $ 50"/>
-                    </ListView>
-                    <Button>Add account</Button>
-                </StackPanel>
-            </TabItem>
-            <TabItem Header="Inventory">
-                <StackPanel>
-                    <ListView x:Name="listView">
-                        <ListBoxItem Content="Car"/>
-                        <ListBoxItem Content="House"/>
-                        <ListBoxItem Content="Lamp"/>
-                        <ListBoxItem Content="Can"/>
-                    </ListView>
-                    <Button>Add account</Button>
-                    <Button>Summarize accounts</Button>
-                </StackPanel>
-            </TabItem>
-            <TabItem Header="Report" />
-        </TabControl>
-        <StatusBar Margin="0,486,670,0" >
-            <ListBoxItem Content="Warnings"/>
-        </StatusBar>
-    </Grid>-->
+    <!--TODO: Maybe add an dark/light toggle switch (or not xD)-->
+    <Grid>
+        <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" IsChecked="False"  x:Name="MenuToggleButton" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Margin="0,-1,0,0"/>
+        <!--I'll draw all windows in the RootDialog, so the material design is able to do some magic.-->
+        <materialDesign:DialogHost Identifier="RootDialog" Grid.Column="0" Margin="0,-1,0,0">
+            <!--Toggleable listbox which is fading in from the left side (it is containing [HelpBtn] [WarningsBtn] (+[HamburgerBtn] which is toggeling the menu on the left)-->
+            <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
+                <materialDesign:DrawerHost.LeftDrawerContent>
+                    <DockPanel MinWidth="50">
+                        <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" 
+                                  DockPanel.Dock="Top"
+                                  HorizontalAlignment="Right" Margin="16"
+                                  IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
+                        <ListBox x:Name="DemoItemsListBox" SelectedIndex="0">
+                            <Button ToolTip="Help" Click="Help_OnClick" Height="36" HorizontalAlignment="Right" Margin="8">
+                                <materialDesign:PackIcon Kind="CommentQuestionOutline" Width="20" Height="20" />
+                            </Button>
+                            <Button ToolTip="Warnings" Click="Warning_OnClick" Height="36" HorizontalAlignment="Right" Margin="8">
+                                <materialDesign:PackIcon Kind="SignCaution" Width="20" Height="20" />
+                            </Button>
+                            <Button ToolTip="About" Click="About_OnClick" Height="36" HorizontalAlignment="Right" Margin="8" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                                <Button.CommandParameter>
+                                    <StackPanel Margin="16">
+                                        <TextBlock Text="Scrooge is work in progress by &quot;Vira&quot; - &quot;Butchcom&quot; - &quot;StePro&quot;.&#x0a;Special thanks to ButchersBoy and MahApps!&#x0a;&#x0a;Designed by: Vira&#x0a;[Something] by: StePro&#x0a;[Something] by: Butchcom&#x0a;"/>
+                                        
+                                        <Button IsCancel="True" 
+                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                            CommandParameter="About"
+                                            HorizontalAlignment="Center" materialDesign:ShadowAssist.ShadowDepth="Depth2" Margin="0 8 0 0">OK</Button>
+                                    </StackPanel>
+                                </Button.CommandParameter>
+                                <materialDesign:PackIcon Kind="Information" Width="20" Height="20" />
+                            </Button>
+                            <!--<StackPanel Orientation="Horizontal" Margin="8">
+                                <TextBlock VerticalAlignment="Center">Light</TextBlock>
+                                <ToggleButton Margin="8 0 16 0" Command="{Binding ToggleBaseCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" />
+                                <TextBlock VerticalAlignment="Center">Dark</TextBlock>
+                            </StackPanel>-->
+                        </ListBox>
+                    </DockPanel>
+                </materialDesign:DrawerHost.LeftDrawerContent>
+
+                <!-- Dockpanel which contains all tags-->
+                <DockPanel HorizontalAlignment="Stretch" Width="Auto" VerticalAlignment="Top" Height="Auto">
+                    <dragablz:TabablzControl  BorderThickness="0" Margin="37,1,0,0" Width="Auto" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                        <dragablz:TabablzControl.InterTabController>
+                            <dragablz:InterTabController />
+                        </dragablz:TabablzControl.InterTabController>
+                        <TabItem Header="Test" IsSelected="False">
+                            <!--just a test control-->
+                            <scrooge:TestPage Margin="8 4 8 0" Width="Auto" Height="Auto"/>
+                        </TabItem>
+                        <TabItem Header="Balance" IsSelected="False">
+                            <materialDesign:PackIcon Kind="WaterPump" Height="100" Width="100"></materialDesign:PackIcon>
+                        </TabItem>
+                        <TabItem Header="Inventory" IsSelected="True">
+                            <scrooge:Inventory Margin="8 4 8 0" Width="Auto" Height="Auto"/>
+                        </TabItem>
+                        <TabItem Header="Report" IsSelected="False">
+                            <materialDesign:PackIcon Kind="Cake" Height="100" Width="100"></materialDesign:PackIcon>
+                        </TabItem>
+                    </dragablz:TabablzControl>
+                </DockPanel>
+            </materialDesign:DrawerHost>
+        </materialDesign:DialogHost>
+    </Grid>
 </controls:MetroWindow>
 

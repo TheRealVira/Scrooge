@@ -12,5 +12,17 @@ namespace Scrooge
         {
             InitializeComponent();
         }
+
+        private void Help_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void Warning_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void About_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }

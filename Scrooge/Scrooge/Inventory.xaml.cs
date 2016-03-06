@@ -27,7 +27,6 @@ namespace Scrooge
 
         private void AddEntryBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Test");
         }
 
         private void DeleteEntryBtn_OnClick(object sender, RoutedEventArgs e)

@@ -6,7 +6,10 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:model="clr-namespace:Scrooge.Model"
       mc:Ignorable="d" 
-      Height="500" Width="1060">
+      Height="500" Width="1060"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{StaticResource DefaultFont}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}">
 
     <Grid>
         <DockPanel>
@@ -22,17 +25,17 @@
                     <!--List (of cards)-->
                 </Grid.RowDefinitions>
 
-                <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Padding="3" Margin="8,8,0,8" CornerRadius="8" FontSize="50" materialDesign:ShadowAssist.ShadowDepth="Depth1" HorizontalAlignment="Left">
-                    <materialDesign:PackIcon Kind="LibraryBooks" Height="50" Width="50"></materialDesign:PackIcon>
+                <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Width="100" Height="70" Padding="3" Margin="8,8,0,0" CornerRadius="8" FontSize="50" materialDesign:ShadowAssist.ShadowDepth="Depth1" HorizontalAlignment="Left">
+                    <materialDesign:PackIcon Kind="LibraryBooks" Height="Auto" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"></materialDesign:PackIcon>
                 </materialDesign:ColorZone>
-                
+
                 <!--Title:-->
                 <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Padding="3" Margin="8,8,0,8" CornerRadius="8" FontSize="50" materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Center" Width="700">
                     <TextBlock TextWrapping="Wrap" Text="Inventory" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </materialDesign:ColorZone>
-                
+
                 <!--Toolbar:-->
-                <ToolBarTray Grid.Row="1" Grid.Column="0" DockPanel.Dock="Top">
+                <ToolBarTray Grid.Row="1" Grid.Column="0" DockPanel.Dock="Top" Margin="0 8 0 0">
                     <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
                         <Button ToolTip="Add another item" Click="AddEntryBtn_OnClick">
                             <materialDesign:PackIcon Height="20" Width="20" Kind="Plus"/>
@@ -49,79 +52,79 @@
                         </Button>
                     </ToolBar>
                 </ToolBarTray>
-                
+
                 <!--Datalist:-->
                 <materialDesign:ColorZone CornerRadius="8" materialDesign:ShadowAssist.ShadowDepth="Depth2" Grid.Row="2" Margin="3 8 3 8" Width="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                <ScrollViewer >
-                    <StackPanel>
+                    <ScrollViewer >
+                        <StackPanel>
                             <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2" Width="Auto" Margin="8" VerticalAlignment="Top">
                                 <DataGrid ItemsSource="{Binding InventoryItems}" CanUserSortColumns="True" Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                
-                            <DataGrid.Columns>
-                                <DataGridCheckBoxColumn Binding="{Binding IsSelected}" 
+
+                                    <DataGrid.Columns>
+                                        <DataGridCheckBoxColumn Binding="{Binding IsSelected}" 
                                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                                 EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
-                                    <DataGridCheckBoxColumn.Header>
-                                        <!--padding to allow hit test to pass thru for sorting -->
-                                        <Border Background="Transparent" Padding="6 0 6 0" HorizontalAlignment="Center">
-                                            <CheckBox HorizontalAlignment="Center"                                               
+                                            <DataGridCheckBoxColumn.Header>
+                                                <!--padding to allow hit test to pass thru for sorting -->
+                                                <Border Background="Transparent" Padding="6 0 6 0" HorizontalAlignment="Center">
+                                                    <CheckBox HorizontalAlignment="Center"                                               
                                               DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext}"
                                               IsChecked="{Binding IsAllItemsSelected}" />
-                                        </Border>
-                                    </DataGridCheckBoxColumn.Header>
-                                </DataGridCheckBoxColumn>
+                                                </Border>
+                                            </DataGridCheckBoxColumn.Header>
+                                        </DataGridCheckBoxColumn>
 
-                                <DataGridTextColumn Binding="{Binding Name}"
+                                        <DataGridTextColumn Binding="{Binding Name}"
                                             Header="Item"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                <DataGridTextColumn Binding="{Binding DateOfAcquisition}"
+                                        <DataGridTextColumn Binding="{Binding DateOfAcquisition}"
                                             Header="Date of acquisition"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                <DataGridTextColumn Binding="{Binding CostValue}"
+                                        <DataGridTextColumn Binding="{Binding CostValue}"
                                             Header="Cost value"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                <DataGridTextColumn Binding="{Binding BalanceValue}"
+                                        <DataGridTextColumn Binding="{Binding BalanceValue}"
                                             Header="Balance value"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                <DataGridTextColumn Binding="{Binding Access}"
+                                        <DataGridTextColumn Binding="{Binding Access}"
                                             Header="Access"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                <DataGridTextColumn Binding="{Binding Duration}"
+                                        <DataGridTextColumn Binding="{Binding Duration}"
                                             Header="Duration"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                <DataGridTextColumn Binding="{Binding Percentage}"
+                                        <DataGridTextColumn Binding="{Binding Percentage}"
                                             Header="%"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                <DataGridTextColumn Binding="{Binding Months}"
+                                        <DataGridTextColumn Binding="{Binding Months}"
                                             Header="/12"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                <DataGridTextColumn Binding="{Binding Value}"
+                                        <DataGridTextColumn Binding="{Binding Value}"
                                             Header="Value"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                <DataGridTextColumn Binding="{Binding Derecognition}"
+                                        <DataGridTextColumn Binding="{Binding Derecognition}"
                                             Header="Derecognition"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                <DataGridTextColumn Binding="{Binding AssetValue}"
+                                        <DataGridTextColumn Binding="{Binding AssetValue}"
                                             Header="AssetValue"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
