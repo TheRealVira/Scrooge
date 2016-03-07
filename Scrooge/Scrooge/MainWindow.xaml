@@ -17,7 +17,7 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"					  
         GlowBrush="{DynamicResource AccentColorBrush}"
         mc:Ignorable="d"
-        Title="Scrooge" Height="600" Width="1100" MinHeight="600" MinWidth="1100" ShowIconOnTitleBar="False" Closing="MetroWindow_Closing" Loaded="MetroWindow_Loaded">
+        Title="Scrooge" Height="600" Width="1150" MinHeight="600" MinWidth="1150" ShowIconOnTitleBar="False" Closing="MetroWindow_Closing" Loaded="MetroWindow_Loaded">
 
     <!--TODO: Maybe add an dark/light toggle switch (or not xD)-->
     <Grid>
@@ -64,9 +64,9 @@
                 <!-- Dockpanel which contains all tags-->
                 <DockPanel HorizontalAlignment="Stretch" Width="Auto" VerticalAlignment="Top" Height="Auto">
                     <dragablz:TabablzControl  BorderThickness="0" Margin="37,1,0,0" Width="Auto" VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                        <dragablz:TabablzControl.InterTabController>
+                        <!--<dragablz:TabablzControl.InterTabController>
                             <dragablz:InterTabController />
-                        </dragablz:TabablzControl.InterTabController>
+                        </dragablz:TabablzControl.InterTabController>-->
                         <TabItem Header="Test" IsSelected="False">
                             <!--just a test control-->
                             <scrooge:TestPage Margin="8 4 8 0" Width="Auto" Height="Auto"/>

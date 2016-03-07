@@ -13,10 +13,12 @@ namespace Scrooge
     public partial class MainWindow
     {
         private IApplicationEventService service;
+        public static IStorageService StorageService;
         public MainWindow()
         {
             InitializeComponent();
             service = Singleton<ServiceController>.Instance.Get<IApplicationEventService>();
+            StorageService = Singleton<ServiceController>.Instance.Get<IStorageService>();
         }
 
         private void Help_OnClick(object sender, RoutedEventArgs e)

@@ -40,12 +40,17 @@ namespace Scrooge
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            this.InventoryGrid.Items.Add(new InventoryViewModel()
-            { Access = 1f,AssetValue = 12,BalanceValue = 13f,CostValue = 15f,DateOfAcquisition = 1998,Derecognition = 0f,Duration = 10f,IsSelected = false,Months = 10,Name = "Computer",Percentage = 50});
-            this.InventoryGrid.Items.Add(new InventoryViewModel()
-            { Access = 1f, AssetValue = 12, BalanceValue = 13f, CostValue = 15f, DateOfAcquisition = 3000, Derecognition = 0f, Duration = 10f, IsSelected = false, Months = 10, Name = "Auto", Percentage = 50 });
-            this.InventoryGrid.Items.Add(new InventoryViewModel()
-            { Access = 1f, AssetValue = 12, BalanceValue = 13f, CostValue = 15f, DateOfAcquisition = 1900, Derecognition = 0f, Duration = 10f, IsSelected = false, Months = 10, Name = "Bildschirm", Percentage = 50 });
+            //this.InventoryGrid.Items.Add(new InventoryViewModel()
+            //{ Access = 1f,AssetValue = 12,BalanceValue = 13f,CostValue = 15f,DateOfAcquisition = 1998,Derecognition = 0f,Duration = 10f,IsSelected = false,Months = 10,Name = "Computer",Percentage = 50});
+            //this.InventoryGrid.Items.Add(new InventoryViewModel()
+            //{ Access = 1f, AssetValue = 12, BalanceValue = 13f, CostValue = 15f, DateOfAcquisition = 3000, Derecognition = 0f, Duration = 10f, IsSelected = false, Months = 10, Name = "Auto", Percentage = 50 });
+            //this.InventoryGrid.Items.Add(new InventoryViewModel()
+            //{ Access = 1f, AssetValue = 12, BalanceValue = 13f, CostValue = 15f, DateOfAcquisition = 1900, Derecognition = 0f, Duration = 10f, IsSelected = false, Months = 10, Name = "Bildschirm", Percentage = 50 });
+
+            foreach (var retrieveInventoryViewModel in MainWindow.StorageService.RetrieveInventoryViewModels())
+            {
+                this.InventoryGrid.Items.Add(retrieveInventoryViewModel);
+            }
         }
     }
 }
