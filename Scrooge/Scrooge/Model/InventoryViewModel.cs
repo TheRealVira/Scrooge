@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Scrooge.Model
 {
-    class InventoryViewModel : INotifyPropertyChanged
+    public class InventoryViewModel : INotifyPropertyChanged
     {
         private bool _isSelected;
         private string _name;
