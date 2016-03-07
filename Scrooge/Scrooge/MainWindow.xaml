@@ -17,7 +17,7 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"					  
         GlowBrush="{DynamicResource AccentColorBrush}"
         mc:Ignorable="d"
-        Title="Scrooge" Height="650" Width="1080" MinHeight="650" MinWidth="1080" Icon="Scrooge.ico" ShowIconOnTitleBar="False">
+        Title="Scrooge" Height="650" Width="1080" MinHeight="650" MinWidth="1080" ShowIconOnTitleBar="False">
 
     <!--TODO: Maybe add an dark/light toggle switch (or not xD)-->
     <Grid>
