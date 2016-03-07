@@ -9,10 +9,10 @@
       Height="500" Width="1060"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{StaticResource DefaultFont}"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}">
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}" Loaded="UserControl_Loaded">
 
     <Grid>
-        <DockPanel>
+        <DockPanel x:Name="Load">
             <!--DataGrid-->
 
             <Grid VerticalAlignment="Stretch" Margin="20">
@@ -58,12 +58,12 @@
                     <ScrollViewer >
                         <StackPanel>
                             <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2" Width="Auto" Margin="8" VerticalAlignment="Top">
-                                <DataGrid ItemsSource="{Binding InventoryItems}" CanUserSortColumns="True" Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <DataGrid Name="InventoryGrid"  ItemsSource="{Binding InventoryItems}" CanUserSortColumns="True" Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Stretch">
 
                                     <DataGrid.Columns>
                                         <DataGridCheckBoxColumn Binding="{Binding IsSelected}" 
-                                                ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
-                                                EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
+                                                ElementStyle="{DynamicResource MaterialDesignDataGridCheckBoxColumnStyle}">
+                                            <!--EditingElementStyle="{DynamicResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">-->
                                             <DataGridCheckBoxColumn.Header>
                                                 <!--padding to allow hit test to pass thru for sorting -->
                                                 <Border Background="Transparent" Padding="6 0 6 0" HorizontalAlignment="Center">
@@ -76,22 +76,22 @@
 
                                         <DataGridTextColumn Binding="{Binding Name}"
                                             Header="Item"
-                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
                                         <DataGridTextColumn Binding="{Binding DateOfAcquisition}"
                                             Header="Date of acquisition"
-                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
                                         <DataGridTextColumn Binding="{Binding CostValue}"
                                             Header="Cost value"
-                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
                                         <DataGridTextColumn Binding="{Binding BalanceValue}"
                                             Header="Balance value"
-                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
                                         <DataGridTextColumn Binding="{Binding Access}"
@@ -101,32 +101,32 @@
 
                                         <DataGridTextColumn Binding="{Binding Duration}"
                                             Header="Duration"
-                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
                                         <DataGridTextColumn Binding="{Binding Percentage}"
                                             Header="%"
-                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
                                         <DataGridTextColumn Binding="{Binding Months}"
                                             Header="/12"
-                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
                                         <DataGridTextColumn Binding="{Binding Value}"
                                             Header="Value"
-                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
                                         <DataGridTextColumn Binding="{Binding Derecognition}"
                                             Header="Derecognition"
-                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
                                         <DataGridTextColumn Binding="{Binding AssetValue}"
                                             Header="AssetValue"
-                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
                                     </DataGrid.Columns>
                                 </DataGrid>
