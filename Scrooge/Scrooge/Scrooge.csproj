@@ -280,6 +280,7 @@
     <Compile Include="Service\Implementations\DebugLoggingService.cs" />
     <Compile Include="Service\Implementations\Storage\EfSQLiteStorageService.cs" />
     <Compile Include="Service\Implementations\GUIApplicationEventService.cs" />
+    <Compile Include="Service\Implementations\Storage\MockupStorageService.cs" />
     <Compile Include="Service\Implementations\Storage\StorageContext.cs" />
     <Compile Include="Service\ServiceController.cs" />
     <Compile Include="Singleton.cs" />
