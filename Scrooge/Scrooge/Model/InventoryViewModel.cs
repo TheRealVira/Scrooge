@@ -1,161 +1,124 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 
 namespace Scrooge.Model
 {
     public class InventoryViewModel : INotifyPropertyChanged
     {
-        private bool _isSelected;
-        private string _name;
-        private int _dateOfAcquisition;
-        private float _costValue;
-        private float _balanceValue;
-        private float _access;
-        private float _duration;
-        private float _percentage;
-        private byte _months;
-        private float _value;
-        private float _derecognition;
-        private float _assetValue;
+        private decimal assetValue;
+        private DateTime dateOfAcquisition;
+        private decimal disposal;
+        private decimal duration;
+        private bool isSelected;
+        private string name;
+        private decimal acquisitionValue;
 
+        public uint ID { get; set; }
+
+        public InventoryViewModel()
+        {
+            if (this.Acquisitions == null)
+            {
+                this.Acquisitions = new List<Aquisition>();
+            }
+        }
+
+        [NotMapped]
         public bool IsSelected
         {
-            get { return _isSelected; }
+            get { return this.isSelected; }
             set
             {
-                if (_isSelected == value) return;
-                _isSelected = value;
-                OnPropertyChanged();
+                if (this.isSelected == value) return;
+                this.isSelected = value;
+                this.OnPropertyChanged();
             }
         }
 
         public string Name
         {
-            get { return _name; }
+            get { return this.name; }
             set
             {
-                if (_name == value) return;
-                _name = value;
-                OnPropertyChanged();
+                if (this.name == value) return;
+                this.name = value;
+                this.OnPropertyChanged();
             }
         }
 
-        public int DateOfAcquisition
+        public DateTime DateOfAcquisition
         {
-            get { return _dateOfAcquisition; }
+            get { return this.dateOfAcquisition; }
             set
             {
-                if (_dateOfAcquisition == value) return;
-                _dateOfAcquisition = value;
-                OnPropertyChanged();
+                if (this.dateOfAcquisition == value) return;
+                this.dateOfAcquisition = value;
+                this.OnPropertyChanged();
             }
         }
 
-        public float CostValue
+        public decimal AcquisitionValue
         {
-            get { return _costValue; }
+            get { return this.acquisitionValue; }
             set
             {
-                if (_costValue == value) return;
-                _costValue = value;
-                OnPropertyChanged();
+                if (this.acquisitionValue == value) return;
+                this.acquisitionValue = value;
+                this.OnPropertyChanged();
             }
         }
 
-        public float BalanceValue
+        public decimal BalanceValue => 0; // TODO
+
+        public List<Aquisition> Acquisitions;
+
+        public decimal Acquisition => 0; // TODO
+
+        public decimal Duration
         {
-            get { return _balanceValue; }
+            get { return this.duration; }
             set
             {
-                if (_balanceValue == value) return;
-                _balanceValue = value;
-                OnPropertyChanged();
+                if (this.duration == value) return;
+                this.duration = value;
+                this.OnPropertyChanged();
             }
         }
 
-        public float Access
+        public decimal Percentage => 100m/this.duration;
+
+        public decimal Value => 0; // TODO
+
+        public decimal Disposal
         {
-            get { return _access; }
+            get { return this.disposal; }
             set
             {
-                if (_access == value) return;
-                _access = value;
-                OnPropertyChanged();
+                if (this.disposal == value) return;
+                this.disposal = value;
+                this.OnPropertyChanged();
             }
         }
 
-        public float Duration
+        public decimal AssetValue
         {
-            get { return _duration; }
+            get { return this.assetValue; }
             set
             {
-                if (_duration == value) return;
-                _duration = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public float Percentage
-        {
-            get { return _percentage; }
-            set
-            {
-                if (_percentage == value) return;
-                _percentage = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public byte Months
-        {
-            get { return _months; }
-            set
-            {
-                if (_months == value) return;
-                _months = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public float Value
-        {
-            get { return _value; }
-            set
-            {
-                if (_value == value) return;
-                _value = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public float Derecognition
-        {
-            get { return _derecognition; }
-            set
-            {
-                if (_derecognition == value) return;
-                _derecognition = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public float AssetValue
-        {
-            get { return _assetValue; }
-            set
-            {
-                if (_assetValue == value) return;
-                _assetValue = value;
-                OnPropertyChanged();
+                if (this.assetValue == value) return;
+                this.assetValue = value;
+                this.OnPropertyChanged();
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var handler = PropertyChanged;
+            var handler = this.PropertyChanged;
             handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }

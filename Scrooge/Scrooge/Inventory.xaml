@@ -58,7 +58,7 @@
                     <ScrollViewer >
                         <StackPanel>
                             <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2" Width="Auto" Margin="8" VerticalAlignment="Top">
-                                <DataGrid Name="InventoryGrid"  ItemsSource="{Binding InventoryItems}" CanUserSortColumns="True" Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                                <DataGrid Name="InventoryGrid"  ItemsSource="{Binding InventoryItems}" CanUserSortColumns="True" Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Stretch" BeginningEdit="InventoryGrid_OnBeginningEdit">
 
                                     <DataGrid.Columns>
                                         <DataGridCheckBoxColumn Binding="{Binding IsSelected}" 
@@ -84,7 +84,7 @@
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding CostValue}"
+                                        <DataGridTextColumn Binding="{Binding AcquisitionValue}"
                                             Header="Cost value"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
@@ -94,8 +94,8 @@
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding Access}"
-                                            Header="Access"
+                                        <DataGridTextColumn Binding="{Binding Acquisition}"
+                                            Header="Acquisition"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
@@ -109,17 +109,12 @@
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding Months}"
-                                            Header="/12"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            />
-
                                         <DataGridTextColumn Binding="{Binding Value}"
                                             Header="Value"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding Derecognition}"
+                                        <DataGridTextColumn Binding="{Binding Disposal}"
                                             Header="Derecognition"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />

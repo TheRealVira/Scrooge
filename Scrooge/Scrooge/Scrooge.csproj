@@ -271,6 +271,7 @@
     <Compile Include="Inventory.xaml.cs">
       <DependentUpon>Inventory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Aquisition.cs" />
     <Compile Include="Model\Booking.cs" />
     <Compile Include="Model\Internal\IApplicationEventListener.cs" />
     <Compile Include="Model\InventoryViewModel.cs" />

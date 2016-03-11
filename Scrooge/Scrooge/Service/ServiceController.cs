@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using Scrooge.Service.Definitions;
 using Scrooge.Service.Implementations;
+using Scrooge.Service.Implementations.Storage;
 
 namespace Scrooge.Service
 {
-    public class ServiceController : Singleton<ServiceController>
+    public class ServiceController
     {
         private readonly IDictionary<Type, object> services = new Dictionary<Type, object>();
 
@@ -32,6 +33,7 @@ namespace Scrooge.Service
         {
             this.Register<ILoggingService>(Singleton<DebugLoggingService>.Instance);
             this.Register<IApplicationEventService>(Singleton<GUIApplicationEventService>.Instance);
+            this.Register<IStorageService>(Singleton<MockupStorageService>.Instance);
             this.Get<ILoggingService>()?.WriteLine("Services registered");
         }
     }
