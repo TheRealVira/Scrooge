@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Scrooge"
         mc:Ignorable="d"
-        Title="Scrooge" Height="549.5" Width="799.5">
+        Title="Scrooge"
+        SizeToContent="WidthAndHeight">
     <Grid>
         <TabControl x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TabItem Header="Balance">
                 <StackPanel>
+                    
                     <ListView x:Name="listView2">
                         <ListBoxItem Content="Erlöse $ 500"/>
                         <ListBoxItem Content="Ausgaben $ 500"/>
