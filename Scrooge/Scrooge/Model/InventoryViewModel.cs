@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 
@@ -15,7 +16,8 @@ namespace Scrooge.Model
         private bool isSelected;
         private string name;
         private decimal acquisitionValue;
-
+        
+        [Key]
         public uint ID { get; set; }
 
         public InventoryViewModel()

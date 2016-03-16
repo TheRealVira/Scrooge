@@ -4,8 +4,8 @@ namespace Scrooge.Model.Internal
 {
     public interface IApplicationEventListener
     {
-        Task ApplicationInitialized();
+        void ApplicationInitialized();
 
-        Task ApplicationClosing();
+        void ApplicationClosing();
     }
 }

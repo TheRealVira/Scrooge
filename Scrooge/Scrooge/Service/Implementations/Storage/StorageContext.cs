@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
 using Scrooge.Model;
 using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 using Scrooge.Service.Definitions;
 
 namespace Scrooge.Service.Implementations.Storage

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
 using Scrooge.Model;
 using Scrooge.Model.Internal;
 using Scrooge.Service.Definitions;
@@ -21,41 +21,45 @@ namespace Scrooge.Service.Implementations.Storage
                 .RegisterApplicationEventListener(this);
         }
 
-        public IStorageService AddInventoryItem(InventoryViewModel item)
-        {
-            this.loggingService.WriteLine("Adding inventory item: " + item);
-            return this;
-        }
-
         public IStorageService UpdateInventory(IEnumerable<InventoryViewModel> items)
         {
-            throw new System.NotImplementedException();
+            this.loggingService.WriteLine("Updating inventory items...");
+            this.context.SaveChangesAsync();
+            return this;
         }
 
         public IEnumerable<InventoryViewModel> RetrieveInventoryViewModels()
         {
             this.loggingService.WriteLine("Retrieving inventory items...");
-            return null;
+            return this.context.Inventory;
         }
 
-        public async Task ApplicationInitialized()
+        public void ApplicationInitialized()
         {
             this.loggingService.WriteLine("EfSQLiteStorageService loading...");
             
             this.context = new StorageContext();
 
             this.loggingService.WriteLine("Ensuring database creation...");
-            /*if (await this.context.Database.EnsureCreatedAsync())
+            if (this.context.Database.EnsureCreated())
             {
-                
-            }*/
+                this.loggingService.WriteLine("ERROR: Database existance could not be guaranteed! Aborting launch!");
+                Singleton<ErrorHandler>.Instance.Panic(new ApplicationException("Database existance could not be guaranteed!"));
+            }
+
+            this.UpdateInventory(Singleton<MockupStorageService>.Instance.RetrieveInventoryViewModels());
 
             this.loggingService.WriteLine("EfSQLiteStorageService loaded.");
         }
 
-        public async Task ApplicationClosing()
+        public void ApplicationClosing()
         {
             this.loggingService.WriteLine("EfSQLiteStorageService deinitializing...");
+            if (this.context != null)
+            {
+                this.context.SaveChanges();
+                this.context.Dispose();
+            }
             this.loggingService.WriteLine("EfSQLiteStorageService deinitialized.");
         }
     }
