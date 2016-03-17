@@ -70,5 +70,25 @@ namespace Scrooge.Service.Implementations.Storage
             logger.WriteLine("Retrieving mockup inventory");
             return this.mockupInventory;
         }
+
+        public IStorageService UpdatePurchaseAndSales(IEnumerable<PurchaseAndSalesViewModel> items)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<PurchaseAndSalesViewModel> RetrievePurchaseAndSalesViewModels()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IStorageService UpdateKilometerEntry(IEnumerable<KilometerEntryViewModel> items)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<KilometerEntryViewModel> RetrieveKilometerEntryViewModels()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

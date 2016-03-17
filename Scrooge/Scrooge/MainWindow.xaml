@@ -71,14 +71,14 @@
                             <!--just a test control-->
                             <scrooge:TestPage Margin="8 4 8 0" Width="Auto" Height="Auto"/>
                         </TabItem>
-                        <TabItem Header="Balance" IsSelected="False">
-                            <materialDesign:PackIcon Kind="WaterPump" Height="100" Width="100"></materialDesign:PackIcon>
+                        <TabItem Header="Purchase / Sales" IsSelected="True">
+                            <scrooge:PurchaseAndSales Margin="8 4 8 0" Width="Auto" Height="Auto"/>
                         </TabItem>
-                        <TabItem Header="Inventory" IsSelected="True">
+                        <TabItem Header="Kilometer Entry" IsSelected="False">
+                            <scrooge:KilometerEntry Margin="8 4 8 0" Width="Auto" Height="Auto"/>
+                        </TabItem>
+                        <TabItem Header="Inventory" IsSelected="False">
                             <scrooge:Inventory Margin="8 4 8 0" Width="Auto" Height="Auto"/>
-                        </TabItem>
-                        <TabItem Header="Report" IsSelected="False">
-                            <materialDesign:PackIcon Kind="Cake" Height="100" Width="100"></materialDesign:PackIcon>
                         </TabItem>
                     </dragablz:TabablzControl>
                 </DockPanel>

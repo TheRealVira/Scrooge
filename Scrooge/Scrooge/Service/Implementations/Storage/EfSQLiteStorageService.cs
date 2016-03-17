@@ -34,6 +34,26 @@ namespace Scrooge.Service.Implementations.Storage
             return this.context.Inventory;
         }
 
+        public IStorageService UpdatePurchaseAndSales(IEnumerable<PurchaseAndSalesViewModel> items)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<PurchaseAndSalesViewModel> RetrievePurchaseAndSalesViewModels()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IStorageService UpdateKilometerEntry(IEnumerable<KilometerEntryViewModel> items)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<KilometerEntryViewModel> RetrieveKilometerEntryViewModels()
+        {
+            throw new NotImplementedException();
+        }
+
         public void ApplicationInitialized()
         {
             this.loggingService.WriteLine("EfSQLiteStorageService loading...");
