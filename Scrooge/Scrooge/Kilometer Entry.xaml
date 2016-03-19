@@ -79,7 +79,7 @@
                                                 </Border>
                                             </DataGridCheckBoxColumn.Header>
                                         </DataGridCheckBoxColumn>
-
+                                        
                                         <DataGridTextColumn Binding="{Binding Date}"
                                             Header="Date"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"

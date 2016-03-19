@@ -1,0 +1,94 @@
+﻿<materialDesign:DialogHost x:Class="Scrooge.AddKilometerEntry"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Scrooge"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:system="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="500"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{StaticResource DefaultFont}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}" MaxWidth="500" MaxHeight="500" MinWidth="500" MinHeight="500">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!--Title-->
+            <RowDefinition Height="Auto"/>
+            <!--Tools-->
+            <RowDefinition Height="*"/>
+            <!--List (of cards)-->
+        </Grid.RowDefinitions>
+
+        <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Padding="3" Margin="8" CornerRadius="8" FontSize="25" materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Stretch">
+            <TextBlock TextWrapping="Wrap" Text="New Kilometer Entry" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </materialDesign:ColorZone>
+
+        <DatePicker Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8" Width="100" Name="MyDate"  materialDesign:TextFieldAssist.Hint="Pick Date"/>
+
+        <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" materialDesign:TextFieldAssist.Hint="Driven Route" Name="MyDrivenRoute" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
+                 Margin="8,10,8,0"
+                 FontSize="18"
+                 Grid.Row="2">
+            <TextBox.Text>
+                <Binding Path="DrivenRoute" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" materialDesign:TextFieldAssist.Hint="Purpose" Name="MyPurpose" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
+                 Margin="8,78,8,0"
+                 FontSize="18"
+                 Grid.Row="2">
+            <TextBox.Text>
+                <Binding Path="Purpose" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" materialDesign:TextFieldAssist.Hint="Started Kilometer Count" Name="MyStartedKilometerCount" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
+                 Margin="8,147,8,0"
+                 FontSize="18"
+                 Grid.Row="2" PreviewTextInput="UIElement_OnPreviewTextInput">
+            <TextBox.Text>
+                <Binding Path="StartedKilometerCount" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" materialDesign:TextFieldAssist.Hint="New Kilometer Count" Name="MyNewKilometerCount" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
+                 Margin="8,220,8,0"
+                 FontSize="18"
+                 Grid.Row="2" PreviewTextInput="UIElement_OnPreviewTextInput">
+            <TextBox.Text>
+                <Binding Path="NewKilometerCount" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,87,8" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+            <Button.CommandParameter>
+                <system:Boolean>True</system:Boolean>
+            </Button.CommandParameter> Add</Button>
+
+        <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="8" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+            <Button.CommandParameter>
+                <system:Boolean>False</system:Boolean>
+            </Button.CommandParameter> Cancel</Button>
+    </Grid>
+</materialDesign:DialogHost>
+

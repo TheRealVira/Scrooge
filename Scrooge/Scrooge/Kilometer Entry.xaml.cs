@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using MaterialDesignThemes.Wpf;
+using Scrooge.Model;
 
 namespace Scrooge
 {
@@ -23,6 +15,10 @@ namespace Scrooge
         public KilometerEntry()
         {
             InitializeComponent();
+
+            // Well doesn't work like I would like it to...
+            Data = new ObservableCollection<KilometerEntryViewModel>();
+            this.KilometerGrid.ItemsSource = this.Data;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -38,24 +34,50 @@ namespace Scrooge
             this.SumOfKilometers.Text = sum.ToString();
         }
 
-        private void AddEntryBtn_OnClick(object sender, RoutedEventArgs e)
+        private async void AddEntryBtn_OnClick(object sender, RoutedEventArgs e)
         {
+            ////Some kind of copie paste:
             
+            //#Model-View-Viewmodel xD
+            //let's set up a little MVVM, cos that's what the cool kids are doing:
+            var view = new AddKilometerEntry()
+            {
+                DataContext = new KilometerEntryViewModel()
+            };
+
+            //show the dialog
+            var result = await DialogHost.Show(view, "RootDialog",view.DialogHost_OnDialogClosing);
+
+            if ((bool) result&&view.AllSet)
+            {
+                //this.KilometerGrid.Items.Add(view.Output);
+                Data.Add(view.Output);
+            }
         }
 
         private void DeleteEntryBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            for (int i = Data.Count - 1; i > -1; i--)
+            {
+                if (Data[i].IsSelected)
+                {
+                    Data.Remove(Data[i]);
+                }
+            }
         }
 
         private void SaveBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            KilometerEntryViewModel[]items=new KilometerEntryViewModel[KilometerGrid.Items.Count];
+            KilometerGrid.Items.CopyTo(items,0);
+            MainWindow.StorageService.UpdateKilometerEntry(new List<KilometerEntryViewModel>(items));
         }
 
         private void InventoryGrid_OnBeginningEdit(object sender, DataGridBeginningEditEventArgs e)
         {
-            e.Cancel=true;
+            //e.Cancel=true;
         }
+
+        private ObservableCollection<KilometerEntryViewModel> Data;
     }
 }
