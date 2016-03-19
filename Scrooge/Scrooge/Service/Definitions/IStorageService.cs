@@ -31,20 +31,20 @@ namespace Scrooge.Service.Definitions
         #endregion
 
         #region Purchase and Sales Services
-        //IStorageService AddPurchaseAndSalesItem(PurchaseAndSalesViewModel item);
+        //IStorageService AddGroupedPurchaseAndSalesViewModelItem(PurchaseAndSalesViewModel item);
 
         /// <summary>
-        /// Updates the inventory (remove removed ones and add the added ones).
+        /// Updates the PurchaseAndSales (remove removed ones and add the added ones).
         /// </summary>
-        /// <param name="items">The items which should be the inventory items stored in the DB.</param>
+        /// <param name="items">The items which should be the PurchaseAndSales items stored in the DB.</param>
         /// <returns>The service which is used for updating the DB.</returns>
-        IStorageService UpdatePurchaseAndSales(IEnumerable<PurchaseAndSalesViewModel> items);
+        IStorageService UpdateGroupedPurchaseAndSales(IEnumerable<GroupedPurchaseAndSalesViewModel> items);
 
         /// <summary>
         /// Retrieves the purchase and sales view models from the DB.
         /// </summary>
         /// <returns>The retrieved purchase and sales view models from the DB.</returns>
-        IEnumerable<PurchaseAndSalesViewModel> RetrievePurchaseAndSalesViewModels(); // copy
+        IEnumerable<GroupedPurchaseAndSalesViewModel> RetrieveGroupedPurchaseAndSalesViewModels(); // copy
 
         // Maybe...        
         ///// <summary>
@@ -52,7 +52,7 @@ namespace Scrooge.Service.Definitions
         ///// </summary>
         ///// <param name="filter">The filter.</param>
         ///// <returns>The retrieved purchase and sales view models from the DB (with the applied filter).</returns>
-        //IEnumerable<PurchaseAndSalesViewModel> RetrievePurchaseAndSalesViewModel(Predicate<PurchaseAndSalesViewModel> filter); // copy
+        //IEnumerable<GroupedPurchaseAndSalesViewModel> RetrieveGroupedPurchaseAndSalesViewModel(Predicate<GroupedPurchaseAndSalesViewModel> filter); // copy
         #endregion
 
         #region Kilometer Entry Services

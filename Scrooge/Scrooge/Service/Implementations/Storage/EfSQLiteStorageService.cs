@@ -34,12 +34,12 @@ namespace Scrooge.Service.Implementations.Storage
             return this.context.Inventory;
         }
 
-        public IStorageService UpdatePurchaseAndSales(IEnumerable<PurchaseAndSalesViewModel> items)
+        public IStorageService UpdateGroupedPurchaseAndSales(IEnumerable<GroupedPurchaseAndSalesViewModel> items)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<PurchaseAndSalesViewModel> RetrievePurchaseAndSalesViewModels()
+        public IEnumerable<GroupedPurchaseAndSalesViewModel> RetrieveGroupedPurchaseAndSalesViewModels()
         {
             throw new NotImplementedException();
         }

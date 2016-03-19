@@ -54,7 +54,7 @@
                 </ToolBarTray>
                 <materialDesign:ColorZone Mode="Accent" Margin="8" Grid.Row="1" HorizontalAlignment="Right" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
                     <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0">
-                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8" Text="Summ of the driven Kilometers" FontSize="15"/>
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8" Text="Sum of the driven Kilometers" FontSize="15"/>
                         <materialDesign:PackIcon Kind="Equal" VerticalAlignment="Center" Height="32" Width="32"/>
                         <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8" Name="SumOfKilometers" Text="" FontSize="15" />
                     </StackPanel>

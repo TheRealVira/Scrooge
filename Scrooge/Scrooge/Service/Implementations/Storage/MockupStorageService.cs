@@ -71,14 +71,15 @@ namespace Scrooge.Service.Implementations.Storage
             return this.mockupInventory;
         }
 
-        public IStorageService UpdatePurchaseAndSales(IEnumerable<PurchaseAndSalesViewModel> items)
+        public IStorageService UpdateGroupedPurchaseAndSales(IEnumerable<GroupedPurchaseAndSalesViewModel> items)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<PurchaseAndSalesViewModel> RetrievePurchaseAndSalesViewModels()
+        public IEnumerable<GroupedPurchaseAndSalesViewModel> RetrieveGroupedPurchaseAndSalesViewModels()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return new List<GroupedPurchaseAndSalesViewModel>();
         }
 
         public IStorageService UpdateKilometerEntry(IEnumerable<KilometerEntryViewModel> items)

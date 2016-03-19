@@ -43,7 +43,7 @@
                     </StackPanel>
                 </materialDesign:ColorZone>
 
-                <materialDesign:ColorZone Mode="PrimaryMid" Margin="8" Grid.Row="1" HorizontalAlignment="Center" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                <materialDesign:ColorZone Mode="PrimaryMid" Margin="8" Grid.Row="1" HorizontalAlignment="Center" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth2">
                     <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0">
                         <materialDesign:PackIcon Kind="EqualBox" VerticalAlignment="Center" Height="32" Width="32"/>
                         <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8" Name="Summ" Text="" FontSize="15" />
@@ -77,59 +77,9 @@
                 </ToolBarTray>
 
                 <!--Datalist:-->
-                <materialDesign:ColorZone CornerRadius="8" materialDesign:ShadowAssist.ShadowDepth="Depth2" Grid.Row="3" Margin="3 8 3 8" Width="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                    <ScrollViewer >
-                        <StackPanel>
-                            <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2" Width="Auto" Margin="8" VerticalAlignment="Top">
-                                <DataGrid Name="KilometerGrid"  ItemsSource="{Binding InventoryItems}" CanUserSortColumns="True" HorizontalAlignment="Stretch" ColumnWidth="*" CanUserResizeColumns="False" VerticalAlignment="Center" BeginningEdit="InventoryGrid_OnBeginningEdit">
-                                    <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Binding="{Binding IsSelected}" 
-                                                ElementStyle="{DynamicResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
-                                            <!--EditingElementStyle="{DynamicResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">-->
-                                            <DataGridCheckBoxColumn.Header>
-                                                <!--padding to allow hit test to pass thru for sorting -->
-                                                <Border Background="Transparent" Padding="6 0 6 0" HorizontalAlignment="Center">
-                                                    <CheckBox HorizontalAlignment="Center"                                               
-                                              DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext}"
-                                              IsChecked="{Binding IsAllItemsSelected}" />
-                                                </Border>
-                                            </DataGridCheckBoxColumn.Header>
-                                        </DataGridCheckBoxColumn>
-
-                                        <DataGridTextColumn Binding="{Binding Receipt}"
-                                            Header="Receipt"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"/>
-
-                                        <DataGridTextColumn Binding="{Binding REDate}"
-                                            Header="RE-Date"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            />
-
-                                        <DataGridTextColumn Binding="{Binding EntryDate}"
-                                            Header="Entry Date"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            />
-
-                                        <DataGridTextColumn Binding="{Binding Text}"
-                                            Header="Text"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            />
-
-                                        <DataGridTextColumn Binding="{Binding Value}"
-                                            Header="Value"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            />
-
-                                        <DataGridTextColumn Binding="{Binding St}"
-                                            Header="USt/VSt"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            />
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </materialDesign:ColorZone>
-                        </StackPanel>
-                    </ScrollViewer>
-                </materialDesign:ColorZone>
+                <ScrollViewer Grid.Row="3" Margin="3 8 3 8" Width="Auto" VerticalAlignment="Stretch">
+                    <ItemsControl Width="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Name="GroupedItems"/>
+                </ScrollViewer>
             </Grid>
         </DockPanel>
     </Grid>

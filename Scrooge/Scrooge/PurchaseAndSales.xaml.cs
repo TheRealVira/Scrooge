@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Scrooge.Model;
 
 namespace Scrooge
 {
@@ -31,6 +32,28 @@ namespace Scrooge
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            foreach (GroupedPurchaseAndSalesViewModel viewModel in MainWindow.StorageService.RetrieveGroupedPurchaseAndSalesViewModels())
+            {
+                this.GroupedItems.Items.Add(new GroupedSaleOrPurchase(viewModel));
+            }
+
+            //////DEBUG
+            for (int i = 0; i < 5; i++)
+            {
+                this.GroupedItems.Items.Add(new GroupedSaleOrPurchase(new GroupedPurchaseAndSalesViewModel()
+                {
+                    PurchaseAndSales = new List<PurchaseAndSalesViewModel>()
+            {
+                new PurchaseAndSalesViewModel(),
+                new PurchaseAndSalesViewModel(),
+                new PurchaseAndSalesViewModel(),
+                new PurchaseAndSalesViewModel(),
+                new PurchaseAndSalesViewModel(),
+            },
+                    GroupName = "Test"
+                }));
+            }
+            //////DEBUG
         }
 
         private void AddEntryBtn_OnClick(object sender, RoutedEventArgs e)
