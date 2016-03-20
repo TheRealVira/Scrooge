@@ -26,7 +26,16 @@
             <TextBlock TextWrapping="Wrap" Text="New Invenotry Item" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </materialDesign:ColorZone>
 
-        <DatePicker Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8,8,0,0" Width="150" Name="MyDate"  materialDesign:TextFieldAssist.Hint="Pick Date"/>
+        <TextBlock Grid.Row="1"  Margin="8,10,358,0" Width="Auto" VerticalAlignment="Top" Text="The date of acquisition:"/>
+        <DatePicker Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="292,6,0,0" Width="200" Name="MyDate"  materialDesign:TextFieldAssist.Hint="Pick a date">
+            <DatePicker.Text>
+                <Binding Path="DateOfAcquisition" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </DatePicker.Text>
+        </DatePicker>
 
         <ComboBox VerticalAlignment="Top" IsEditable="True" HorizontalAlignment="Stretch" Name="MyName" materialDesign:TextFieldAssist.Hint="Name" Style="{DynamicResource MaterialDesignFloatingHintComboBox}" Margin="8,10,8,0" FontSize="18" Grid.Row="2">
             <ComboBox.Text>

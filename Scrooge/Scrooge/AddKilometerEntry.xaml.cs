@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using MaterialDesignThemes.Wpf;
 using Scrooge.Model;
 
@@ -29,6 +19,9 @@ namespace Scrooge
 
             this.MyPurpose.ItemsSource = purposeHistory;
             this.MyDrivenRoute.ItemsSource = drivenHistory;
+            this.MyDate.SelectedDate = DateTime.Today;
+
+            // TODO: Focuz MyDrivenRoute ftw
         }
 
         private void UIElement_OnPreviewTextInput(object sender, TextCompositionEventArgs e)

@@ -38,9 +38,12 @@ namespace Scrooge
         {
             //#Model-View-Viewmodel xD
             //let's set up a little MVVM, cos that's what the cool kids are doing:
-            var view = new AddInventoryItem(this._nameHistory);
+            var view = new AddInventoryItem(this._nameHistory)
             {
-                DataContext = new InventoryViewModel();
+                DataContext = new InventoryViewModel()
+                {
+                    Duration = 1
+                }
             };
 
             //show the dialog

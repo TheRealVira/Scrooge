@@ -85,7 +85,7 @@ namespace Scrooge.Model
             set
             {
                 if (this.duration == value) return;
-                this.duration = value;
+                this.duration = value==0?1:value;
                 this.OnPropertyChanged();
             }
         }

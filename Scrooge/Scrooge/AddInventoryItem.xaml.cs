@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
@@ -18,6 +19,15 @@ namespace Scrooge
             InitializeComponent();
 
             this.MyName.ItemsSource = nameHistory;
+            this.MyDate.SelectedDate = DateTime.Today;
+
+            // TODO: Focuz MyName ftw
+        }
+
+        private void UIElement_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
+            e.Handled = regex.IsMatch(((TextBox)sender).Text + e.Text);
         }
 
         public void DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
@@ -51,11 +61,5 @@ namespace Scrooge
                 this.MyDate != null && this.MyAcquisitionValue.Text != string.Empty &&
                 this.MyAssetValue.Text != string.Empty && this.MyDisposal.Text != string.Empty &&
                 this.MyDuration.Text != string.Empty && this.MyName.Text != string.Empty;
-
-        private void UIElement_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
-            e.Handled = regex.IsMatch(((TextBox)sender).Text + e.Text);
-        }
     }
 }
