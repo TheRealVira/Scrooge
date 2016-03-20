@@ -26,33 +26,27 @@
             <TextBlock TextWrapping="Wrap" Text="New Kilometer Entry" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </materialDesign:ColorZone>
 
-        <DatePicker Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8" Width="100" Name="MyDate"  materialDesign:TextFieldAssist.Hint="Pick Date"/>
+        <DatePicker Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8,8,0,0" Width="150" Name="MyDate"  materialDesign:TextFieldAssist.Hint="Pick Date"/>
 
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" materialDesign:TextFieldAssist.Hint="Driven Route" Name="MyDrivenRoute" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
-                 Margin="8,10,8,0"
-                 FontSize="18"
-                 Grid.Row="2">
-            <TextBox.Text>
+        <ComboBox VerticalAlignment="Top" IsEditable="True" HorizontalAlignment="Stretch" Name="MyDrivenRoute" materialDesign:TextFieldAssist.Hint="Driven Route" Style="{DynamicResource MaterialDesignFloatingHintComboBox}" Margin="8,10,8,0" FontSize="18" Grid.Row="2">
+            <ComboBox.Text>
                 <Binding Path="DrivenRoute" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <local:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
                     </Binding.ValidationRules>
                 </Binding>
-            </TextBox.Text>
-        </TextBox>
+            </ComboBox.Text>
+        </ComboBox>
 
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" materialDesign:TextFieldAssist.Hint="Purpose" Name="MyPurpose" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
-                 Margin="8,78,8,0"
-                 FontSize="18"
-                 Grid.Row="2">
-            <TextBox.Text>
+        <ComboBox VerticalAlignment="Top" IsEditable="True" HorizontalAlignment="Stretch" Name="MyPurpose" materialDesign:TextFieldAssist.Hint="Purpose" Style="{DynamicResource MaterialDesignFloatingHintComboBox}" Margin="8,82,8,0" FontSize="18" Grid.Row="2">
+            <ComboBox.Text>
                 <Binding Path="Purpose" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <local:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
                     </Binding.ValidationRules>
                 </Binding>
-            </TextBox.Text>
-        </TextBox>
+            </ComboBox.Text>
+        </ComboBox>
 
         <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" materialDesign:TextFieldAssist.Hint="Started Kilometer Count" Name="MyStartedKilometerCount" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
                  Margin="8,147,8,0"
@@ -83,12 +77,14 @@
         <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,87,8" materialDesign:ShadowAssist.ShadowDepth="Depth2">
             <Button.CommandParameter>
                 <system:Boolean>True</system:Boolean>
-            </Button.CommandParameter> Add</Button>
+            </Button.CommandParameter> Add
+        </Button>
 
         <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="8" materialDesign:ShadowAssist.ShadowDepth="Depth2">
             <Button.CommandParameter>
                 <system:Boolean>False</system:Boolean>
-            </Button.CommandParameter> Cancel</Button>
+            </Button.CommandParameter> Cancel
+        </Button>
     </Grid>
 </materialDesign:DialogHost>
 

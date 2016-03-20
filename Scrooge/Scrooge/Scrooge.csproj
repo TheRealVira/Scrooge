@@ -256,6 +256,7 @@
     <Compile Include="AddKilometerEntry.xaml.cs">
       <DependentUpon>AddKilometerEntry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions.cs" />
     <Compile Include="GroupedSaleOrPurchase.xaml.cs">
       <DependentUpon>GroupedSaleOrPurchase.xaml</DependentUpon>
     </Compile>

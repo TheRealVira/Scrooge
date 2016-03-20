@@ -23,9 +23,12 @@ namespace Scrooge
     /// </summary>
     public partial class AddKilometerEntry 
     {
-        public AddKilometerEntry()
+        public AddKilometerEntry(List<string> drivenHistory, List<string>purposeHistory  )
         {
             InitializeComponent();
+
+            this.MyPurpose.ItemsSource = purposeHistory;
+            this.MyDrivenRoute.ItemsSource = drivenHistory;
         }
 
         private void UIElement_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
