@@ -33,14 +33,8 @@ namespace Scrooge
 
         private void UIElement_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
-
-        private static bool IsTextAllowed(string text)
-        {
             Regex regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
-            return !regex.IsMatch(text);
+            e.Handled = regex.IsMatch(((TextBox) sender).Text + e.Text);
         }
 
         public void DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)

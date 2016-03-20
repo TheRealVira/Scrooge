@@ -253,6 +253,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddInventoryItem.xaml.cs">
+      <DependentUpon>AddInventoryItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddKilometerEntry.xaml.cs">
       <DependentUpon>AddKilometerEntry.xaml</DependentUpon>
     </Compile>
@@ -290,6 +293,10 @@
     <Compile Include="TestPage.xaml.cs">
       <DependentUpon>TestPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddInventoryItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddKilometerEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
