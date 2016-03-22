@@ -17,14 +17,15 @@ namespace Scrooge.Model
         private string receipt;
         private string text;
         private decimal value;
-        private decimal uSt;
+        public readonly decimal St;
         private bool isSelected;
 
         [Key]
         public uint ID { get; set; }
 
-        public PurchaseAndSalesViewModel()
+        public PurchaseAndSalesViewModel(decimal steuer)
         {
+            this.St = steuer;
         }
 
         [NotMapped]
@@ -70,8 +71,6 @@ namespace Scrooge.Model
                 this.OnPropertyChanged();
             }
         }
-
-        public decimal St => 0; //TODO (USt bzw VSt)
 
         public string Text
         {

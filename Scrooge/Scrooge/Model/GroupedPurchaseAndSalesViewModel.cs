@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
-using System.Windows.Documents;
 
 namespace Scrooge.Model
 {
@@ -10,11 +10,26 @@ namespace Scrooge.Model
     {
         private string groupName;
         public List<PurchaseAndSalesViewModel> PurchaseAndSales;
+        public readonly PurchaseOrSale Type;
+        private bool isSelected;
+
+        [NotMapped]
+        public bool IsSelected
+        {
+            get { return this.isSelected; }
+            set
+            {
+                if (this.isSelected == value) return;
+                this.isSelected = value;
+                this.OnPropertyChanged();
+            }
+        }
 
         [Key]
         public uint ID { get; set; }
-        public GroupedPurchaseAndSalesViewModel()
+        public GroupedPurchaseAndSalesViewModel(PurchaseOrSale type)
         {
+            Type = type;
         }
 
         public string GroupName
@@ -36,6 +51,16 @@ namespace Scrooge.Model
         {
             var handler = this.PropertyChanged;
             handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj.GetHashCode()==this.GetHashCode();
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

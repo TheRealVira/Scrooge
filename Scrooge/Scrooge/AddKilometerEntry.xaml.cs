@@ -19,7 +19,7 @@ namespace Scrooge
 
             this.MyPurpose.ItemsSource = purposeHistory;
             this.MyDrivenRoute.ItemsSource = drivenHistory;
-            this.MyDate.SelectedDate = DateTime.Today;
+            this.MyDate.Text = DateTime.Now.ToString();
 
             // TODO: Focuz MyDrivenRoute ftw
         }

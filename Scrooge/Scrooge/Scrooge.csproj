@@ -259,13 +259,18 @@
     <Compile Include="AddKilometerEntry.xaml.cs">
       <DependentUpon>AddKilometerEntry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddPurchaseOrSaleEntry.xaml.cs">
+      <DependentUpon>AddPurchaseOrSaleEntry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="GroupedSaleOrPurchase.xaml.cs">
       <DependentUpon>GroupedSaleOrPurchase.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\AddPurchaseOrSaleViewModel.cs" />
     <Compile Include="Model\GroupedPurchaseAndSalesViewModel.cs" />
     <Compile Include="Model\KilometerEntryViewModel.cs" />
     <Compile Include="Model\PurchaseAndSalesViewModel.cs" />
+    <Compile Include="Model\PurchaseOrSale.cs" />
     <Compile Include="NotEmptyValidationRule.cs" />
     <Compile Include="PurchaseAndSales.xaml.cs">
       <DependentUpon>PurchaseAndSales.xaml</DependentUpon>
@@ -298,6 +303,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddKilometerEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddPurchaseOrSaleEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

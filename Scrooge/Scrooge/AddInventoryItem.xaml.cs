@@ -19,7 +19,7 @@ namespace Scrooge
             InitializeComponent();
 
             this.MyName.ItemsSource = nameHistory;
-            this.MyDate.SelectedDate = DateTime.Today;
+            this.MyDate.Text = DateTime.Now.ToString();
 
             // TODO: Focuz MyName ftw
         }

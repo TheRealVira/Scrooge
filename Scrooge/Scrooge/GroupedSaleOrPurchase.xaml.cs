@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,20 +28,20 @@ namespace Scrooge
 
             this.GroupeName.Text = saleOrPurchase.GroupName;
 
-            if (saleOrPurchase.PurchaseAndSales != null)
-            {
-                foreach (var purchaseAndSalese in saleOrPurchase.PurchaseAndSales)
-                {
-                    this.SaleOrPurchaseGrid.Items.Add(purchaseAndSalese);
-                }
-            }
+            this.Data = saleOrPurchase.PurchaseAndSales == null
+                ? new ObservableCollection<PurchaseAndSalesViewModel>()
+                : new ObservableCollection<PurchaseAndSalesViewModel>(saleOrPurchase.PurchaseAndSales);
 
-            this.MySum.DataContext = saleOrPurchase;
+            this.SaleOrPurchaseGrid.ItemsSource = Data;
+            this.GroupeName.Text = saleOrPurchase.GroupName;
+            this.MySum.Text = Data.Sum(x => x.Value) + "";
+
+            this.ImSelected.DataContext = saleOrPurchase.IsSelected;
+            this.Type = saleOrPurchase.Type;
+            this.SomeCallMeType.Text = this.Type.ToString();
         }
 
-        private void Grid_OnBeginningEdit(object sender, DataGridBeginningEditEventArgs e)
-        {
-            e.Cancel = true;
-        }
+        public ObservableCollection<PurchaseAndSalesViewModel> Data;
+        public readonly PurchaseOrSale Type;
     }
 }

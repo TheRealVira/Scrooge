@@ -26,7 +26,7 @@ namespace Scrooge
         {
             //foreach (var retrieveInventoryViewModel in MainWindow.StorageService.RetrieveInventoryViewModels())
             //{
-            //    _data.Add(retrieveInventoryViewModel);
+            //    Data.Add(retrieveInventoryViewModel);
             //    if (!this._nameHistory.Contains(retrieveInventoryViewModel.Name))
             //    {
             //        this._nameHistory.Add(retrieveInventoryViewModel.Name);
