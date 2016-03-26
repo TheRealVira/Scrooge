@@ -20,6 +20,7 @@ namespace Scrooge.Model
         [Key]
         public uint ID { get; set; }
 
+        // Explicit constructor needed for serialization, do not remove!
         public InventoryViewModel()
         {
             if (this.Acquisitions == null)

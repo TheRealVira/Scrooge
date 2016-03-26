@@ -196,6 +196,7 @@
       <HintPath>..\packages\Microsoft.Framework.Primitives.1.0.0-rc1-15685\lib\net45\Microsoft.Framework.Primitives.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Remotion.Linq, Version=2.0.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\packages\Remotion.Linq.2.0.2\lib\net45\Remotion.Linq.dll</HintPath>
       <Private>True</Private>
@@ -262,6 +263,7 @@
     <Compile Include="AddPurchaseOrSaleEntry.xaml.cs">
       <DependentUpon>AddPurchaseOrSaleEntry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseTest.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GroupedSaleOrPurchase.xaml.cs">
       <DependentUpon>GroupedSaleOrPurchase.xaml</DependentUpon>
@@ -270,7 +272,7 @@
     <Compile Include="Model\GroupedPurchaseAndSalesViewModel.cs" />
     <Compile Include="Model\KilometerEntryViewModel.cs" />
     <Compile Include="Model\PurchaseAndSalesViewModel.cs" />
-    <Compile Include="Model\PurchaseOrSale.cs" />
+    <Compile Include="Model\EntryType.cs" />
     <Compile Include="NotEmptyValidationRule.cs" />
     <Compile Include="PurchaseAndSales.xaml.cs">
       <DependentUpon>PurchaseAndSales.xaml</DependentUpon>
@@ -291,7 +293,6 @@
     <Compile Include="Service\Implementations\DebugLoggingService.cs" />
     <Compile Include="Service\Implementations\Storage\EfSQLiteStorageService.cs" />
     <Compile Include="Service\Implementations\GUIApplicationEventService.cs" />
-    <Compile Include="Service\Implementations\Storage\MockupStorageService.cs" />
     <Compile Include="Service\Implementations\Storage\StorageContext.cs" />
     <Compile Include="Service\ServiceController.cs" />
     <Compile Include="Singleton.cs" />
@@ -394,6 +395,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Data.Sqlite.1.0.0-rc2-20100\build\net451\Microsoft.Data.Sqlite.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Data.Sqlite.1.0.0-rc2-20100\build\net451\Microsoft.Data.Sqlite.props'))" />
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent>cp $(ProjectDir)..\packages\System.Threading.4.0.10\lib\DNXCore50\System.Threading.dll $(TargetDir)System.Threading.dll</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

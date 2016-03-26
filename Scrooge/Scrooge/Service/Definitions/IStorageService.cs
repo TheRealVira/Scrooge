@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using Scrooge.Model;
 
 namespace Scrooge.Service.Definitions
@@ -19,7 +20,7 @@ namespace Scrooge.Service.Definitions
         /// Retrieves the inventory view models from the DB.
         /// </summary>
         /// <returns>The retrieved inventory view models from the DB.</returns>
-        IEnumerable<InventoryViewModel> RetrieveInventoryViewModels(); // copy
+        DbSet<InventoryViewModel> RetrieveInventoryViewModels(); // copy
 
         // Maybe...        
         ///// <summary>
@@ -44,7 +45,7 @@ namespace Scrooge.Service.Definitions
         /// Retrieves the purchase and sales view models from the DB.
         /// </summary>
         /// <returns>The retrieved purchase and sales view models from the DB.</returns>
-        IEnumerable<GroupedPurchaseAndSalesViewModel> RetrieveGroupedPurchaseAndSalesViewModels(); // copy
+        DbSet<GroupedPurchaseAndSalesViewModel> RetrieveGroupedPurchaseAndSalesViewModels(); // copy
 
         // Maybe...        
         ///// <summary>
@@ -69,7 +70,7 @@ namespace Scrooge.Service.Definitions
         /// Retrieves the kilometer entry view models from the DB.
         /// </summary>
         /// <returns>The retrieved kilometer entry view models from the DB.</returns>
-        IEnumerable<KilometerEntryViewModel> RetrieveKilometerEntryViewModels(); // copy
+        DbSet<KilometerEntryViewModel> RetrieveKilometerEntryViewModels(); // copy
 
         // Maybe...        
         ///// <summary>

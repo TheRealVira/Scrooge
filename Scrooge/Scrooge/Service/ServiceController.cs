@@ -9,6 +9,7 @@ namespace Scrooge.Service
     public class ServiceController
     {
         private readonly IDictionary<Type, object> services = new Dictionary<Type, object>();
+        private bool initialized;
 
         public ServiceController Register<T>(T service) where T : class
         {
@@ -31,10 +32,17 @@ namespace Scrooge.Service
 
         public void InitializeServices()
         {
+            if (this.initialized)
+            {
+                this.Get<ILoggingService>()?.WriteLine("Services already registered, nothing to be done.");
+                return;
+            }
+
+            this.initialized = true;
             this.Register<ILoggingService>(Singleton<DebugLoggingService>.Instance);
             this.Register<IApplicationEventService>(Singleton<GUIApplicationEventService>.Instance);
             //this.Register<IStorageService>(Singleton<MockupStorageService>.Instance);
-            this.Register<IStorageService>(Singleton<MockupStorageService>.Instance);
+            this.Register<IStorageService>(Singleton<EfSQLiteStorageService>.Instance);
             this.Get<ILoggingService>()?.WriteLine("Services registered");
         }
     }

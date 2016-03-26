@@ -52,8 +52,8 @@ namespace Scrooge
 
                 Output =
                     new GroupedPurchaseAndSalesViewModel(this.MyType.Text == "Sale"
-                        ? PurchaseOrSale.Sale
-                        : PurchaseOrSale.Purchase)
+                        ? EntryType.Sale
+                        : EntryType.Purchase)
                     {
                         GroupName = this.MyGroupName.Text,
                         PurchaseAndSales = new List<PurchaseAndSalesViewModel>()

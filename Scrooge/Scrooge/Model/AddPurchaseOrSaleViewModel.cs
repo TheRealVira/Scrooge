@@ -16,7 +16,7 @@ namespace Scrooge.Model
     {
         private DateTime rEDate, entryDate;
         private string groupName, text, receipt;
-        private PurchaseOrSale _type;
+        private EntryType _type;
         private decimal st, value;
 
         public DateTime EntryDate
@@ -69,7 +69,7 @@ namespace Scrooge.Model
                 this.OnPropertyChanged();
             }
         }
-        public PurchaseOrSale Type
+        public EntryType Type
         {
             get { return this._type; }
             set

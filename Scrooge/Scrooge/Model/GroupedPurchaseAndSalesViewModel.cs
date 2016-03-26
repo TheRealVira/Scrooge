@@ -10,8 +10,13 @@ namespace Scrooge.Model
     {
         private string groupName;
         public List<PurchaseAndSalesViewModel> PurchaseAndSales;
-        public readonly PurchaseOrSale Type;
+        public readonly EntryType Type;
         private bool isSelected;
+
+        // Explicit constructor needed for serialization, do not remove!
+        public GroupedPurchaseAndSalesViewModel()
+        {
+        }
 
         [NotMapped]
         public bool IsSelected
@@ -27,7 +32,7 @@ namespace Scrooge.Model
 
         [Key]
         public uint ID { get; set; }
-        public GroupedPurchaseAndSalesViewModel(PurchaseOrSale type)
+        public GroupedPurchaseAndSalesViewModel(EntryType type)
         {
             Type = type;
         }

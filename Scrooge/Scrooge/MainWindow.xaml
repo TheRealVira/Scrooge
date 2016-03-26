@@ -42,7 +42,7 @@
                             <Button ToolTip="About" Click="About_OnClick" Height="36" HorizontalAlignment="Right" Margin="8" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
                                 <Button.CommandParameter>
                                     <StackPanel Margin="16">
-                                        <TextBlock Text="Scrooge is work in progress by &quot;Vira&quot; - &quot;Butchcom&quot; - &quot;StePro&quot;.&#x0a;Special thanks to ButchersBoy and MahApps!&#x0a;&#x0a;Designed by: Vira&#x0a;[Something] by: StePro&#x0a;[Something] by: Butchcom&#x0a;"/>
+                                        <TextBlock Text="Scrooge is open source software: https://github.com/TheRealVira/Scrooge&#x0a;Current contributers:&#x0a;&#x0a;TheRealVira (Design)&#x0a;Butchcom (accounting expertise)&#x0a;PiMaker (Backend)&#x0a;&#x0a;Special thanks to ButchersBoy and MahApps!"/>
                                         
                                         <Button IsCancel="True" 
                                             Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"

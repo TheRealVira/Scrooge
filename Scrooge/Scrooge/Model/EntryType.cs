@@ -1,6 +1,6 @@
 ﻿namespace Scrooge.Model
 {
-    public enum PurchaseOrSale
+    public enum EntryType
     {
         Purchase=0,
         Sale=1

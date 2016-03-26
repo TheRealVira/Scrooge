@@ -42,6 +42,6 @@ namespace Scrooge
         }
 
         public ObservableCollection<PurchaseAndSalesViewModel> Data;
-        public readonly PurchaseOrSale Type;
+        public readonly EntryType Type;
     }
 }

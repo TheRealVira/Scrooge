@@ -35,7 +35,7 @@ namespace Scrooge
             //////DEBUG
             for (int i = 0; i < 5; i++)
             {
-                this._data.Add(new GroupedSaleOrPurchase(new GroupedPurchaseAndSalesViewModel(PurchaseOrSale.Sale)
+                this._data.Add(new GroupedSaleOrPurchase(new GroupedPurchaseAndSalesViewModel(EntryType.Sale)
                 {
                     PurchaseAndSales = new List<PurchaseAndSalesViewModel>()
                     {
@@ -50,10 +50,10 @@ namespace Scrooge
             }
             //////DEBUG
 
-            this.Plus.Text = this._data.Where(x => x.Type == PurchaseOrSale.Sale).Sum(x => x.Data.Sum(y => y.Value)) +
+            this.Plus.Text = this._data.Where(x => x.Type == EntryType.Sale).Sum(x => x.Data.Sum(y => y.Value)) +
                              "";
             this.Minus.Text =
-                this._data.Where(x => x.Type == PurchaseOrSale.Purchase).Sum(x => x.Data.Sum(y => y.Value)) + "";
+                this._data.Where(x => x.Type == EntryType.Purchase).Sum(x => x.Data.Sum(y => y.Value)) + "";
             this.Summ.Text = (decimal.Parse(this.Plus.Text) - decimal.Parse(this.Minus.Text)) + "";
         }
 
@@ -87,16 +87,16 @@ namespace Scrooge
             }
         }
 
-        private void UpdateCalculations(PurchaseOrSale whichSideToUpdate)
+        private void UpdateCalculations(EntryType whichSideToUpdate)
         {
-            if (whichSideToUpdate == PurchaseOrSale.Sale)
+            if (whichSideToUpdate == EntryType.Sale)
             {
-                this.Plus.Text = this._data.Where(x => x.Type == PurchaseOrSale.Sale).Sum(x => x.Data.Sum(y => y.Value)) + "";
+                this.Plus.Text = this._data.Where(x => x.Type == EntryType.Sale).Sum(x => x.Data.Sum(y => y.Value)) + "";
                 this.Summ.Text = (decimal.Parse(this.Plus.Text) - decimal.Parse(this.Minus.Text)) + "";
             }
             else
             {
-                this.Minus.Text = this._data.Where(x => x.Type == PurchaseOrSale.Purchase).Sum(x => x.Data.Sum(y => y.Value)) + "";
+                this.Minus.Text = this._data.Where(x => x.Type == EntryType.Purchase).Sum(x => x.Data.Sum(y => y.Value)) + "";
                 this.Summ.Text = (decimal.Parse(this.Plus.Text) - decimal.Parse(this.Minus.Text)) + "";
             }
         }
@@ -121,10 +121,10 @@ namespace Scrooge
                 }
             }
 
-            this.Plus.Text = this._data.Where(x => x.Type == PurchaseOrSale.Sale).Sum(x => x.Data.Sum(y => y.Value)) +
+            this.Plus.Text = this._data.Where(x => x.Type == EntryType.Sale).Sum(x => x.Data.Sum(y => y.Value)) +
                              "";
             this.Minus.Text =
-                this._data.Where(x => x.Type == PurchaseOrSale.Purchase).Sum(x => x.Data.Sum(y => y.Value)) + "";
+                this._data.Where(x => x.Type == EntryType.Purchase).Sum(x => x.Data.Sum(y => y.Value)) + "";
             this.Summ.Text = (decimal.Parse(this.Plus.Text) - decimal.Parse(this.Minus.Text)) + "";
         }
 

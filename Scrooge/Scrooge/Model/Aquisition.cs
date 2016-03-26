@@ -4,6 +4,11 @@ namespace Scrooge.Model
 {
     public class Aquisition
     {
+        // Explicit constructor needed for serialization, do not remove!
+        public Aquisition()
+        {
+        }
+
         public DateTime DateTime { get; private set; }
         public decimal Value { get; private set; }
 

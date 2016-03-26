@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace Scrooge.Model
 {
-    public class KilometerEntryViewModel : INotifyPropertyChanged
+    public class KilometerEntryViewModel : INotifyPropertyChanged, IEquatable<KilometerEntryViewModel>
     {
         private DateTime date;
         private string drivenRoute;
@@ -19,6 +18,7 @@ namespace Scrooge.Model
         [Key]
         public uint ID { get; set; }
 
+        // Explicit constructor needed for serialization, do not remove!
         public KilometerEntryViewModel()
         {
         }
@@ -98,5 +98,7 @@ namespace Scrooge.Model
             var handler = this.PropertyChanged;
             handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public bool Equals(KilometerEntryViewModel other) => this.ID == other.ID;
     }
 }
