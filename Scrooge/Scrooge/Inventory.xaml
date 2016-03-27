@@ -58,7 +58,7 @@
                     <ScrollViewer >
                         <StackPanel>
                             <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2" Width="Auto" Margin="8" VerticalAlignment="Top">
-                                <DataGrid Name="InventoryGrid" CanUserSortColumns="True" ColumnWidth="*" AutoGenerateColumns="False" CanUserAddRows="False" Width="Auto" CanUserResizeColumns="False" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                                <DataGrid Name="InventoryGrid" CanUserSortColumns="True" AutoGenerateColumns="False" CanUserAddRows="False" Width="Auto" CanUserResizeColumns="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
 
                                     <DataGrid.Columns>
                                         <DataGridCheckBoxColumn Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -76,7 +76,7 @@
 
                                         <DataGridTextColumn Binding="{Binding Name}"
                                             Header="Item"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}" CanUserResize="False"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
                                         <DataGridTextColumn Binding="{Binding DateOfAcquisition}"
