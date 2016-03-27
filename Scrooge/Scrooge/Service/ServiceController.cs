@@ -43,6 +43,7 @@ namespace Scrooge.Service
             this.Register<IApplicationEventService>(Singleton<GUIApplicationEventService>.Instance);
             //this.Register<IStorageService>(Singleton<MockupStorageService>.Instance);
             this.Register<IStorageService>(Singleton<EfSQLiteStorageService>.Instance);
+            this.Register<ICalculationService>(Singleton<CalculationService>.Instance);
             this.Get<ILoggingService>()?.WriteLine("Services registered");
         }
     }

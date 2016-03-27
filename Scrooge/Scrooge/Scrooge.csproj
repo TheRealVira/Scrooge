@@ -287,6 +287,8 @@
     <Compile Include="Model\Aquisition.cs" />
     <Compile Include="Model\Internal\IApplicationEventListener.cs" />
     <Compile Include="Model\InventoryViewModel.cs" />
+    <Compile Include="Service\Definitions\ICalculationService.cs" />
+    <Compile Include="Service\Implementations\CalculationService.cs" />
     <Compile Include="Service\Definitions\IApplicationEventService.cs" />
     <Compile Include="Service\Definitions\ILoggingService.cs" />
     <Compile Include="Service\Definitions\IStorageService.cs" />
@@ -396,7 +398,7 @@
     <Error Condition="!Exists('..\packages\Microsoft.Data.Sqlite.1.0.0-rc2-20100\build\net451\Microsoft.Data.Sqlite.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Data.Sqlite.1.0.0-rc2-20100\build\net451\Microsoft.Data.Sqlite.props'))" />
   </Target>
   <PropertyGroup>
-    <PreBuildEvent>cp $(ProjectDir)..\packages\System.Threading.4.0.10\lib\DNXCore50\System.Threading.dll $(TargetDir)System.Threading.dll</PreBuildEvent>
+    <PreBuildEvent>c:\windows\system32\xcopy.exe /Y $(SolutionDir)packages\System.Threading.4.0.10\lib\DNXCore50\System.Threading.dll $(TargetDir)System.Threading.dll</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
