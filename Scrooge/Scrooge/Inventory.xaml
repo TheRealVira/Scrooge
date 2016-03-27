@@ -76,7 +76,7 @@
 
                                         <DataGridTextColumn Binding="{Binding Name}"
                                             Header="Item"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}" CanUserResize="False"
                                             />
 
                                         <DataGridTextColumn Binding="{Binding DateOfAcquisition}"
