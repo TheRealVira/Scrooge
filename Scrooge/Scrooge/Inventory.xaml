@@ -100,17 +100,17 @@
                                             />
 
                                         <DataGridTextColumn Binding="{Binding Duration}"
-                                            Header="Duration"
+                                            Header="Depreciation duration"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
                                         <DataGridTextColumn Binding="{Binding Percentage}"
-                                            Header="%"
+                                            Header="Depreciation %"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding Value}"
-                                            Header="Value"
+                                        <DataGridTextColumn Binding="{Binding Depreciation}"
+                                            Header="Depreciation value"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 

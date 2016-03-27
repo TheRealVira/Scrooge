@@ -16,7 +16,7 @@ namespace Scrooge.Model
         private bool isSelected;
         private string name;
         private decimal acquisitionValue;
-        
+
         [Key]
         public uint ID { get; set; }
 
@@ -78,7 +78,7 @@ namespace Scrooge.Model
 
         public List<Aquisition> Acquisitions;
 
-        public decimal Acquisition => 0; // TODO
+        ////public decimal Acquisition => 0; // TODO
 
         public decimal Duration
         {
@@ -86,14 +86,14 @@ namespace Scrooge.Model
             set
             {
                 if (this.duration == value) return;
-                this.duration = value==0?1:value;
+                this.duration = value == 0 ? 1 : value;
                 this.OnPropertyChanged();
             }
         }
 
-        public decimal Percentage => 100m/this.duration;
+        public decimal Percentage => 100m / this.duration;
 
-        public decimal Value => 0; // TODO
+        public decimal Deprecation => this.AcquisitionValue / this.Duration;
 
         public decimal Disposal
         {
