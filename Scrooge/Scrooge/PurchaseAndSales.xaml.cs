@@ -32,28 +32,10 @@ namespace Scrooge
                 this._data.Add(new GroupedSaleOrPurchase(viewModel));
             }
 
-            //////DEBUG
-            for (int i = 0; i < 5; i++)
-            {
-                this._data.Add(new GroupedSaleOrPurchase(new GroupedPurchaseAndSalesViewModel(EntryType.Sale)
-                {
-                    PurchaseAndSales = new List<PurchaseAndSalesViewModel>()
-                    {
-                        new PurchaseAndSalesViewModel(10),
-                        new PurchaseAndSalesViewModel(20),
-                        new PurchaseAndSalesViewModel(10),
-                        new PurchaseAndSalesViewModel(20),
-                        new PurchaseAndSalesViewModel(10),
-                    },
-                    GroupName = "Test"
-                }));
-            }
-            //////DEBUG
-
-            this.Plus.Text = this._data.Where(x => x.Type == EntryType.Sale).Sum(x => x.Data.Sum(y => y.Value)) +
+            this.Plus.Text = this._data.Where(x => x.Data.Type == EntryType.Sale).Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) +
                              "";
             this.Minus.Text =
-                this._data.Where(x => x.Type == EntryType.Purchase).Sum(x => x.Data.Sum(y => y.Value)) + "";
+                this._data.Where(x => x.Data.Type == EntryType.Purchase).Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) + "";
             this.Summ.Text = (decimal.Parse(this.Plus.Text) - decimal.Parse(this.Minus.Text)) + "";
         }
 
@@ -71,14 +53,14 @@ namespace Scrooge
 
             if (!(bool)result || !view.AllSet || view.Output == null) return;
 
-            view.Output.ID = _data.Count != 0 ? _data.Max(x => x.Data.Max(y=>y.ID)) + 1 : 0;
+            view.Output.ID = _data.Count != 0 ? _data.Max(x => x.Data.PurchaseAndSales.Max(y=>y.ID)) + 1 : 0;
 
-            if (_data.Any(x => x.GroupeName.Text == view.Output.GroupName && x.Type == view.Output.Type))
+            if (_data.Any(x => x.Data.GroupName == view.Output.GroupName && x.Data.Type == view.Output.Type))
             {
-                var current=_data.First(x => x.GroupeName.Text==view.Output.GroupName && x.Type == view.Output.Type);
-                current.Data.Add(view.Output.PurchaseAndSales[0]);
-                current.MySum.Text = current.Data.Sum(x => x.Value)+"";
-                UpdateCalculations(current.Type);
+                var current=_data.First(x => x.GroupeName.Text==view.Output.GroupName && x.Data.Type == view.Output.Type);
+                current.Data.PurchaseAndSales.Add(view.Output.PurchaseAndSales[0]);
+                current.MySum.Text = current.Data.PurchaseAndSales.Sum(x => x.Value)+"";
+                UpdateCalculations(current.Data.Type);
             }
             else
             {
@@ -91,12 +73,12 @@ namespace Scrooge
         {
             if (whichSideToUpdate == EntryType.Sale)
             {
-                this.Plus.Text = this._data.Where(x => x.Type == EntryType.Sale).Sum(x => x.Data.Sum(y => y.Value)) + "";
+                this.Plus.Text = this._data.Where(x => x.Data.Type == EntryType.Sale).Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) + "";
                 this.Summ.Text = (decimal.Parse(this.Plus.Text) - decimal.Parse(this.Minus.Text)) + "";
             }
             else
             {
-                this.Minus.Text = this._data.Where(x => x.Type == EntryType.Purchase).Sum(x => x.Data.Sum(y => y.Value)) + "";
+                this.Minus.Text = this._data.Where(x => x.Data.Type == EntryType.Purchase).Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) + "";
                 this.Summ.Text = (decimal.Parse(this.Plus.Text) - decimal.Parse(this.Minus.Text)) + "";
             }
         }
@@ -112,25 +94,27 @@ namespace Scrooge
                     continue;
                 }
 
-                for (int i2 = this._data[i].Data.Count - 1; i2 > -1; i2--)
+                for (int i2 = this._data[i].Data.PurchaseAndSales.Count - 1; i2 > -1; i2--)
                 {
-                    if (this._data[i].Data[i2].IsSelected)
+                    if (this._data[i].Data.PurchaseAndSales[i2].IsSelected)
                     {
-                        this._data[i].Data.Remove(this._data[i].Data[i2]);
+                        this._data[i].Data.PurchaseAndSales.Remove(this._data[i].Data.PurchaseAndSales[i2]);
                     }
                 }
             }
 
-            this.Plus.Text = this._data.Where(x => x.Type == EntryType.Sale).Sum(x => x.Data.Sum(y => y.Value)) +
+            this.Plus.Text = this._data.Where(x => x.Data.Type == EntryType.Sale).Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) +
                              "";
             this.Minus.Text =
-                this._data.Where(x => x.Type == EntryType.Purchase).Sum(x => x.Data.Sum(y => y.Value)) + "";
+                this._data.Where(x => x.Data.Type == EntryType.Purchase).Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) + "";
             this.Summ.Text = (decimal.Parse(this.Plus.Text) - decimal.Parse(this.Minus.Text)) + "";
         }
 
         private void SaveBtn_OnClick(object sender, RoutedEventArgs e)
         {
-
+            GroupedPurchaseAndSalesViewModel[] items = new GroupedPurchaseAndSalesViewModel[GroupedItems.Items.Count];
+            this.GroupedItems.Items.OfType<GroupedSaleOrPurchase>().Select(x=>x.Data).ToArray().CopyTo(items, 0);
+            MainWindow.StorageService.UpdateGroupedPurchaseAndSales(new List<GroupedPurchaseAndSalesViewModel>(items));
         }
 
         private void InventoryGrid_OnBeginningEdit(object sender, DataGridBeginningEditEventArgs e)
@@ -138,6 +122,6 @@ namespace Scrooge
             e.Cancel = true;
         }
 
-        private ObservableCollection<GroupedSaleOrPurchase> _data;
+        private readonly ObservableCollection<GroupedSaleOrPurchase> _data;
     }
 }
