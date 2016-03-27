@@ -28,6 +28,7 @@ namespace Scrooge
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            if (this._data.Count != 0) return;
             long sum = 0;
 
             foreach (var retrieveInventoryViewModel in MainWindow.StorageService.RetrieveKilometerEntryViewModels())
@@ -62,20 +63,21 @@ namespace Scrooge
             //show the dialog
             var result = await DialogHost.Show(view, "RootDialog",view.DialogHost_OnDialogClosing);
 
-            if (!(bool) result || !view.AllSet || view.Output == null) return;
+            var outp = (KilometerEntryViewModel)view.DataContext;
+            if (!(bool) result || !view.AllSet || outp == null) return;
 
-            view.Output.ID = _data.Count!=0?_data.Max(x => x.ID)+1:0;
-            _data.Add(view.Output);
-            if (!this._drivenRouteHistory.Contains(view.Output.DrivenRoute))
+            outp.ID = _data.Count!=0?_data.Max(x => x.ID)+1:0;
+            _data.Add(outp);
+            if (!this._drivenRouteHistory.Contains(outp.DrivenRoute))
             {
-                this._drivenRouteHistory.Add(view.Output.DrivenRoute);
+                this._drivenRouteHistory.Add(outp.DrivenRoute);
             }
-            if (!this._purposeHistory.Contains(view.Output.Purpose))
+            if (!this._purposeHistory.Contains(outp.Purpose))
             {
-                this._purposeHistory.Add(view.Output.Purpose);
+                this._purposeHistory.Add(outp.Purpose);
             }
 
-            this.SumOfKilometers.Text = (int.Parse(this.SumOfKilometers.Text)+view.Output.DrivenKilometers).ToString();
+            this.SumOfKilometers.Text = (int.Parse(this.SumOfKilometers.Text)+ outp.DrivenKilometers).ToString();
         }
 
         private void DeleteEntryBtn_OnClick(object sender, RoutedEventArgs e)

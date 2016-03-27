@@ -25,6 +25,7 @@ namespace Scrooge
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            if (this._data.Count != 0) return;
             foreach (
                 GroupedPurchaseAndSalesViewModel viewModel in
                     MainWindow.StorageService.RetrieveGroupedPurchaseAndSalesViewModels())

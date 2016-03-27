@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
 
         <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Padding="3" Margin="8" CornerRadius="8" FontSize="25" materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Stretch">
-            <TextBlock TextWrapping="Wrap" Text="New Invenotry Item" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock TextWrapping="Wrap" Text="New Invenotry Item" VerticalAlignment="Center" HorizontalAlignment="Center" Name="Title"/>
         </materialDesign:ColorZone>
 
         <TextBlock Grid.Row="1"  Margin="8,10,358,0" Width="Auto" VerticalAlignment="Top" Text="The date of acquisition:"/>
@@ -99,7 +99,7 @@
             </TextBox.Text>
         </TextBox>
 
-        <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,87,8" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+        <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Name="AcceptBtn" Margin="0,0,87,8" materialDesign:ShadowAssist.ShadowDepth="Depth2">
             <Button.CommandParameter>
                 <system:Boolean>True</system:Boolean>
             </Button.CommandParameter> Add
