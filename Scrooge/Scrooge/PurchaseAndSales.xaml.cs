@@ -26,10 +26,10 @@ namespace Scrooge
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             foreach (
-                GroupedSaleOrPurchase viewModel in
+                GroupedPurchaseAndSalesViewModel viewModel in
                     MainWindow.StorageService.RetrieveGroupedPurchaseAndSalesViewModels())
             {
-                this._data.Add(viewModel);
+                this._data.Add(new GroupedSaleOrPurchase(viewModel));
             }
 
             this.Plus.Text = this._data.Where(x => x.Data.Type == EntryType.Sale).Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) +
@@ -112,9 +112,9 @@ namespace Scrooge
 
         private void SaveBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            GroupedSaleOrPurchase[] items = new GroupedSaleOrPurchase[GroupedItems.Items.Count];
+            GroupedPurchaseAndSalesViewModel[] items = new GroupedPurchaseAndSalesViewModel[GroupedItems.Items.Count];
             this.GroupedItems.Items.OfType<GroupedSaleOrPurchase>().Select(x=>x.Data).ToArray().CopyTo(items, 0);
-            MainWindow.StorageService.UpdateGroupedPurchaseAndSales(new List<GroupedSaleOrPurchase>(items));
+            MainWindow.StorageService.UpdateGroupedPurchaseAndSales(new List<GroupedPurchaseAndSalesViewModel>(items));
         }
 
         private void InventoryGrid_OnBeginningEdit(object sender, DataGridBeginningEditEventArgs e)

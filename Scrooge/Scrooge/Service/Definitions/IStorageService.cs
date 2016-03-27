@@ -39,13 +39,13 @@ namespace Scrooge.Service.Definitions
         /// </summary>
         /// <param name="items">The items which should be the PurchaseAndSales items stored in the DB.</param>
         /// <returns>The service which is used for updating the DB.</returns>
-        IStorageService UpdateGroupedPurchaseAndSales(IEnumerable<GroupedSaleOrPurchase> items);
+        IStorageService UpdateGroupedPurchaseAndSales(IEnumerable<GroupedPurchaseAndSalesViewModel> items);
 
         /// <summary>
         /// Retrieves the purchase and sales view models from the DB.
         /// </summary>
         /// <returns>The retrieved purchase and sales view models from the DB.</returns>
-        DbSet<GroupedSaleOrPurchase> RetrieveGroupedPurchaseAndSalesViewModels(); // copy
+        DbSet<GroupedPurchaseAndSalesViewModel> RetrieveGroupedPurchaseAndSalesViewModels(); // copy
 
         // Maybe...        
         ///// <summary>

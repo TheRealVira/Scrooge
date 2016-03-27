@@ -65,7 +65,7 @@ namespace Scrooge.Service.Implementations.Storage
             return this.context.Inventory;
         }
 
-        public IStorageService UpdateGroupedPurchaseAndSales(IEnumerable<GroupedSaleOrPurchase> items)
+        public IStorageService UpdateGroupedPurchaseAndSales(IEnumerable<GroupedPurchaseAndSalesViewModel> items)
         {
             this.loggingService.WriteLine("Updating grouped purchase and sales items...");
             EfSQLiteStorageService.AddRemoveUpdateList(this.context.GroupedPurchasesAndSales, items);
@@ -73,7 +73,7 @@ namespace Scrooge.Service.Implementations.Storage
             return this;
         }
 
-        public DbSet<GroupedSaleOrPurchase> RetrieveGroupedPurchaseAndSalesViewModels()
+        public DbSet<GroupedPurchaseAndSalesViewModel> RetrieveGroupedPurchaseAndSalesViewModels()
         {
             this.loggingService.WriteLine("Retrieving grouped purchase and sales items...");
             return this.context.GroupedPurchasesAndSales;
