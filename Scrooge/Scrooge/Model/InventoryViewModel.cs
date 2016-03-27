@@ -78,7 +78,7 @@ namespace Scrooge.Model
 
         public List<Aquisition> Acquisitions;
 
-        public decimal Acquisition => 0; // TODO
+        ////public decimal Acquisition => 0; // TODO
 
         public decimal Duration
         {
@@ -93,7 +93,7 @@ namespace Scrooge.Model
 
         public decimal Percentage => 100m/this.duration;
 
-        public decimal Value => 0; // TODO
+        public decimal Deprecation => this.AcquisitionValue / this.Duration;
 
         public decimal Disposal
         {
