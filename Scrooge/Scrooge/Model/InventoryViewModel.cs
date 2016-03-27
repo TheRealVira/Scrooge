@@ -9,6 +9,7 @@ namespace Scrooge.Model
 {
     public class InventoryViewModel : INotifyPropertyChanged
     {
+        private decimal appreciation;
         private decimal assetValue;
         private DateTime dateOfAcquisition;
         private decimal disposal;
@@ -93,7 +94,35 @@ namespace Scrooge.Model
 
         public List<Aquisition> Acquisitions;
 
-        public decimal Appreciation => 0; // TODO
+        /// <summary>
+        /// Gets or sets the appreciation of the <see cref="BalanceValue"/>.
+        /// </summary>
+        public decimal Appreciation
+        {
+            get
+            {
+                return this.appreciation;
+            }
+
+            set
+            {
+                if (this.appreciation == value)
+                {
+                    return;
+                }
+
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(
+                        nameof(value),
+                        value,
+                        "InventoryViewModel.Appreciation needs to be greater than or equal 0.");
+                }
+
+                this.appreciation = value;
+                this.OnPropertyChanged();
+            }
+        }
 
         public decimal Duration
         {
