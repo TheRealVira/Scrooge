@@ -62,6 +62,8 @@ namespace DatabaseTest
             var list2 = instance.RetrieveKilometerEntryViewModels();
             list2.Remove(list[0]);
 
+            instance.UpdateKilometerEntry(list2);
+
             instance.ApplicationClosing();
             instance.ApplicationInitialized();
 
@@ -100,6 +102,40 @@ namespace DatabaseTest
             var newList = instance.RetrieveKilometerEntryViewModels();
             var val = newList.First(x => x.Equals(list[0])).NewKilometerCount;
             Assert.IsTrue(val == 1200, "Expected 1200, got: " + val);
+
+            instance.ApplicationClosing();
+        }
+
+        [TestMethod]
+        public void TestPropertyEnumerableSerialization()
+        {
+            Singleton<ServiceController>.Instance.InitializeServices();
+            var instance = Singleton<EfSQLiteStorageService>.Instance;
+            instance.ApplicationInitialized();
+
+            var list = new List<InventoryViewModel>
+            {
+                new InventoryViewModel() { Name = "Getscho" }
+            };
+
+            instance.UpdateInventory(list);
+
+            instance.ApplicationClosing();
+            instance.ApplicationInitialized();
+
+            var testList = instance.RetrieveInventoryViewModels();
+            testList.First(x => x.Name == "Getscho").Acquisitions.Add(new Acquisition(DateTime.Now, 500));
+
+            instance.UpdateInventory(testList);
+
+            instance.ApplicationClosing();
+            instance.ApplicationInitialized();
+
+            var newList = instance.RetrieveInventoryViewModels();
+            var acquisitions = newList.First(x => x.Name == "Getscho").Acquisitions;
+            Assert.IsTrue(acquisitions.Any(), "No acquisitions restored");
+            var val = acquisitions.First().Value;
+            Assert.IsTrue(val == 500, "Expected 500, got: " + val);
 
             instance.ApplicationClosing();
         }

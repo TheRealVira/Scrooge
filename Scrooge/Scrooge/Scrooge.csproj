@@ -284,7 +284,7 @@
     <Compile Include="Kilometer Entry.xaml.cs">
       <DependentUpon>Kilometer Entry.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Aquisition.cs" />
+    <Compile Include="Model\Acquisition.cs" />
     <Compile Include="Model\Internal\IApplicationEventListener.cs" />
     <Compile Include="Model\InventoryViewModel.cs" />
     <Compile Include="Service\Definitions\ICalculationService.cs" />

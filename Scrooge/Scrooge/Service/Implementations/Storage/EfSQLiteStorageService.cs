@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Scrooge.Model;
@@ -32,10 +33,19 @@ namespace Scrooge.Service.Implementations.Storage
             this.loggingService.WriteLine("Ensuring database creation...");
             if (this.context.Database.EnsureCreated())
             {
-                this.loggingService.WriteLine("ERROR: Database existance could not be guaranteed! Aborting launch!");
-                Singleton<ErrorHandler>.Instance.Panic(
-                    new ApplicationException("Database existance could not be guaranteed!"));
+                this.loggingService.WriteLine("Created new database.");
             }
+            else
+            {
+                this.loggingService.WriteLine("Database existed. No action taken.");
+            }
+
+            /*if (this.context.Database)
+            {
+                this.loggingService.WriteLine($"ERROR: Database connection could not be guaranteed (Current state: {this.context.Database.GetDbConnection().State})! Aborting launch!");
+                Singleton<ErrorHandler>.Instance.Panic(
+                    new ApplicationException("Database connection could not be guaranteed!"));
+            }*/
 
             this.loggingService.WriteLine("EfSQLiteStorageService loaded.");
         }
@@ -54,43 +64,43 @@ namespace Scrooge.Service.Implementations.Storage
         public IStorageService UpdateInventory(IEnumerable<InventoryViewModel> items)
         {
             this.loggingService.WriteLine("Updating inventory items...");
-            EfSQLiteStorageService.AddRemoveUpdateList(this.context.Inventory, items);
+            EfSQLiteStorageService.AddRemoveUpdateList(this.context.Inventory, items.ToList());
             this.context.SaveChangesAsync();
             return this;
         }
 
-        public DbSet<InventoryViewModel> RetrieveInventoryViewModels()
+        public IList<InventoryViewModel> RetrieveInventoryViewModels()
         {
             this.loggingService.WriteLine("Retrieving inventory items...");
-            return this.context.Inventory;
+            return this.context.Set<InventoryViewModel>().Include(x => x.Acquisitions).ToList();
         }
 
         public IStorageService UpdateGroupedPurchaseAndSales(IEnumerable<GroupedPurchaseAndSalesViewModel> items)
         {
             this.loggingService.WriteLine("Updating grouped purchase and sales items...");
-            EfSQLiteStorageService.AddRemoveUpdateList(this.context.GroupedPurchasesAndSales, items);
+            EfSQLiteStorageService.AddRemoveUpdateList(this.context.GroupedPurchasesAndSales, items.ToList());
             this.context.SaveChangesAsync();
             return this;
         }
 
-        public DbSet<GroupedPurchaseAndSalesViewModel> RetrieveGroupedPurchaseAndSalesViewModels()
+        public IList<GroupedPurchaseAndSalesViewModel> RetrieveGroupedPurchaseAndSalesViewModels()
         {
             this.loggingService.WriteLine("Retrieving grouped purchase and sales items...");
-            return this.context.GroupedPurchasesAndSales;
+            return this.context.Set<GroupedPurchaseAndSalesViewModel>().ToList();
         }
 
         public IStorageService UpdateKilometerEntry(IEnumerable<KilometerEntryViewModel> items)
         {
             this.loggingService.WriteLine("Updating kilometer entries...");
-            EfSQLiteStorageService.AddRemoveUpdateList(this.context.KilometerEntries, items);
+            EfSQLiteStorageService.AddRemoveUpdateList(this.context.KilometerEntries, items.ToList());
             this.context.SaveChangesAsync();
             return this;
         }
 
-        public DbSet<KilometerEntryViewModel> RetrieveKilometerEntryViewModels()
+        public IList<KilometerEntryViewModel> RetrieveKilometerEntryViewModels()
         {
             this.loggingService.WriteLine("Retrieving kilometer entries...");
-            return this.context.KilometerEntries;
+            return this.context.Set<KilometerEntryViewModel>().ToList();
         }
 
         private static void AddRemoveUpdateList<T>(DbSet<T> list, IEnumerable<T> newList) where T : class

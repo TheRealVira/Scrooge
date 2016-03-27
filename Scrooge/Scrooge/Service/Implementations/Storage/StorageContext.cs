@@ -1,5 +1,9 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using System.Collections.Generic;
+using System.Security.AccessControl;
+using MahApps.Metro;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Scrooge.Model;
 using Scrooge.Service.Definitions;
 
@@ -24,7 +28,28 @@ namespace Scrooge.Service.Implementations.Storage
 
             optionsBuilder.UseSqlite(connection);
 
+            base.OnConfiguring(optionsBuilder);
+
             loggingService.WriteLine("Database configured!");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            var loggingService = Singleton<ServiceController>.Instance.Get<ILoggingService>();
+
+            loggingService.WriteLine("Configuring relationships...");
+
+            /*modelBuilder.Entity<Acquisition>()
+                .HasOne<InventoryViewModel>()
+                .WithMany("Acquisitions")
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired()
+                .HasForeignKey("InventoryViewModelForeignKey")
+                .HasPrincipalKey("ID");*/
+                
+            base.OnModelCreating(modelBuilder);
+
+            loggingService.WriteLine("Configuring done");
         }
     }
 }

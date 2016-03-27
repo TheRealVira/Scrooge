@@ -7,8 +7,9 @@ using System.Runtime.CompilerServices;
 
 namespace Scrooge.Model
 {
-    public class InventoryViewModel : INotifyPropertyChanged
+    public class InventoryViewModel : INotifyPropertyChanged, IEquatable<InventoryViewModel>
     {
+        private decimal acquisitionValue;
         private decimal appreciation;
         private decimal assetValue;
         private DateTime dateOfAcquisition;
@@ -16,19 +17,18 @@ namespace Scrooge.Model
         private decimal duration;
         private bool isSelected;
         private string name;
-        private decimal acquisitionValue;
-
-        [Key]
-        public uint ID { get; set; }
 
         // Explicit constructor needed for serialization, do not remove!
         public InventoryViewModel()
         {
             if (this.Acquisitions == null)
             {
-                this.Acquisitions = new List<Aquisition>();
+                this.Acquisitions = new List<Acquisition>();
             }
         }
+
+        [Key]
+        public uint ID { get; set; }
 
         [NotMapped]
         public bool IsSelected
@@ -79,30 +79,24 @@ namespace Scrooge.Model
         {
             get
             {
-                int years = DateTime.Now.Year - this.DateOfAcquisition.Year;
+                var years = DateTime.Now.Year - this.DateOfAcquisition.Year;
                 if (years < this.Duration)
                 {
-                    decimal firstDepreciation = this.DateOfAcquisition.Month > 6 ? this.Deprecation / 2 : this.Deprecation;
-                    return this.AcquisitionValue + this.Appreciation - firstDepreciation - this.Deprecation * (years - 1);
+                    var firstDepreciation = this.DateOfAcquisition.Month > 6 ? this.Deprecation/2 : this.Deprecation;
+                    return this.AcquisitionValue + this.Appreciation - firstDepreciation - this.Deprecation*(years - 1);
                 }
-                else
-                {
-                    return 0;
-                }
+                return 0;
             }
         }
-
-        public List<Aquisition> Acquisitions;
+        
+        public List<Acquisition> Acquisitions { get; set; }
 
         /// <summary>
-        /// Gets or sets the appreciation of the <see cref="BalanceValue"/>.
+        ///     Gets or sets the appreciation of the <see cref="BalanceValue" />.
         /// </summary>
         public decimal Appreciation
         {
-            get
-            {
-                return this.appreciation;
-            }
+            get { return this.appreciation; }
 
             set
             {
@@ -135,9 +129,9 @@ namespace Scrooge.Model
             }
         }
 
-        public decimal Percentage => 100m / this.duration;
+        public decimal Percentage => 100m/this.duration;
 
-        public decimal Deprecation => this.AcquisitionValue / this.Duration;
+        public decimal Deprecation => this.AcquisitionValue/this.Duration;
 
         public decimal Disposal
         {
@@ -167,6 +161,11 @@ namespace Scrooge.Model
         {
             var handler = this.PropertyChanged;
             handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public bool Equals(InventoryViewModel other)
+        {
+            return this.ID == other.ID;
         }
     }
 }
