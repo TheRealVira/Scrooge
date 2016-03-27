@@ -28,20 +28,16 @@ namespace Scrooge
 
             this.GroupeName.Text = saleOrPurchase.GroupName;
 
-            this.Data = saleOrPurchase.PurchaseAndSales == null
-                ? new ObservableCollection<PurchaseAndSalesViewModel>()
-                : new ObservableCollection<PurchaseAndSalesViewModel>(saleOrPurchase.PurchaseAndSales);
+            this.Data = saleOrPurchase;
 
-            this.SaleOrPurchaseGrid.ItemsSource = Data;
+            this.SaleOrPurchaseGrid.ItemsSource = Data.PurchaseAndSales;
             this.GroupeName.Text = saleOrPurchase.GroupName;
-            this.MySum.Text = Data.Sum(x => x.Value) + "";
+            this.MySum.Text = Data.PurchaseAndSales.Sum(x => x.Value) + "";
 
             this.ImSelected.DataContext = saleOrPurchase.IsSelected;
-            this.Type = saleOrPurchase.Type;
-            this.SomeCallMeType.Text = this.Type.ToString();
+            this.SomeCallMeType.Text = this.Data.Type.ToString();
         }
 
-        public ObservableCollection<PurchaseAndSalesViewModel> Data;
-        public readonly EntryType Type;
+        public GroupedPurchaseAndSalesViewModel Data;
     }
 }

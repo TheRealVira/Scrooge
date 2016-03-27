@@ -23,28 +23,29 @@ namespace Scrooge
             _drivenRouteHistory = new List<string>();
 
             this.KilometerGrid.ItemsSource = this._data;
+            this.SumOfKilometers.Text = "0";
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             long sum = 0;
-            // If implemented then just uncomment this section:
-            //foreach (var retrieveInventoryViewModel in MainWindow.StorageService.RetrieveKilometerEntryViewModels())
-            //{
-            //    var retrieved = retrieveInventoryViewModel;
-            //    sum += (long)retrieved.DrivenKilometers;
-            //    if (!this._drivenRouteHistory.Contains(retrieved.DrivenRoute))
-            //    {
-            //       this._drivenRouteHistory.Add(retrieved.DrivenRoute);
-            //    }
-            //    if (!this._purposeHistory.Contains(retrieved.Purpose))
-            //    {
-            //        this._purposeHistory.Add(retrieved.Purpose);
-            //    }
 
-            //    this.SumOfKilometers.Text = (int.Parse(this.SumOfKilometers.Text) + retrieved.DrivenKilometers).ToString();
-            //    this.KilometerGrid.Items.Add(retrieved);
-            //}
+            foreach (var retrieveInventoryViewModel in MainWindow.StorageService.RetrieveKilometerEntryViewModels())
+            {
+                var retrieved = retrieveInventoryViewModel;
+                sum += (long)retrieved.DrivenKilometers;
+                if (!this._drivenRouteHistory.Contains(retrieved.DrivenRoute))
+                {
+                    this._drivenRouteHistory.Add(retrieved.DrivenRoute);
+                }
+                if (!this._purposeHistory.Contains(retrieved.Purpose))
+                {
+                    this._purposeHistory.Add(retrieved.Purpose);
+                }
+
+                this.SumOfKilometers.Text = (int.Parse(this.SumOfKilometers.Text) + retrieved.DrivenKilometers).ToString();
+                this._data.Add(retrieved);
+            }
 
             this.SumOfKilometers.Text = sum.ToString();
         }
