@@ -14,12 +14,18 @@ namespace Scrooge
     /// </summary>
     public partial class AddInventoryItem
     {
-        public AddInventoryItem(List<string> nameHistory)
+        public AddInventoryItem(List<string> nameHistory, ActionwindowType type=ActionwindowType.Add)
         {
             InitializeComponent();
 
             this.MyName.ItemsSource = nameHistory;
             this.MyDate.Text = DateTime.Now.ToString();
+
+            if (type ==ActionwindowType.Edit)
+            {
+                this.Title.Text = "Edit Inventory Item";
+                this.AcceptBtn.Content = "Edit";
+            }
 
             // TODO: Focuz MyName ftw
         }
@@ -32,29 +38,7 @@ namespace Scrooge
 
         public void DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
         {
-            Console.WriteLine("SAMPLE 1: Closing dialog with parameter: " + (eventArgs.Parameter ?? ""));
-
-            //you can cancel the dialog close:
-            //eventArgs.Cancel();
-
-            if (!Equals(eventArgs.Parameter, true)) return;
-
-            var selectedDate = this.MyDate.SelectedDate;
-            if (selectedDate != null)
-            {
-                Output = new InventoryViewModel()
-                {
-                    AssetValue = decimal.Parse(this.MyAssetValue.Text),
-                    AcquisitionValue = decimal.Parse(this.MyAcquisitionValue.Text),
-                    DateOfAcquisition = (DateTime)selectedDate,
-                    Disposal = decimal.Parse(this.MyDisposal.Text),
-                    Name = this.MyName.Text,
-                    Duration = decimal.Parse(this.MyDuration.Text)
-                };
-            }
         }
-
-        public InventoryViewModel Output;
 
         public bool AllSet
             =>

@@ -13,7 +13,7 @@ namespace Scrooge
     /// </summary>
     public partial class AddKilometerEntry 
     {
-        public AddKilometerEntry(List<string> drivenHistory, List<string>purposeHistory  )
+        public AddKilometerEntry(List<string> drivenHistory, List<string>purposeHistory)
         {
             InitializeComponent();
 
@@ -32,28 +32,7 @@ namespace Scrooge
 
         public void DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
         {
-            Console.WriteLine("SAMPLE 1: Closing dialog with parameter: " + (eventArgs.Parameter ?? ""));
-
-            //you can cancel the dialog close:
-            //eventArgs.Cancel();
-
-            if (!Equals(eventArgs.Parameter, true)) return;
-            
-            var selectedDate = this.MyDate.SelectedDate;
-            if (selectedDate != null)
-            {
-                Output = new KilometerEntryViewModel()
-                {
-                    Date = (DateTime) selectedDate,
-                    DrivenRoute = this.MyDrivenRoute.Text,
-                    StartedKilometerCount = decimal.Parse(this.MyStartedKilometerCount.Text),
-                    NewKilometerCount = decimal.Parse(this.MyNewKilometerCount.Text),
-                    Purpose = this.MyPurpose.Text
-                };
-            }
         }
-
-        public KilometerEntryViewModel Output;
 
         public bool AllSet
             =>

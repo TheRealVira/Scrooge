@@ -268,6 +268,7 @@
     <Compile Include="GroupedSaleOrPurchase.xaml.cs">
       <DependentUpon>GroupedSaleOrPurchase.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\ActionwindowType.cs" />
     <Compile Include="Model\AddPurchaseOrSaleViewModel.cs" />
     <Compile Include="Model\GroupedPurchaseAndSalesViewModel.cs" />
     <Compile Include="Model\KilometerEntryViewModel.cs" />
