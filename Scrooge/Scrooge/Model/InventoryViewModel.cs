@@ -74,11 +74,26 @@ namespace Scrooge.Model
             }
         }
 
-        public decimal BalanceValue => 0; // TODO
+        public decimal BalanceValue
+        {
+            get
+            {
+                int years = DateTime.Now.Year - this.DateOfAcquisition.Year;
+                if (years < this.Duration)
+                {
+                    decimal firstDepreciation = this.DateOfAcquisition.Month > 6 ? this.Deprecation / 2 : this.Deprecation;
+                    return this.AcquisitionValue + this.Appreciation - firstDepreciation - this.Deprecation * (years - 1);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
 
         public List<Aquisition> Acquisitions;
 
-        ////public decimal Acquisition => 0; // TODO
+        public decimal Appreciation => 0; // TODO
 
         public decimal Duration
         {

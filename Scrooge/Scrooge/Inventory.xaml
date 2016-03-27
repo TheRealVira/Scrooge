@@ -94,8 +94,8 @@
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding Acquisition}"
-                                            Header="Acquisition"
+                                        <DataGridTextColumn Binding="{Binding Appreciation}"
+                                            Header="Appreciation"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
