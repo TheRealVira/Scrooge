@@ -30,5 +30,10 @@ namespace Scrooge.Model
             this.DateTime = dateTime;
             this.Value = value;
         }
+
+        public override string ToString()
+        {
+            return this.Value + "";
+        }
     }
 }

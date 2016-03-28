@@ -135,7 +135,7 @@
                                         <DataGridTemplateColumn Header="Appreciate">
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <Button Click="AppreciateBtn_Click">Edit</Button>
+                                                    <Button Click="AppreciateBtn_Click">Appreciate</Button>
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
                                         </DataGridTemplateColumn>
