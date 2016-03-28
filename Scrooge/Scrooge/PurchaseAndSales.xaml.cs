@@ -54,7 +54,7 @@ namespace Scrooge
 
             if (!(bool)result || !view.AllSet || view.Output == null) return;
 
-            view.Output.ID = _data.Count != 0 ? _data.Max(x => x.Data.PurchaseAndSales.Max(y=>y.ID)) + 1 : 0;
+            //view.Output.ID = _data.Count != 0 ? _data.Max(x => x.Data.PurchaseAndSales.Max(y=>y.ID)) + 1 : 0; // may come back to us one day, for now it also works without
 
             if (_data.Any(x => x.Data.GroupName == view.Output.GroupName && x.Data.Type == view.Output.Type))
             {
