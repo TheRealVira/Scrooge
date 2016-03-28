@@ -263,6 +263,9 @@
     <Compile Include="AddPurchaseOrSaleEntry.xaml.cs">
       <DependentUpon>AddPurchaseOrSaleEntry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppreciateAppreciation.xaml.cs">
+      <DependentUpon>AppreciateAppreciation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseTest.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GroupedSaleOrPurchase.xaml.cs">
@@ -277,6 +280,7 @@
     <Compile Include="Model\PurchaseAndSalesViewModel.cs" />
     <Compile Include="Model\EntryType.cs" />
     <Compile Include="Model\WarningViewModel.cs" />
+    <Compile Include="Model\TaxReport.cs" />
     <Compile Include="NotEmptyValidationRule.cs" />
     <Compile Include="PurchaseAndSales.xaml.cs">
       <DependentUpon>PurchaseAndSales.xaml</DependentUpon>
@@ -322,6 +326,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddPurchaseOrSaleEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppreciateAppreciation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,13 +11,12 @@ namespace Scrooge.Model
     public class InventoryViewModel : INotifyPropertyChanged, IEquatable<InventoryViewModel>
     {
         private decimal acquisitionValue;
-        private decimal appreciation;
         private decimal assetValue;
         private DateTime dateOfAcquisition;
         private decimal disposal;
         private decimal duration;
         private bool isSelected;
-        private string name;
+        private string name; 
 
         // Explicit constructor needed for serialization, do not remove!
         public InventoryViewModel()
@@ -24,6 +24,7 @@ namespace Scrooge.Model
             if (this.Acquisitions == null)
             {
                 this.Acquisitions = new List<Acquisition>();
+                this.AppreciationList=new ObservableCollection<Acquisition>();
             }
         }
 
@@ -91,33 +92,7 @@ namespace Scrooge.Model
         }
         
         public List<Acquisition> Acquisitions { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the appreciation of the <see cref="BalanceValue" />.
-        /// </summary>
-        public decimal Appreciation
-        {
-            get { return this.appreciation; }
-
-            set
-            {
-                if (this.appreciation == value)
-                {
-                    return;
-                }
-
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException(
-                        nameof(value),
-                        value,
-                        "InventoryViewModel.Appreciation needs to be greater than or equal 0.");
-                }
-
-                this.appreciation = value;
-                this.OnPropertyChanged();
-            }
-        }
+        public ObservableCollection<Acquisition> AppreciationList { get; set; }
 
         public decimal Duration
         {

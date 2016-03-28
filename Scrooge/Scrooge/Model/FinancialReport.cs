@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Scrooge.Model
+﻿namespace Scrooge.Model
 {
     using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
+    using System.Collections.Generic;
+    using System.Linq;
 
-    public class FinancialReport : INotifyPropertyChanged
+    /// <summary>
+    /// Describes the report of the financial performance.
+    /// </summary>
+    public class FinancialReport
     {
+        /// <summary>
+        /// The financial data (purchases and sales) which consitute this report.
+        /// </summary>
         private List<GroupedPurchaseAndSalesViewModel> purchasesAndSales;
          
         /// <summary>
@@ -23,21 +23,6 @@ namespace Scrooge.Model
             this.Year = year;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public Collection<GroupedPurchaseAndSalesViewModel> PurchasesAndSales
-        {
-            get
-            {
-                return new Collection<GroupedPurchaseAndSalesViewModel>(this.purchasesAndSales);
-            }
-
-            set
-            {
-                this.purchasesAndSales = new List<GroupedPurchaseAndSalesViewModel>(value);
-            }
-        }
-
         /// <summary>
         /// Gets or sets the expenses of the financial year.
         /// </summary>
@@ -46,12 +31,29 @@ namespace Scrooge.Model
             get
             {
                 decimal sum = 0;
-                foreach (var purchasesAndSale in this.purchasesAndSales.Where(purchasesAndSale => purchasesAndSale.Type == EntryType.Sale))
+                foreach (var purchasesAndSale in this.purchasesAndSales.Where(purchasesAndSale => purchasesAndSale.Type == EntryType.Purchase))
                 {
-                    purchasesAndSale.PurchaseAndSales.ToList().ForEach(p => sum += p.Value);
+                    purchasesAndSale.PurchaseAndSales.ForEach(p => sum += p.EntryDate.Year == this.Year ? p.Value : 0);
                 }
 
                 return sum;
+            }
+        }
+
+        /// <summary>
+        /// Gets the financial data (purchases and sales) which consitute this report.
+        /// </summary>
+        public Collection<GroupedPurchaseAndSalesViewModel> PurchasesAndSales
+        {
+            get
+            {
+                decimal sum = 0;
+                
+            }
+
+            private set
+            {
+                this.purchasesAndSales = new List<GroupedPurchaseAndSalesViewModel>(value);
             }
         }
 
@@ -68,9 +70,11 @@ namespace Scrooge.Model
             get
             {
                 decimal sum = 0;
-                foreach (var purchasesAndSale in this.purchasesAndSales.Where(purchasesAndSale => purchasesAndSale.Type == EntryType.Purchase))
+                foreach (
+                    var purchasesAndSale in
+                        this.purchasesAndSales.Where(purchasesAndSale => purchasesAndSale.Type == EntryType.Sale))
                 {
-                    purchasesAndSale.PurchaseAndSales.ToList().ForEach(p => sum += p.Value);
+                    purchasesAndSale.PurchaseAndSales.ForEach(s => sum += s.EntryDate.Year == this.Year ? s.Value : 0);
                 }
 
                 return sum;
@@ -81,17 +85,5 @@ namespace Scrooge.Model
         /// Gets or sets the financial year of the data constituting this report.
         /// </summary>
         public int Year { get; private set; }
-
-        /// <summary>
-        /// Notifies that a property changed.
-        /// </summary>
-        /// <param name="propertyName">
-        /// The name of the changed property (generated automatically using the <see cref="CallerMemberNameAttribute"/>.
-        /// </param>
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            var handler = this.PropertyChanged;
-            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }
