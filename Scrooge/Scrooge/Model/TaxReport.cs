@@ -44,7 +44,7 @@ namespace Scrooge.Model
                 {
                     // Add all expenses ('purchases') that are declared as having 100 % tax, which means, that it is the payment of sales tax.
                     purchasesAndSale.PurchaseAndSales.ToList().
-                        ForEach(s => sum += s.St == 100 ? s.Value : 0);
+                        ForEach(s => sum += s.IsTaxPayment ? s.Value : 0);
                 }
 
                 return sum;
@@ -98,7 +98,7 @@ namespace Scrooge.Model
                 foreach (var purchasesAndSale in this.purchasesAndSales.Where(purchasesAndSale => purchasesAndSale.Type == EntryType.Purchase))
                 {
                     purchasesAndSale.PurchaseAndSales.ToList().
-                        ForEach(p => sum += p.EntryDate.Year == this.Year ? p.Value * (p.St / 100) : 0);
+                        ForEach(p => sum += p.EntryDate.Year == this.Year && !p.IsTaxPayment ? p.Value * (p.St / 100) : 0);
                 }
 
                 return sum;
@@ -121,7 +121,7 @@ namespace Scrooge.Model
                 foreach (var purchasesAndSale in this.purchasesAndSales.Where(purchasesAndSale => purchasesAndSale.Type == EntryType.Sale))
                 {
                     purchasesAndSale.PurchaseAndSales.ToList().
-                        ForEach(s => sum += s.EntryDate.Year == this.Year ? s.Value * (s.St / 100) : 0);
+                        ForEach(s => sum += s.EntryDate.Year == this.Year && !s.IsTaxPayment ? s.Value * (s.St / 100) : 0);
                 }
 
                 return sum;
