@@ -26,32 +26,18 @@
         </materialDesign:ColorZone>
 
         <TextBlock Grid.Row="1"  Margin="8,10,358,0" Width="Auto" VerticalAlignment="Top" Text="The date of acquisition:"/>
-        <DatePicker Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="292,6,0,0" Width="200" Name="MyDate"  materialDesign:TextFieldAssist.Hint="Pick a date">
-            <DatePicker.Text>
-                <Binding Path="DateOfAcquisition" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <local:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </DatePicker.Text>
-        </DatePicker>
+        <DatePicker Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="292,6,0,0" Width="200" Name="MyDate"  materialDesign:TextFieldAssist.Hint="Pick a date"/>
 
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" materialDesign:TextFieldAssist.Hint="Appreciation Value" Name="Appreciate" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
-                 Margin="8,10,8,0"
-                 FontSize="18"
-                 Grid.Row="2" PreviewTextInput="UIElement_OnPreviewTextInput">
-            <TextBox.Text>
+            <ComboBox VerticalAlignment="Top" SelectionChanged="PastAppreciations_OnSelectionChanged" PreviewTextInput="UIElement_OnPreviewTextInput" HorizontalAlignment="Stretch" IsEditable="True" Name="PastAppreciations" materialDesign:TextFieldAssist.Hint="Appreciation" Style="{DynamicResource MaterialDesignFloatingHintComboBox}" Margin="10,10,8,0" FontSize="18" Grid.Row="2">
+            <ComboBox.Text>
                 <Binding Path="Value" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <local:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
                     </Binding.ValidationRules>
                 </Binding>
-            </TextBox.Text>
-        </TextBox>
-
-        <ComboBox VerticalAlignment="Top" HorizontalAlignment="Stretch" Name="PastAppreciations" materialDesign:TextFieldAssist.Hint="Past Appreciations" Style="{DynamicResource MaterialDesignFloatingHintComboBox}" Margin="10,108,196,0" FontSize="18" Grid.Row="2"/>
-
-            <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Name="AcceptBtn" Margin="10" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+            </ComboBox.Text>
+        </ComboBox>
+        <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Name="AcceptBtn" Margin="10" materialDesign:ShadowAssist.ShadowDepth="Depth2">
             <Button.CommandParameter>
                 <system:Boolean>True</system:Boolean>
             </Button.CommandParameter> Add

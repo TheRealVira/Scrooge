@@ -28,7 +28,7 @@
             this.purchasesAndSales = new List<GroupedPurchaseAndSalesViewModel>(purchasesAndSales);
             this.Year = year;
         }
-
+        
         /// <summary>
         /// Gets or sets the expenses of the financial year.
         /// </summary>
@@ -91,6 +91,6 @@
         /// <summary>
         /// Gets or sets the financial year of the data constituting this report.
         /// </summary>
-        public int Year { get; }
+        public int Year { get; private set; }*/
     }
 }
