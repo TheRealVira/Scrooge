@@ -24,7 +24,7 @@
         <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" IsChecked="False"  x:Name="MenuToggleButton" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Margin="0,-1,0,0"/>
         <!--I'll draw all windows in the RootDialog, so the material design is able to do some magic.-->
         <materialDesign:DialogHost Identifier="RootDialog" Grid.Column="0" Margin="0,-1,0,0">
-            <!--Toggleable listbox which is fading in from the left side (it is containing [HelpBtn] [WarningsBtn] (+[HamburgerBtn] which is toggeling the menu on the left)-->
+            <!--Toggleable listbox which is fading in from the left side (it is containing [HelpBtn] [WarningsBtn] (+[HamburgerBtn] which is toggling the menu on the left)-->
             <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
                 <materialDesign:DrawerHost.LeftDrawerContent>
                     <DockPanel MinWidth="50">
@@ -42,7 +42,7 @@
                             <Button ToolTip="About" Click="About_OnClick" Height="36" HorizontalAlignment="Right" Margin="8" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
                                 <Button.CommandParameter>
                                     <StackPanel Margin="16">
-                                        <TextBlock Text="Scrooge is open source software: https://github.com/TheRealVira/Scrooge&#x0a;Current contributers:&#x0a;&#x0a;TheRealVira (Design)&#x0a;Butchcom (accounting expertise)&#x0a;PiMaker (Backend)&#x0a;&#x0a;Special thanks to ButchersBoy and MahApps!"/>
+                                        <TextBlock Text="Scrooge is open source software: https://github.com/TheRealVira/Scrooge&#x0a;&#x0a;Current contributers:&#x0a;&#x0a;TheRealVira (Design)&#x0a;Butchcom (accounting expertise)&#x0a;PiMaker (Backend)&#x0a;&#x0a;Special thanks to ButchersBoy and MahApps!&#x0a;"/>
                                         
                                         <Button IsCancel="True" 
                                             Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
