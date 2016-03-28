@@ -268,6 +268,9 @@
     </Compile>
     <Compile Include="DatabaseTest.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="FinancialReportPage.xaml.cs">
+      <DependentUpon>FinancialReportPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GroupedSaleOrPurchase.xaml.cs">
       <DependentUpon>GroupedSaleOrPurchase.xaml</DependentUpon>
     </Compile>
@@ -330,6 +333,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AppreciateAppreciation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FinancialReportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
