@@ -99,7 +99,7 @@
             </TextBox.Text>
         </TextBox>
 
-        <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Name="AcceptBtn" Margin="0,0,87,8" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+        <Button IsDefault="True" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Name="AcceptBtn" Margin="0,0,87,8" materialDesign:ShadowAssist.ShadowDepth="Depth2">
             <Button.CommandParameter>
                 <system:Boolean>True</system:Boolean>
             </Button.CommandParameter> Add
