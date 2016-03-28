@@ -9,6 +9,10 @@ using Scrooge.Model;
 
 namespace Scrooge
 {
+    using Scrooge.Service;
+    using Scrooge.Service.Definitions;
+    using Scrooge.Service.Implementations;
+
     /// <summary>
     /// Interaction logic for PurchaseAndSales.xaml
     /// </summary>
@@ -122,7 +126,7 @@ namespace Scrooge
         private void UpdateSumAndTaxPayable()
         {
             this.Summ.Text = (decimal.Parse(this.Plus.Text) - decimal.Parse(this.Minus.Text)) + "";
-            this.TaxPayable.Text = "0"; // TODO: Add TayPayable calculation
+            this.TaxPayable.Text = Singleton<ServiceController>.Instance.Get<ICalculationService>().CalculateTaxPayable(/* ToDo: pass the grouped purchases and sales view models */, DateTime.Now.Year);
         }
 
         private void InventoryGrid_OnBeginningEdit(object sender, DataGridBeginningEditEventArgs e)

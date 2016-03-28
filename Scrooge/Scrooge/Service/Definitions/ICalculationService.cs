@@ -1,5 +1,9 @@
 ﻿namespace Scrooge.Service.Definitions
 {
+    using System.Collections.Generic;
+
+    using Scrooge.Model;
+
     /// <summary>
     ///     Defines a service that provides accounting calculations.
     /// </summary>
@@ -34,5 +38,8 @@
         ///     The net value of a business operation having a specific net value.
         /// </returns>
         decimal GetNetValue(decimal grossValue, bool benefited);
+
+
+        decimal CalculateTaxPayable(IEnumerable<GroupedPurchaseAndSalesViewModel> purchasesAndSales, int year);
     }
 }
