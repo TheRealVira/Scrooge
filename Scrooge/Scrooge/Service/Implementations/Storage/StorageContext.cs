@@ -14,6 +14,7 @@ namespace Scrooge.Service.Implementations.Storage
         public DbSet<InventoryViewModel> Inventory { get; set; }
         public DbSet<KilometerEntryViewModel> KilometerEntries { get; set; }
         public DbSet<GroupedPurchaseAndSalesViewModel> GroupedPurchasesAndSales { get; set; }
+        public DbSet<WarningViewModel> Warnings { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

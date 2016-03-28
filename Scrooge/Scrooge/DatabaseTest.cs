@@ -115,7 +115,7 @@ namespace DatabaseTest
 
             var list = new List<InventoryViewModel>
             {
-                new InventoryViewModel() { Name = "Getscho" }
+                new InventoryViewModel() { Name = "Getscho", AcquisitionValue = 10, Appreciation = 10, DateOfAcquisition = DateTime.Now, Duration = 12 }
             };
 
             instance.UpdateInventory(list);
