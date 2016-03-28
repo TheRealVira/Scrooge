@@ -39,12 +39,14 @@
         /// Generates a financial report for the given year and the given purchase and sale data (only data within the given year will be considered).
         /// </summary>
         /// <param name="purchasesAndSales">
-        /// 
+        /// The data to be used.
         /// </param>
         /// <param name="year">
-        /// 
+        /// The year of the report (only data within the given year will be considered).
         /// </param>
-        /// <returns></returns>
+        /// <returns>
+        /// A financial report for the given year and the given purchase and sale data (only data within the given year will be considered).
+        /// </returns>
         public FinancialReport GenerateFinancialReport(
             IEnumerable<GroupedPurchaseAndSalesViewModel> purchasesAndSales,
             int year)
@@ -52,6 +54,18 @@
             return new FinancialReport(purchasesAndSales, year);
         }
 
+        /// <summary>
+        /// Calculates the tax payable of the given data.
+        /// </summary>
+        /// <param name="purchasesAndSales">
+        /// The data to be used.
+        /// </param>
+        /// <param name="year">
+        /// The year to be used (only data within the given year will be considered).
+        /// </param>
+        /// <returns>
+        /// The tax payable of the given data.
+        /// </returns>
         public decimal CalculateTaxPayable(IEnumerable<GroupedPurchaseAndSalesViewModel> purchasesAndSales, int year)
         {
             int taxPayable = 0;
