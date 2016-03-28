@@ -25,14 +25,17 @@
                     <!--List (of cards)-->
                 </Grid.RowDefinitions>
 
-                <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Width="100" Height="70" Padding="3" Margin="8,8,0,0" CornerRadius="8" FontSize="50" 
+                <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Width="100" Height="70" Padding="3" Margin="8,8,0,0" CornerRadius="8" FontSize="50" 
+
 materialDesign:ShadowAssist.ShadowDepth="Depth1" HorizontalAlignment="Left">
-                    <materialDesign:PackIcon Kind="ViewGrid" Height="Auto" Width="Auto" HorizontalAlignment="Center" 
+                    <materialDesign:PackIcon Kind="ViewGrid" Height="Auto" Width="Auto" HorizontalAlignment="Center" 
+
 VerticalAlignment="Center"></materialDesign:PackIcon>
                 </materialDesign:ColorZone>
 
                 <!--Title:-->
-                <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Padding="3" Margin="8,8,0,8" CornerRadius="8" FontSize="50" 
+                <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Padding="3" Margin="8,8,0,8" CornerRadius="8" FontSize="50" 
+
 materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Center" Width="700">
                     <TextBlock TextWrapping="Wrap" Text="Financialreport" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </materialDesign:ColorZone>
@@ -41,12 +44,14 @@ materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Center" Wi
                 <DatePicker Name="Date" materialDesign:TextFieldAssist.Hint="Pick a date to calculate the financialreport" Grid.Row="1" HorizontalAlignment="Left" Width="280" ToolTip="Pick a date to calculate the financialreport" Margin="131,8,0,8"/>
 
                 <!--Datalist:-->
-                <materialDesign:ColorZone CornerRadius="8" materialDesign:ShadowAssist.ShadowDepth="Depth2" Grid.Row="2" Margin="3 8 3 8" Width="Auto" Name="Grid"
+                <materialDesign:ColorZone CornerRadius="8" materialDesign:ShadowAssist.ShadowDepth="Depth2" Grid.Row="2" Margin="3 8 3 8" Width="Auto" Name="Grid"
+
 VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <ScrollViewer>
                         <StackPanel>
                             <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2" Width="Auto" Margin="8" VerticalAlignment="Top">
-                                <DataGrid Name="FinancialGrid" CanUserSortColumns="True" AutoGenerateColumns="False" CanUserAddRows="False" Width="Auto" 
+                                <DataGrid Name="FinancialGrid" CanUserSortColumns="True" AutoGenerateColumns="False" CanUserAddRows="False" Width="Auto" 
+
 BeginningEdit="FinancialGrid_OnBeginningEdit" CanUserResizeColumns="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
 
                                     <DataGrid.Columns>
