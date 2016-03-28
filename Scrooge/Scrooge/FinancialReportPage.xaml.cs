@@ -36,11 +36,9 @@ namespace Scrooge
             this.ExportBtn.Visibility = this.Grid.Visibility;
             if (this.Grid.Visibility == Visibility.Hidden) return;
 
-            ReportData =
-                new FinancialReport((from result in PurchaseAndSales.GroupedData.Select(x => x.Data.PurchaseAndSales)
-                    from purchaseAndSalesViewModel in result
-                    select purchaseAndSalesViewModel.GroupedPurchaseAndSalesViewModel).ToList(),
-                    this.Date.SelectedDate.Value.Year);
+            ReportData = new FinancialReport(PurchaseAndSales.GroupedData,this.Date.SelectedDate.Value.Year);
+
+            this.FinancialGrid.ItemsSource = ReportData.PurchasesAndSales;
         }
 
         private FinancialReport ReportData;

@@ -23,6 +23,7 @@
                     <!--Tools-->
                     <RowDefinition Height="*"/>
                     <!--List (of cards)-->
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Width="100" Height="70" Padding="3" Margin="8,8,0,0" CornerRadius="8" FontSize="50" 
@@ -58,53 +59,18 @@ materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Center" Wi
 BeginningEdit="FinancialGrid_OnBeginningEdit" CanUserResizeColumns="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
 
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Binding="{Binding Name}"
+                                        <DataGridTextColumn Binding="{Binding GroupName}"
                                             Header="Name"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding DateOfAcquisition}"
-                                            Header="Date of acquisition"
+                                        <DataGridTextColumn Binding="{Binding Sum}"
+                                            Header="Value"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding AcquisitionValue}"
-                                            Header="Cost value"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            />
-
-                                        <DataGridTextColumn Binding="{Binding BalanceValue}"
-                                            Header="Balance value"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            />
-
-                                        <DataGridTextColumn Binding="{Binding Appreciation}"
-                                            Header="Appreciation"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            />
-
-                                        <DataGridTextColumn Binding="{Binding Duration}"
-                                            Header="Depreciation duration"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            />
-
-                                        <DataGridTextColumn Binding="{Binding Percentage}"
-                                            Header="Depreciation %"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            />
-
-                                        <DataGridTextColumn Binding="{Binding Depreciation}"
-                                            Header="Depreciation value"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            />
-
-                                        <DataGridTextColumn Binding="{Binding Disposal}"
-                                            Header="Derecognition"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            />
-
-                                        <DataGridTextColumn Binding="{Binding AssetValue}"
-                                            Header="AssetValue"
+                                        <DataGridTextColumn Binding="{Binding Type}"
+                                            Header="Type"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
                                     </DataGrid.Columns>
@@ -112,6 +78,25 @@ BeginningEdit="FinancialGrid_OnBeginningEdit" CanUserResizeColumns="True" Vertic
                             </materialDesign:ColorZone>
                         </StackPanel>
                     </ScrollViewer>
+                </materialDesign:ColorZone>
+
+                <materialDesign:ColorZone Mode="PrimaryDark" Margin="10,0,0,8" Grid.Row="3" VerticalAlignment="Bottom" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1" HorizontalAlignment="Left" Width="76">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Income total">
+                        <materialDesign:PackIcon Kind="PlusBox" VerticalAlignment="Center" Height="32" Width="32"/>
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Plus" Text="" FontSize="15"/>
+                    </StackPanel>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone Mode="PrimaryDark" Margin="276,0,0,8" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Income total">
+                        <materialDesign:PackIcon Kind="PlusBox" VerticalAlignment="Center" Height="32" Width="32"/>
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Minus" Text="" FontSize="15"/>
+                    </StackPanel>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone Mode="PrimaryDark" Margin="8" HorizontalContentAlignment="Center" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Income total">
+                        <materialDesign:PackIcon Kind="EqualBox" VerticalAlignment="Center" Height="32" Width="32"/>
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Equals" Text="" FontSize="15"/>
+                    </StackPanel>
                 </materialDesign:ColorZone>
             </Grid>
         </DockPanel>
