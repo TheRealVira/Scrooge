@@ -23,9 +23,18 @@ namespace Scrooge.Model
         [Key]
         public uint ID { get; set; }
 
+        public uint GroupedPurchaseAndSalesViewModelForeignKey { get; set; }
+        [ForeignKey("GroupedPurchaseAndSalesViewModelForeignKey")]
+        public GroupedPurchaseAndSalesViewModel GroupedPurchaseAndSalesViewModel { get; set; }
+
         public PurchaseAndSalesViewModel(decimal steuer)
         {
             this.St = steuer;
+        }
+
+        // Explicit constructor needed for serialization, do not remove!
+        public PurchaseAndSalesViewModel()
+        {
         }
 
         [NotMapped]

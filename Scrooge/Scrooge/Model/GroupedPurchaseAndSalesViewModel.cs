@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,11 +7,9 @@ using System.Runtime.CompilerServices;
 
 namespace Scrooge.Model
 {
-    public class GroupedPurchaseAndSalesViewModel: INotifyPropertyChanged
+    public class GroupedPurchaseAndSalesViewModel: INotifyPropertyChanged, IEquatable<GroupedPurchaseAndSalesViewModel>
     {
         private string groupName;
-        public List<PurchaseAndSalesViewModel> PurchaseAndSales;
-        public readonly EntryType Type;
         private bool isSelected;
 
         // Explicit constructor needed for serialization, do not remove!
@@ -32,10 +31,15 @@ namespace Scrooge.Model
 
         [Key]
         public uint ID { get; set; }
+
         public GroupedPurchaseAndSalesViewModel(EntryType type)
         {
             Type = type;
         }
+
+        public List<PurchaseAndSalesViewModel> PurchaseAndSales { get; set; }
+
+        public EntryType Type { get; protected set; }
 
         public string GroupName
         {
@@ -48,8 +52,6 @@ namespace Scrooge.Model
             }
         }
 
-        public string Sum => 0+""; //TODO (add all PurchaseAndSales together)
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -58,14 +60,9 @@ namespace Scrooge.Model
             handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public override bool Equals(object obj)
+        public bool Equals(GroupedPurchaseAndSalesViewModel other)
         {
-            return obj.GetHashCode()==this.GetHashCode();
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
+            return other.ID == this.ID;
         }
     }
 }

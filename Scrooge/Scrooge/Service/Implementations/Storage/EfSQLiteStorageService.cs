@@ -86,7 +86,7 @@ namespace Scrooge.Service.Implementations.Storage
         public IList<GroupedPurchaseAndSalesViewModel> RetrieveGroupedPurchaseAndSalesViewModels()
         {
             this.loggingService.WriteLine("Retrieving grouped purchase and sales items...");
-            return this.context.Set<GroupedPurchaseAndSalesViewModel>().ToList();
+            return this.context.Set<GroupedPurchaseAndSalesViewModel>().Include(x => x.PurchaseAndSales).ToList();
         }
 
         public IStorageService UpdateKilometerEntry(IEnumerable<KilometerEntryViewModel> items)

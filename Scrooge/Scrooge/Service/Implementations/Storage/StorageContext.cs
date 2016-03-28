@@ -38,14 +38,6 @@ namespace Scrooge.Service.Implementations.Storage
             var loggingService = Singleton<ServiceController>.Instance.Get<ILoggingService>();
 
             loggingService.WriteLine("Configuring relationships...");
-
-            /*modelBuilder.Entity<Acquisition>()
-                .HasOne<InventoryViewModel>()
-                .WithMany("Acquisitions")
-                .OnDelete(DeleteBehavior.Cascade)
-                .IsRequired()
-                .HasForeignKey("InventoryViewModelForeignKey")
-                .HasPrincipalKey("ID");*/
                 
             base.OnModelCreating(modelBuilder);
 
