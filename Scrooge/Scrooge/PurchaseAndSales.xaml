@@ -37,23 +37,32 @@
                 </materialDesign:ColorZone>
 
                 <materialDesign:ColorZone Mode="PrimaryDark" Margin="8" Grid.Row="1" HorizontalAlignment="Left" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Expenses total">
                         <materialDesign:PackIcon Kind="MinusBox" VerticalAlignment="Center" Height="32" Width="32"/>
-                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8" Name="Minus" Text="" FontSize="15" />
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Minus" Text="" FontSize="15" />
                     </StackPanel>
                 </materialDesign:ColorZone>
 
-                <materialDesign:ColorZone Mode="PrimaryMid" Margin="8" Grid.Row="1" HorizontalAlignment="Center" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth2">
-                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0">
-                        <materialDesign:PackIcon Kind="EqualBox" VerticalAlignment="Center" Height="32" Width="32"/>
-                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8" Name="Summ" Text="" FontSize="15" />
-                    </StackPanel>
-                </materialDesign:ColorZone>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                    <materialDesign:ColorZone Mode="PrimaryDark" Margin="8" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Sum total">
+                            <materialDesign:PackIcon Kind="EqualBox" VerticalAlignment="Center" Height="32" Width="32"/>
+                            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Summ" Text="" FontSize="15" />
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                
+                    <materialDesign:ColorZone Mode="PrimaryDark" Margin="8" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Tax payable total">
+                            <materialDesign:PackIcon Kind="Bank" VerticalAlignment="Center" Height="32" Width="32"/>
+                            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="TaxPayable" Text="" FontSize="15" />
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                </StackPanel>
 
                 <materialDesign:ColorZone Mode="PrimaryDark" Margin="8" Grid.Row="1" HorizontalAlignment="Right" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Income total">
                         <materialDesign:PackIcon Kind="PlusBox" VerticalAlignment="Center" Height="32" Width="32"/>
-                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8" Name="Plus" Text="" FontSize="15" />
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Plus" Text="" FontSize="15" />
                     </StackPanel>
                 </materialDesign:ColorZone>
 

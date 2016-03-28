@@ -37,7 +37,8 @@ namespace Scrooge
                              "";
             this.Minus.Text =
                 this._data.Where(x => x.Data.Type == EntryType.Purchase).Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) + "";
-            this.Summ.Text = (decimal.Parse(this.Plus.Text) - decimal.Parse(this.Minus.Text)) + "";
+
+            this.UpdateSumAndTaxPayable();
         }
 
         private async void AddEntryBtn_OnClick(object sender, RoutedEventArgs e)
@@ -75,13 +76,13 @@ namespace Scrooge
             if (whichSideToUpdate == EntryType.Sale)
             {
                 this.Plus.Text = this._data.Where(x => x.Data.Type == EntryType.Sale).Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) + "";
-                this.Summ.Text = (decimal.Parse(this.Plus.Text) - decimal.Parse(this.Minus.Text)) + "";
             }
             else
             {
                 this.Minus.Text = this._data.Where(x => x.Data.Type == EntryType.Purchase).Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) + "";
-                this.Summ.Text = (decimal.Parse(this.Plus.Text) - decimal.Parse(this.Minus.Text)) + "";
             }
+
+            this.UpdateSumAndTaxPayable();
         }
 
         private void DeleteEntryBtn_OnClick(object sender, RoutedEventArgs e)
@@ -108,7 +109,7 @@ namespace Scrooge
                              "";
             this.Minus.Text =
                 this._data.Where(x => x.Data.Type == EntryType.Purchase).Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) + "";
-            this.Summ.Text = (decimal.Parse(this.Plus.Text) - decimal.Parse(this.Minus.Text)) + "";
+            this.UpdateSumAndTaxPayable();
         }
 
         private void SaveBtn_OnClick(object sender, RoutedEventArgs e)
@@ -116,6 +117,12 @@ namespace Scrooge
             GroupedPurchaseAndSalesViewModel[] items = new GroupedPurchaseAndSalesViewModel[GroupedItems.Items.Count];
             this.GroupedItems.Items.OfType<GroupedSaleOrPurchase>().Select(x=>x.Data).ToArray().CopyTo(items, 0);
             MainWindow.StorageService.UpdateGroupedPurchaseAndSales(new List<GroupedPurchaseAndSalesViewModel>(items));
+        }
+
+        private void UpdateSumAndTaxPayable()
+        {
+            this.Summ.Text = (decimal.Parse(this.Plus.Text) - decimal.Parse(this.Minus.Text)) + "";
+            this.TaxPayable.Text = "0"; // TODO: Add TayPayable calculation
         }
 
         private void InventoryGrid_OnBeginningEdit(object sender, DataGridBeginningEditEventArgs e)
