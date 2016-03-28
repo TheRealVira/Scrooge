@@ -13,16 +13,22 @@
         /// The financial data (purchases and sales) which consitute this report.
         /// </summary>
         private List<GroupedPurchaseAndSalesViewModel> purchasesAndSales;
-         
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FinancialReport"/> class.
         /// </summary>
+        /// <param name="purchasesAndSales">
+        /// The financial data (purchases and sales) which consitute this report.
+        /// </param>
+        /// <param name="year">
+        /// The financial year of the data constituting this report.
+        /// </param>
         public FinancialReport(IEnumerable<GroupedPurchaseAndSalesViewModel> purchasesAndSales, int year)
         {
             this.purchasesAndSales = new List<GroupedPurchaseAndSalesViewModel>(purchasesAndSales);
             //this.Year = year;
         }
-        /*
+        
         /// <summary>
         /// Gets or sets the expenses of the financial year.
         /// </summary>
@@ -33,7 +39,8 @@
                 decimal sum = 0;
                 foreach (var purchasesAndSale in this.purchasesAndSales.Where(purchasesAndSale => purchasesAndSale.Type == EntryType.Purchase))
                 {
-                    purchasesAndSale.PurchaseAndSales.ForEach(p => sum += p.EntryDate.Year == this.Year ? p.Value : 0);
+                    purchasesAndSale.PurchaseAndSales.ToList().
+                        ForEach(p => sum += p.EntryDate.Year == this.Year ? p.Value : 0);
                 }
 
                 return sum;
@@ -47,8 +54,7 @@
         {
             get
             {
-                decimal sum = 0;
-                
+                return new Collection<GroupedPurchaseAndSalesViewModel>(this.purchasesAndSales);
             }
 
             private set
@@ -74,7 +80,8 @@
                     var purchasesAndSale in
                         this.purchasesAndSales.Where(purchasesAndSale => purchasesAndSale.Type == EntryType.Sale))
                 {
-                    purchasesAndSale.PurchaseAndSales.ForEach(s => sum += s.EntryDate.Year == this.Year ? s.Value : 0);
+                    purchasesAndSale.PurchaseAndSales.ToList().
+                        ForEach(s => sum += s.EntryDate.Year == this.Year ? s.Value : 0);
                 }
 
                 return sum;
@@ -84,6 +91,6 @@
         /// <summary>
         /// Gets or sets the financial year of the data constituting this report.
         /// </summary>
-        public int Year { get; private set; }*/
+        public int Year { get; private set; }
     }
 }
