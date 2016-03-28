@@ -16,32 +16,33 @@ namespace Scrooge
     /// </summary>
     partial class PurchaseAndSales
     {
-        private readonly ObservableCollection<GroupedSaleOrPurchase> _data;
+        private static ObservableCollection<GroupedSaleOrPurchase> _data;
 
+        public static ObservableCollection<GroupedSaleOrPurchase> GroupedData => _data;
         public PurchaseAndSales()
         {
             this.InitializeComponent();
 
-            this._data = new ObservableCollection<GroupedSaleOrPurchase>();
+            _data = new ObservableCollection<GroupedSaleOrPurchase>();
 
-            this.GroupedItems.ItemsSource = this._data;
+            this.GroupedItems.ItemsSource = _data;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (this._data.Count != 0) return;
+            if (_data.Count != 0) return;
             foreach (
                 var viewModel in
                     MainWindow.StorageService.RetrieveGroupedPurchaseAndSalesViewModels())
             {
-                this._data.Add(new GroupedSaleOrPurchase(viewModel));
+                _data.Add(new GroupedSaleOrPurchase(viewModel));
             }
 
             this.Plus.Text =
-                this._data.Where(x => x.Data.Type == EntryType.Sale).Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) +
+                _data.Where(x => x.Data.Type == EntryType.Sale).Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) +
                 "";
             this.Minus.Text =
-                this._data.Where(x => x.Data.Type == EntryType.Purchase)
+                _data.Where(x => x.Data.Type == EntryType.Purchase)
                     .Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) + "";
 
             this.UpdateSumAndTaxPayable();
@@ -51,7 +52,7 @@ namespace Scrooge
         {
             //#Model-View-Viewmodel xD
             //let's set up a little MVVM, cos that's what the cool kids are doing:
-            var view = new AddPurchaseOrSaleEntry(this._data.Select(x => x.GroupeName.Text).ToList())
+            var view = new AddPurchaseOrSaleEntry(_data.Select(x => x.GroupeName.Text).ToList())
             {
                 DataContext = new AddPurchaseOrSaleViewModel()
             };
@@ -63,17 +64,17 @@ namespace Scrooge
 
             //view.Output.ID = _data.Count != 0 ? _data.Max(x => x.Data.PurchaseAndSales.Max(y=>y.ID)) + 1 : 0; // may come back to us one day, for now it also works without
 
-            if (this._data.Any(x => x.Data.GroupName == view.Output.GroupName && x.Data.Type == view.Output.Type))
+            if (_data.Any(x => x.Data.GroupName == view.Output.GroupName && x.Data.Type == view.Output.Type))
             {
                 var current =
-                    this._data.First(x => x.GroupeName.Text == view.Output.GroupName && x.Data.Type == view.Output.Type);
+                    _data.First(x => x.GroupeName.Text == view.Output.GroupName && x.Data.Type == view.Output.Type);
                 current.Data.PurchaseAndSales.Add(view.Output.PurchaseAndSales[0]);
                 current.MySum.Text = current.Data.PurchaseAndSales.Sum(x => x.Value) + "";
                 this.UpdateCalculations(current.Data.Type);
             }
             else
             {
-                this._data.Add(new GroupedSaleOrPurchase(view.Output));
+                _data.Add(new GroupedSaleOrPurchase(view.Output));
                 this.UpdateCalculations(view.Output.Type);
             }
         }
@@ -83,13 +84,13 @@ namespace Scrooge
             if (whichSideToUpdate == EntryType.Sale)
             {
                 this.Plus.Text =
-                    this._data.Where(x => x.Data.Type == EntryType.Sale)
+                    _data.Where(x => x.Data.Type == EntryType.Sale)
                         .Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) + "";
             }
             else
             {
                 this.Minus.Text =
-                    this._data.Where(x => x.Data.Type == EntryType.Purchase)
+                    _data.Where(x => x.Data.Type == EntryType.Purchase)
                         .Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) + "";
             }
 
@@ -98,29 +99,29 @@ namespace Scrooge
 
         private void DeleteEntryBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            for (var i = this._data.Count - 1; i > -1; i--)
+            for (var i = _data.Count - 1; i > -1; i--)
             {
-                var isChecked = this._data[i].ImSelected.IsChecked;
+                var isChecked = _data[i].ImSelected.IsChecked;
                 if (isChecked != null && (bool) isChecked)
                 {
-                    this._data.Remove(this._data[i]);
+                    _data.Remove(_data[i]);
                     continue;
                 }
 
-                for (var i2 = this._data[i].Data.PurchaseAndSales.Count - 1; i2 > -1; i2--)
+                for (var i2 = _data[i].Data.PurchaseAndSales.Count - 1; i2 > -1; i2--)
                 {
-                    if (this._data[i].Data.PurchaseAndSales[i2].IsSelected)
+                    if (_data[i].Data.PurchaseAndSales[i2].IsSelected)
                     {
-                        this._data[i].Data.PurchaseAndSales.Remove(this._data[i].Data.PurchaseAndSales[i2]);
+                        _data[i].Data.PurchaseAndSales.Remove(_data[i].Data.PurchaseAndSales[i2]);
                     }
                 }
             }
 
             this.Plus.Text =
-                this._data.Where(x => x.Data.Type == EntryType.Sale).Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) +
+                _data.Where(x => x.Data.Type == EntryType.Sale).Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) +
                 "";
             this.Minus.Text =
-                this._data.Where(x => x.Data.Type == EntryType.Purchase)
+                _data.Where(x => x.Data.Type == EntryType.Purchase)
                     .Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) + "";
             this.UpdateSumAndTaxPayable();
         }
@@ -137,7 +138,7 @@ namespace Scrooge
             this.Summ.Text = (decimal.Parse(this.Plus.Text) - decimal.Parse(this.Minus.Text)) + "";
             this.TaxPayable.Text =
                 Singleton<ServiceController>.Instance.Get<ICalculationService>()
-                    .CalculateTaxPayable(this._data.Select(x => x.Data), DateTime.Now.Year)
+                    .CalculateTaxPayable(_data.Select(x => x.Data), DateTime.Now.Year)
                     .ToString();
         }
 
