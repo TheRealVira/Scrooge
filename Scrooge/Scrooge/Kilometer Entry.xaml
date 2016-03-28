@@ -65,7 +65,7 @@
                     <ScrollViewer >
                         <StackPanel>
                             <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2" Width="Auto" Margin="8" VerticalAlignment="Top">
-                                <DataGrid Name="KilometerGrid" CanUserSortColumns="True"  AutoGenerateColumns="False" CanUserAddRows="False" Width="Auto" CanUserResizeColumns="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                                <DataGrid Name="KilometerGrid" CanUserSortColumns="True" BeginningEdit="KilometerGrid_OnBeginningEdit" AutoGenerateColumns="False" CanUserAddRows="False" Width="Auto" CanUserResizeColumns="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
                                     <DataGrid.Columns>
                                         <DataGridCheckBoxColumn Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                                 ElementStyle="{DynamicResource MaterialDesignDataGridCheckBoxColumnStyle}">

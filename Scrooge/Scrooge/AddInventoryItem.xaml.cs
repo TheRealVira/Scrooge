@@ -32,8 +32,9 @@ namespace Scrooge
 
         private void UIElement_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
-            e.Handled = regex.IsMatch(((TextBox)sender).Text + e.Text);
+            decimal test = -1;
+            string t = ((TextBox) sender).Text + e.Text + (e.Text == "." ? "0" : "");
+            e.Handled = !(decimal.TryParse(t,out test) && test > -1);
         }
 
         public void DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
@@ -43,7 +44,6 @@ namespace Scrooge
         public bool AllSet
             =>
                 this.MyDate != null && this.MyAcquisitionValue.Text != string.Empty &&
-                this.MyAssetValue.Text != string.Empty && this.MyDisposal.Text != string.Empty &&
                 this.MyDuration.Text != string.Empty && this.MyName.Text != string.Empty;
     }
 }

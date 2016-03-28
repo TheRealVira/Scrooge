@@ -106,5 +106,10 @@ namespace Scrooge
             this._data[this.InventoryGrid.SelectedIndex] = outp;
             this._nameHistory.Add(outp.Name);
         }
+
+        private void AppreciateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("LOL");
+        }
     }
 }

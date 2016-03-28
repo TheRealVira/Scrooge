@@ -32,7 +32,7 @@
             </materialDesign:ColorZone>
 
             <materialDesign:ColorZone Grid.Row="2" materialDesign:ShadowAssist.ShadowDepth="Depth2" Width="Auto" Margin="8" VerticalAlignment="Top">
-                <DataGrid x:Name="SaleOrPurchaseGrid" CanUserSortColumns="True" AutoGenerateColumns="False" CanUserAddRows="False" Width="Auto" CanUserResizeColumns="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                <DataGrid x:Name="SaleOrPurchaseGrid" CanUserSortColumns="True" AutoGenerateColumns="False" BeginningEdit="SaleOrPurchaseGrid_OnBeginningEdit" CanUserAddRows="False" Width="Auto" CanUserResizeColumns="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
         					ElementStyle="{DynamicResource MaterialDesignDataGridCheckBoxColumnStyle}">
