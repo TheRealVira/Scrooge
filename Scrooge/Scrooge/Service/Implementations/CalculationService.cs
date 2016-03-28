@@ -1,7 +1,6 @@
 ﻿namespace Scrooge.Service.Implementations
 {
     using System.Collections.Generic;
-    using System.Linq;
 
     using Scrooge.Model;
     using Scrooge.Service.Definitions;
@@ -20,20 +19,6 @@
         /// The standard modifier for VAT in Austria.
         /// </summary>
         private const decimal VATModifier = (decimal)0.2;
-
-        /// <inheritdoc/>
-        public decimal GetVAT(decimal netValue, bool benefited)
-        {
-            return benefited ? netValue * CalculationService.BenefitedVAT : netValue * CalculationService.VATModifier;
-        }
-
-        /// <inheritdoc/>
-        public decimal GetNetValue(decimal grossValue, bool benefited)
-        {
-            return benefited
-                       ? grossValue / (1 + CalculationService.BenefitedVAT)
-                       : grossValue / (1 + CalculationService.VATModifier);
-        }
 
         /// <summary>
         /// Generates a financial report for the given year and the given purchase and sale data (only data within the given year will be considered).
@@ -54,6 +39,39 @@
             return new FinancialReport(purchasesAndSales, year);
         }
 
+        /// <summary>
+        /// Generates a tax report for the given year and the given purchase and sale data (only data within the given year will be considered).
+        /// </summary>
+        /// <param name="purchasesAndSales">
+        /// The data to be used.
+        /// </param>
+        /// <param name="year">
+        /// The year of the report (only data within the given year will be considered).
+        /// </param>
+        /// <returns>
+        /// A tax report for the given year and the given purchase and sale data (only data within the given year will be considered).
+        /// </returns>
+        public TaxReport GenerateTaxReport(
+            IEnumerable<GroupedPurchaseAndSalesViewModel> purchasesAndSales,
+            int year)
+        {
+            return new TaxReport(purchasesAndSales, year);
+        }
+
+        /// <inheritdoc/>
+        public decimal GetVAT(decimal netValue, bool benefited)
+        {
+            return benefited ? netValue * CalculationService.BenefitedVAT : netValue * CalculationService.VATModifier;
+        }
+
+        /// <inheritdoc/>
+        public decimal GetNetValue(decimal grossValue, bool benefited)
+        {
+            return benefited
+                       ? grossValue / (1 + CalculationService.BenefitedVAT)
+                       : grossValue / (1 + CalculationService.VATModifier);
+        }
+        
         /// <summary>
         /// Calculates the tax payable of the given data.
         /// </summary>
