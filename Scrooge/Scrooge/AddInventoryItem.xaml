@@ -59,6 +59,12 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
+        
+        <CheckBox Content="Is tax payment" Margin="10,192,-10,168" Grid.Row="2">
+            <CheckBox.IsChecked>
+                <Binding Path="IsTaxPayment" UpdateSourceTrigger="PropertyChanged"/>
+            </CheckBox.IsChecked>
+        </CheckBox>
 
         <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" materialDesign:TextFieldAssist.Hint="Acquisition Value" Name="MyAcquisitionValue" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
                  Margin="8,129,8,0"
