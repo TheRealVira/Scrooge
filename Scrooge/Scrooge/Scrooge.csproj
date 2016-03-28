@@ -263,6 +263,9 @@
     <Compile Include="AddPurchaseOrSaleEntry.xaml.cs">
       <DependentUpon>AddPurchaseOrSaleEntry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppreciateAppreciation.xaml.cs">
+      <DependentUpon>AppreciateAppreciation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseTest.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GroupedSaleOrPurchase.xaml.cs">
@@ -276,6 +279,7 @@
     <Compile Include="Model\KilometerEntryViewModel.cs" />
     <Compile Include="Model\PurchaseAndSalesViewModel.cs" />
     <Compile Include="Model\EntryType.cs" />
+    <Compile Include="Model\WarningViewModel.cs" />
     <Compile Include="Model\TaxReport.cs" />
     <Compile Include="NotEmptyValidationRule.cs" />
     <Compile Include="PurchaseAndSales.xaml.cs">
@@ -292,6 +296,7 @@
     <Compile Include="Model\Internal\IApplicationEventListener.cs" />
     <Compile Include="Model\InventoryViewModel.cs" />
     <Compile Include="Service\Definitions\ICalculationService.cs" />
+    <Compile Include="Service\Definitions\IWarningService.cs" />
     <Compile Include="Service\Implementations\CalculationService.cs" />
     <Compile Include="Service\Definitions\IApplicationEventService.cs" />
     <Compile Include="Service\Definitions\ILoggingService.cs" />
@@ -300,10 +305,17 @@
     <Compile Include="Service\Implementations\Storage\EfSQLiteStorageService.cs" />
     <Compile Include="Service\Implementations\GUIApplicationEventService.cs" />
     <Compile Include="Service\Implementations\Storage\StorageContext.cs" />
+    <Compile Include="Service\Implementations\WarningService.cs" />
     <Compile Include="Service\ServiceController.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="TestPage.xaml.cs">
       <DependentUpon>TestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TextMessageBox.xaml.cs">
+      <DependentUpon>TextMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WarningView.xaml.cs">
+      <DependentUpon>WarningView.xaml</DependentUpon>
     </Compile>
     <Page Include="AddInventoryItem.xaml">
       <SubType>Designer</SubType>
@@ -314,6 +326,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddPurchaseOrSaleEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppreciateAppreciation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -346,6 +362,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="TestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TextMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WarningView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

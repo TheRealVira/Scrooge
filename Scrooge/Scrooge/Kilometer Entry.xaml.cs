@@ -102,5 +102,10 @@ namespace Scrooge
 
         private readonly ObservableCollection<KilometerEntryViewModel> _data;
         private readonly List<string> _purposeHistory, _drivenRouteHistory;
+
+        private void KilometerGrid_OnBeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        {
+            e.Cancel = true;
+        }
     }
 }

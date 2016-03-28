@@ -80,5 +80,13 @@ namespace Scrooge.Service.Definitions
         ///// <returns>The retrieved entry view models from the DB (with the applied filter).</returns>
         //IEnumerable<KilometerEntryViewModel> RetrieveInventoryViewModels(Predicate<KilometerEntryViewModel> filter); // copy
         #endregion
+
+        #region Warnings
+
+        IStorageService UpdateWarnings(IEnumerable<WarningViewModel> items);
+
+        IList<WarningViewModel> RetrieveWarnings();
+
+        #endregion
     }
 }

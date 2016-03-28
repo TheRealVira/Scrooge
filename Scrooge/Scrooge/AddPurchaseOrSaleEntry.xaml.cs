@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -56,7 +57,7 @@ namespace Scrooge
                         : EntryType.Purchase)
                     {
                         GroupName = this.MyGroupName.Text,
-                        PurchaseAndSales = new List<PurchaseAndSalesViewModel>()
+                        PurchaseAndSales = new ObservableCollection<PurchaseAndSalesViewModel>()
                         {
                             temp
                         }

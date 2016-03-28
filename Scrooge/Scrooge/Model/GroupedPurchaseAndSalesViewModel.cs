@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -37,7 +38,7 @@ namespace Scrooge.Model
             Type = type;
         }
 
-        public List<PurchaseAndSalesViewModel> PurchaseAndSales { get; set; }
+        public ObservableCollection<PurchaseAndSalesViewModel> PurchaseAndSales { get; set; }
 
         public EntryType Type { get; protected set; }
 

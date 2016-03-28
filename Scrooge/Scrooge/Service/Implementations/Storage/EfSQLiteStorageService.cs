@@ -103,6 +103,20 @@ namespace Scrooge.Service.Implementations.Storage
             return this.context.Set<KilometerEntryViewModel>().ToList();
         }
 
+        public IStorageService UpdateWarnings(IEnumerable<WarningViewModel> items)
+        {
+            this.loggingService.WriteLine("Updating warnings...");
+            EfSQLiteStorageService.AddRemoveUpdateList(this.context.Warnings, items.ToList());
+            this.context.SaveChangesAsync();
+            return this;
+        }
+
+        public IList<WarningViewModel> RetrieveWarnings()
+        {
+            this.loggingService.WriteLine("Retrieving warnings...");
+            return this.context.Set<WarningViewModel>().ToList();
+        }
+
         private static void AddRemoveUpdateList<T>(DbSet<T> list, IEnumerable<T> newList) where T : class
         {
             IEnumerable<T> stagedRemovals = list.Where(t => !newList.Contains(t));

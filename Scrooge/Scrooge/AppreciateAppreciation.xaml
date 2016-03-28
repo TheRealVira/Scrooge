@@ -1,4 +1,4 @@
-﻿<materialDesign:DialogHost x:Class="Scrooge.AddInventoryItem"
+﻿<materialDesign:DialogHost x:Class="Scrooge.AppreciateAppreciation"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,11 +6,10 @@
       xmlns:local="clr-namespace:Scrooge"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:system="clr-namespace:System;assembly=mscorlib"
-      mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="500"
+      mc:Ignorable="d" d:DesignWidth="500"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{StaticResource DefaultFont}"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}" MaxWidth="500" MaxHeight="500" MinWidth="500" MinHeight="500">
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}" MaxWidth="500" MaxHeight="250" MinWidth="500" MinHeight="250" Height="250">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -37,22 +36,12 @@
             </DatePicker.Text>
         </DatePicker>
 
-        <ComboBox VerticalAlignment="Top" IsEditable="True" HorizontalAlignment="Stretch" Name="MyName" materialDesign:TextFieldAssist.Hint="Name" Style="{DynamicResource MaterialDesignFloatingHintComboBox}" Margin="8,10,8,0" FontSize="18" Grid.Row="2">
-            <ComboBox.Text>
-                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <local:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </ComboBox.Text>
-        </ComboBox>
-
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" materialDesign:TextFieldAssist.Hint="Duration" Name="MyDuration" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
-                 Margin="8,67,8,0"
+        <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" materialDesign:TextFieldAssist.Hint="Appreciation Value" Name="Appreciate" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
+                 Margin="8,10,8,0"
                  FontSize="18"
                  Grid.Row="2" PreviewTextInput="UIElement_OnPreviewTextInput">
             <TextBox.Text>
-                <Binding Path="Duration" UpdateSourceTrigger="PropertyChanged">
+                <Binding Path="Value" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <local:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
                     </Binding.ValidationRules>
@@ -60,26 +49,15 @@
             </TextBox.Text>
         </TextBox>
 
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" materialDesign:TextFieldAssist.Hint="Acquisition Value" Name="MyAcquisitionValue" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
-                 Margin="8,129,8,0"
-                 FontSize="18"
-                 Grid.Row="2" PreviewTextInput="UIElement_OnPreviewTextInput">
-            <TextBox.Text>
-                <Binding Path="AcquisitionValue" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <local:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
+        <ComboBox VerticalAlignment="Top" HorizontalAlignment="Stretch" Name="PastAppreciations" materialDesign:TextFieldAssist.Hint="Past Appreciations" Style="{DynamicResource MaterialDesignFloatingHintComboBox}" Margin="10,108,196,0" FontSize="18" Grid.Row="2"/>
 
-        <Button IsDefault="True" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Name="AcceptBtn" Margin="0,0,87,8" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+            <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Name="AcceptBtn" Margin="10" materialDesign:ShadowAssist.ShadowDepth="Depth2">
             <Button.CommandParameter>
                 <system:Boolean>True</system:Boolean>
             </Button.CommandParameter> Add
         </Button>
 
-        <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="8" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+        <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,73,10" materialDesign:ShadowAssist.ShadowDepth="Depth2">
             <Button.CommandParameter>
                 <system:Boolean>False</system:Boolean>
             </Button.CommandParameter> Cancel

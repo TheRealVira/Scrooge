@@ -31,7 +31,7 @@
             get
             {
                 decimal sum = 0;
-                foreach (var purchasesAndSale in this.purchasesAndSales.Where(purchasesAndSale => purchasesAndSale.Type == EntryType.Sale))
+                foreach (var purchasesAndSale in this.purchasesAndSales.Where(purchasesAndSale => purchasesAndSale.Type == EntryType.Purchase))
                 {
                     purchasesAndSale.PurchaseAndSales.ForEach(p => sum += p.EntryDate.Year == this.Year ? p.Value : 0);
                 }
@@ -47,7 +47,8 @@
         {
             get
             {
-                return new Collection<GroupedPurchaseAndSalesViewModel>(this.purchasesAndSales);
+                decimal sum = 0;
+                
             }
 
             private set
@@ -69,9 +70,12 @@
             get
             {
                 decimal sum = 0;
-                this.purchasesAndSales.Where(purchasesAndSale => purchasesAndSale.Type == EntryType.Purchase).
-                    ToList().
-                    ForEach(gp => gp.PurchaseAndSales.ForEach(p => sum += p.EntryDate.Year == this.Year ? p.Value : 0));
+                foreach (
+                    var purchasesAndSale in
+                        this.purchasesAndSales.Where(purchasesAndSale => purchasesAndSale.Type == EntryType.Sale))
+                {
+                    purchasesAndSale.PurchaseAndSales.ForEach(s => sum += s.EntryDate.Year == this.Year ? s.Value : 0);
+                }
 
                 return sum;
             }
