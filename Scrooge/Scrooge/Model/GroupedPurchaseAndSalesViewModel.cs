@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace Scrooge.Model
@@ -39,6 +40,9 @@ namespace Scrooge.Model
         }
 
         public ObservableCollection<PurchaseAndSalesViewModel> PurchaseAndSales { get; set; }
+
+        [NotMapped]
+        public decimal Sum => this.PurchaseAndSales.Sum(x => x.Value);
 
         public EntryType Type { get; protected set; }
 

@@ -18,7 +18,7 @@ namespace Scrooge
     {
         private static ObservableCollection<GroupedSaleOrPurchase> _data;
 
-        public static ObservableCollection<GroupedSaleOrPurchase> GroupedData => _data;
+        public static ObservableCollection<GroupedPurchaseAndSalesViewModel> GroupedData => new ObservableCollection<GroupedPurchaseAndSalesViewModel>(_data.Select(x=>x.Data));
         public PurchaseAndSales()
         {
             this.InitializeComponent();
