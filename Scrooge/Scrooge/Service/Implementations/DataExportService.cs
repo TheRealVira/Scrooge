@@ -12,9 +12,13 @@ namespace Scrooge.Service.Implementations
     public class DataExportService : IDataExportService
     {
         private readonly Dictionary<string, IDataSerializer> serializers;
+        private readonly ILoggingService loggingService;
 
         public DataExportService()
         {
+            this.loggingService = Singleton<ServiceController>.Instance
+                .Get<ILoggingService>();
+
             this.serializers = new Dictionary<string, IDataSerializer>
             {
                 {"csv", new CSVDataSerializer()}
@@ -23,15 +27,19 @@ namespace Scrooge.Service.Implementations
 
         public IDataExportService ExportFinancialReport(FinancialReport report)
         {
-            var dialog = new OpenFileDialog
+            this.loggingService.WriteLine("Beginning export of financial report...");
+
+            var dialog = new SaveFileDialog
             {
                 Filter = this.GenerateFilter()
             };
 
+            this.loggingService.WriteLine("Activating SaveFileDialog...");
             var result = dialog.ShowDialog();
 
             if (result.GetValueOrDefault(false))
             {
+                this.loggingService.WriteLine("User confirmed");
                 var ext = Path.GetExtension(dialog.FileName)?.Substring(1);
                 var serializer = ext == null
                     ? null
@@ -39,11 +47,18 @@ namespace Scrooge.Service.Implementations
 
                 if (serializer == null)
                 {
+                    this.loggingService.WriteLine("No file type specified - uh oh...");
                     MessageBox.Show("You have to specify a file type!", "Error"); // No styling, shouldn't happen anyway
                     return this;
                 }
 
+                this.loggingService.WriteLine("Using serializer: " + ext);
                 serializer.SerializeFinancialReport(report, dialog.FileName);
+                this.loggingService.WriteLine("Exporting done.");
+            }
+            else
+            {
+                this.loggingService.WriteLine("Exporting aborted.");
             }
 
             return this;
