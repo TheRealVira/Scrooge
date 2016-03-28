@@ -66,7 +66,7 @@ namespace Scrooge
             var outp = (KilometerEntryViewModel)view.DataContext;
             if (!(bool) result || !view.AllSet || outp == null) return;
 
-            outp.ID = _data.Count!=0?_data.Max(x => x.ID)+1:0;
+            //outp.ID = _data.Count!=0?_data.Max(x => x.ID)+1:0;
             _data.Add(outp);
             if (!this._drivenRouteHistory.Contains(outp.DrivenRoute))
             {

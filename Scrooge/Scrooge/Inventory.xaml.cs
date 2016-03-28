@@ -54,7 +54,7 @@ namespace Scrooge
             var outp = (InventoryViewModel) view.DataContext;
             if (!(bool)result || !view.AllSet || view.DataContext == null) return;
 
-            outp.ID = _data.Count != 0 ? _data.Max(x => x.ID) + 1 : 0;
+            //outp.ID = _data.Count != 0 ? _data.Max(x => x.ID) + 1 : 0;
             _data.Add(outp);
             if (!this._nameHistory.Contains(outp.Name))
             {
