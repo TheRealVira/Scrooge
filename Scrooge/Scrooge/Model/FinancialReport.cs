@@ -91,6 +91,6 @@
         /// <summary>
         /// Gets or sets the financial year of the data constituting this report.
         /// </summary>
-        public int Year { get; private set; }*/
+        public int Year { get; }
     }
 }
