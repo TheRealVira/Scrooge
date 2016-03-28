@@ -263,6 +263,9 @@
     <Compile Include="AddPurchaseOrSaleEntry.xaml.cs">
       <DependentUpon>AddPurchaseOrSaleEntry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppreciateAppreciation.xaml.cs">
+      <DependentUpon>AppreciateAppreciation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseTest.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GroupedSaleOrPurchase.xaml.cs">
@@ -313,6 +316,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddPurchaseOrSaleEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppreciateAppreciation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

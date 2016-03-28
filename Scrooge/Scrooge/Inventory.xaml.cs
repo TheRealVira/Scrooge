@@ -107,9 +107,23 @@ namespace Scrooge
             this._nameHistory.Add(outp.Name);
         }
 
-        private void AppreciateBtn_Click(object sender, RoutedEventArgs e)
+        private async void AppreciateBtn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("LOL");
+            this._nameHistory.Remove(this._data[this.InventoryGrid.SelectedIndex].Name);
+            //#Model-View-Viewmodel xD
+            //let's set up a little MVVM, cos that's what the cool kids are doing:
+            var view = new AppreciateAppreciation()
+            {
+                DataContext = this._data[this.InventoryGrid.SelectedIndex]
+            };
+
+            //show the dialog
+            var result = await DialogHost.Show(view, "RootDialog", view.DialogHost_OnDialogClosing);
+            var outp = (InventoryViewModel)view.DataContext;
+            if (!(bool)result || !view.AllSet || outp == null) return;
+
+            this._data[this.InventoryGrid.SelectedIndex] = outp;
+            this._nameHistory.Add(outp.Name);
         }
     }
 }
