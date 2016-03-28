@@ -48,7 +48,7 @@ namespace Scrooge.Model
                 decimal sum = 0;
                 foreach (var purchasesAndSale in this.purchasesAndSales.Where(purchasesAndSale => purchasesAndSale.Type == EntryType.Sale))
                 {
-                    purchasesAndSale.PurchaseAndSales.ForEach(p => sum += p.Value);
+                    purchasesAndSale.PurchaseAndSales.ToList().ForEach(p => sum += p.Value);
                 }
 
                 return sum;
@@ -70,7 +70,7 @@ namespace Scrooge.Model
                 decimal sum = 0;
                 foreach (var purchasesAndSale in this.purchasesAndSales.Where(purchasesAndSale => purchasesAndSale.Type == EntryType.Purchase))
                 {
-                    purchasesAndSale.PurchaseAndSales.ForEach(p => sum += p.Value);
+                    purchasesAndSale.PurchaseAndSales.ToList().ForEach(p => sum += p.Value);
                 }
 
                 return sum;
