@@ -47,34 +47,8 @@
             </ComboBox.Text>
         </ComboBox>
 
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" materialDesign:TextFieldAssist.Hint="Asset Value" Name="MyAssetValue" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
-                 Margin="8,80,8,0"
-                 FontSize="18"
-                 Grid.Row="2" PreviewTextInput="UIElement_OnPreviewTextInput">
-            <TextBox.Text>
-                <Binding Path="AssetValue" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <local:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" materialDesign:TextFieldAssist.Hint="Disposal" Name="MyDisposal" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
-                 Margin="8,150,8,0"
-                 FontSize="18"
-                 Grid.Row="2" PreviewTextInput="UIElement_OnPreviewTextInput">
-            <TextBox.Text>
-                <Binding Path="Disposal" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <local:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-
         <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" materialDesign:TextFieldAssist.Hint="Duration" Name="MyDuration" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
-                 Margin="8,220,8,0"
+                 Margin="8,67,8,0"
                  FontSize="18"
                  Grid.Row="2" PreviewTextInput="UIElement_OnPreviewTextInput">
             <TextBox.Text>
@@ -87,7 +61,7 @@
         </TextBox>
 
         <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" materialDesign:TextFieldAssist.Hint="Acquisition Value" Name="MyAcquisitionValue" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
-                 Margin="8,295,8,0"
+                 Margin="8,129,8,0"
                  FontSize="18"
                  Grid.Row="2" PreviewTextInput="UIElement_OnPreviewTextInput">
             <TextBox.Text>

@@ -39,5 +39,10 @@ namespace Scrooge
         }
 
         public GroupedPurchaseAndSalesViewModel Data;
+
+        private void SaleOrPurchaseGrid_OnBeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        {
+            e.Cancel = true;
+        }
     }
 }

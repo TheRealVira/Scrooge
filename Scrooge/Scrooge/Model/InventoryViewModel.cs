@@ -80,11 +80,12 @@ namespace Scrooge.Model
             get
             {
                 var years = DateTime.Now.Year - this.DateOfAcquisition.Year;
-                if (years < this.Duration)
+                if (years <= this.Duration)
                 {
-                    var firstDepreciation = this.DateOfAcquisition.Month > 6 ? this.Deprecation/2 : this.Deprecation;
-                    return this.AcquisitionValue + this.Appreciation - firstDepreciation - this.Deprecation*(years - 1);
+                    var firstDepreciation = this.DateOfAcquisition.Month > 6 ? this.Deprecation / 2 : this.Deprecation;
+                    return this.AcquisitionValue + this.Appreciation - firstDepreciation - this.Deprecation * (years - 1);
                 }
+
                 return 0;
             }
         }
@@ -133,25 +134,43 @@ namespace Scrooge.Model
 
         public decimal Deprecation => this.AcquisitionValue/this.Duration;
 
+        /// <summary>
+        /// Gets the amount of value that wasn't removed from an already depreceated intentory item (otherwise 0).
+        /// </summary>
         public decimal Disposal
         {
-            get { return this.disposal; }
-            set
+            get
             {
-                if (this.disposal == value) return;
-                this.disposal = value;
-                this.OnPropertyChanged();
+                var years = DateTime.Now.Year - this.DateOfAcquisition.Year;
+                if (years == this.Duration && this.AssetValue != 0)
+                {
+                    return this.AssetValue;
+                }
+
+                return 0;
             }
         }
 
+        /// <summary>
+        /// Gets the accounting value of the inventory item at the end of the year.
+        /// </summary>
         public decimal AssetValue
         {
-            get { return this.assetValue; }
-            set
+            get
             {
-                if (this.assetValue == value) return;
-                this.assetValue = value;
-                this.OnPropertyChanged();
+                var years = DateTime.Now.Year - this.DateOfAcquisition.Year;
+                if (years < this.Duration)
+                {
+                    if (this.DateOfAcquisition.Month > 6)
+                    {
+                        return this.AcquisitionValue + this.Appreciation - this.Disposal
+                               - this.Deprecation * (years - 1);
+                    }
+
+                    return this.AcquisitionValue + this.Appreciation - this.Disposal - this.Deprecation * years;
+                }
+
+                return 0;
             }
         }
 
