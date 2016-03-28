@@ -1,20 +1,21 @@
-﻿using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using Scrooge.Model;
-using System.Collections;
-using System.Collections.Generic;
+using Scrooge.Service;
+using Scrooge.Service.Definitions;
 
 namespace Scrooge
 {
     /// <summary>
-    /// Interaction logic for FinancialReportPage.xaml
+    ///     Interaction logic for FinancialReportPage.xaml
     /// </summary>
     public partial class FinancialReportPage
     {
+        private FinancialReport ReportData;
+
         public FinancialReportPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             this.Grid.Visibility = Visibility.Hidden;
             this.ExportBtn.Visibility = Visibility.Hidden;
@@ -27,7 +28,6 @@ namespace Scrooge
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -36,16 +36,14 @@ namespace Scrooge
             this.ExportBtn.Visibility = this.Grid.Visibility;
             if (this.Grid.Visibility == Visibility.Hidden) return;
 
-            ReportData = new FinancialReport(PurchaseAndSales.GroupedData,this.Date.SelectedDate.Value.Year);
+            this.ReportData = new FinancialReport(PurchaseAndSales.GroupedData, this.Date.SelectedDate.Value.Year);
 
-            this.FinancialGrid.ItemsSource = ReportData.PurchasesAndSales;
+            this.FinancialGrid.ItemsSource = this.ReportData.PurchasesAndSales;
         }
-
-        private FinancialReport ReportData;
 
         private void ExportBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            // TODO Export as file
+            Singleton<ServiceController>.Instance.Get<IDataExportService>().ExportFinancialReport(this.ReportData);
         }
     }
 }

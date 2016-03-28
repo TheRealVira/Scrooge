@@ -15,7 +15,7 @@ namespace Scrooge.Service.Implementations.DataExporters
             {
                 foreach (var row in cellData)
                 {
-                    writer.WriteLine(row.Select(x => x.Content).Join(","));
+                    writer.WriteLine(row.Select(x => x.Content).Join(";"));
                 }
             }
         }

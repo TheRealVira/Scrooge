@@ -8,21 +8,23 @@ namespace Scrooge.Service.Implementations.DataExporters
     {
         public DataCell[][] FinancialReportToCellData(FinancialReport report)
         {
-            var data = new List<DataCell[]>();
-
-            data.Add(new []
+            var data = new List<DataCell[]>
             {
-                new DataCell("Annual report - " + report.Year, DataCellType.HeadingBig),
-                DataCell.Empty,
-                DataCell.Empty
-            });
-            data.Add(new[] { DataCell.Empty, DataCell.Empty, DataCell.Empty });
-            data.Add(new[]
+                new[]
+                {
+                    new DataCell("Annual report - " + report.Year, DataCellType.HeadingBig),
+                    DataCell.Empty,
+                    DataCell.Empty
+                },
+                new[] {DataCell.Empty, DataCell.Empty, DataCell.Empty},
+                new[]
                 {
                     new DataCell("Name", DataCellType.Heading),
                     new DataCell("Income", DataCellType.Heading),
                     new DataCell("Expenses", DataCellType.Heading)
-                });
+                }
+            };
+
 
             data.AddRange(
                 report.PurchasesAndSales.Where(x => x.Type == EntryType.Sale).Select(groupedPurchaseAndSales => new[]
