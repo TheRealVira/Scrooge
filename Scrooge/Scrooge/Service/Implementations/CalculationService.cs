@@ -1,6 +1,8 @@
 ﻿namespace Scrooge.Service.Implementations
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using Scrooge.Model;
     using Scrooge.Service.Definitions;
@@ -11,14 +13,21 @@
     public class CalculationService : ICalculationService
     {
         /// <summary>
-        /// The standard modifier for VAT of legally benefited products in Austria.
+        /// Calculates the tax payable of the given data.
         /// </summary>
-        private const decimal BenefitedVAT = (decimal)0.1;
-
-        /// <summary>
-        /// The standard modifier for VAT in Austria.
-        /// </summary>
-        private const decimal VATModifier = (decimal)0.2;
+        /// <param name="purchasesAndSales">
+        /// The data to be used.
+        /// </param>
+        /// <param name="year">
+        /// The year to be used (only data within the given year will be considered).
+        /// </param>
+        /// <returns>
+        /// The tax payable of the given data.
+        /// </returns>
+        public decimal CalculateTaxPayable(IEnumerable<GroupedPurchaseAndSalesViewModel> purchasesAndSales, int year)
+        {
+            return this.GenerateTaxReport(purchasesAndSales, year).TaxPayable;
+        }
 
         /// <summary>
         /// Generates a financial report for the given year and the given purchase and sale data (only data within the given year will be considered).
@@ -58,43 +67,23 @@
             return new TaxReport(purchasesAndSales, year);
         }
 
-        /// <inheritdoc/>
-        public decimal GetVAT(decimal netValue, bool benefited)
-        {
-            return benefited ? netValue * CalculationService.BenefitedVAT : netValue * CalculationService.VATModifier;
-        }
-
-        /// <inheritdoc/>
-        public decimal GetNetValue(decimal grossValue, bool benefited)
-        {
-            return benefited
-                       ? grossValue / (1 + CalculationService.BenefitedVAT)
-                       : grossValue / (1 + CalculationService.VATModifier);
-        }
-        
         /// <summary>
-        /// Calculates the tax payable of the given data.
+        /// Gets all inventory items that changed their value within given year (also new acquistions and dispositions).
         /// </summary>
-        /// <param name="purchasesAndSales">
-        /// The data to be used.
+        /// <param name="inventoryViewModels">
+        /// The inventory items to be checked against.
         /// </param>
         /// <param name="year">
-        /// The year to be used (only data within the given year will be considered).
+        /// The year to be searched for.
         /// </param>
         /// <returns>
-        /// The tax payable of the given data.
+        /// All inventory items that changed their value in the given year (also new acquistions and dispositions).
         /// </returns>
-        public decimal CalculateTaxPayable(IEnumerable<GroupedPurchaseAndSalesViewModel> purchasesAndSales, int year)
+        public IEnumerable<InventoryViewModel> GetChangedInventoryItems(
+            IEnumerable<InventoryViewModel> inventoryViewModels,
+            int year)
         {
-            int taxPayable = 0;
-            foreach (var purchasesAndSale in purchasesAndSales)
-            {
-                if (purchasesAndSale.Type == EntryType.Purchase)
-                {
-                }
-            }
-
-            return taxPayable;
+            return inventoryViewModels.Where(inventoryViewModel => year - inventoryViewModel.DateOfAcquisition.Year <= inventoryViewModel.Duration);
         }
     }
 }

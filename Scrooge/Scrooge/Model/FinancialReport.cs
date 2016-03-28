@@ -32,7 +32,7 @@
         /// <summary>
         /// Gets or sets the expenses of the financial year.
         /// </summary>
-        public decimal Expenses
+        public decimal Purchases
         {
             get
             {
@@ -66,12 +66,12 @@
         /// <summary>
         /// Gets or sets the profit or loss of the financial year.
         /// </summary>
-        public decimal Result => this.Revenues - this.Expenses;
+        public decimal Result => this.Sales - this.Purchases;
 
         /// <summary>
         /// Gets or sets the revenues of the financial year.
         /// </summary>
-        public decimal Revenues
+        public decimal Sales
         {
             get
             {

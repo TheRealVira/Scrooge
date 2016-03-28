@@ -279,7 +279,6 @@
     <Compile Include="Model\Appreciation.cs" />
     <Compile Include="Model\FinancialReport.cs" />
     <Compile Include="Model\GroupedPurchaseAndSalesViewModel.cs" />
-    <Compile Include="Model\InventoryReport.cs" />
     <Compile Include="Model\KilometerEntryViewModel.cs" />
     <Compile Include="Model\PurchaseAndSalesViewModel.cs" />
     <Compile Include="Model\EntryType.cs" />
