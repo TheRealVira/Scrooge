@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="Scrooge.FinancialReportPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:model="clr-namespace:Scrooge.Model"
+      mc:Ignorable="d" 
+      Height="500" Width="1060"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{StaticResource DefaultFont}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}" Loaded="UserControl_Loaded">
+
+    <Grid>
+        <DockPanel x:Name="Load">
+            <!--DataGrid-->
+
+            <Grid VerticalAlignment="Stretch" Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!--Title-->
+                    <RowDefinition Height="Auto"/>
+                    <!--Tools-->
+                    <RowDefinition Height="*"/>
+                    <!--List (of cards)-->
+                </Grid.RowDefinitions>
+
+                <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Width="100" Height="70" Padding="3" Margin="8,8,0,0" CornerRadius="8" FontSize="50" 
+materialDesign:ShadowAssist.ShadowDepth="Depth1" HorizontalAlignment="Left">
+                    <materialDesign:PackIcon Kind="ViewGrid" Height="Auto" Width="Auto" HorizontalAlignment="Center" 
+VerticalAlignment="Center"></materialDesign:PackIcon>
+                </materialDesign:ColorZone>
+
+                <!--Title:-->
+                <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Padding="3" Margin="8,8,0,8" CornerRadius="8" FontSize="50" 
+materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Center" Width="700">
+                    <TextBlock TextWrapping="Wrap" Text="Financialreport" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </materialDesign:ColorZone>
+
+                <Button Click="ButtonBase_OnClick" Grid.Row="1" HorizontalAlignment="Left" Margin="8">Calculate</Button>
+                <DatePicker Name="Date" materialDesign:TextFieldAssist.Hint="Pick a date to calculate the financialreport" Grid.Row="1" HorizontalAlignment="Left" Width="280" ToolTip="Pick a date to calculate the financialreport" Margin="131,8,0,8"/>
+
+                <!--Datalist:-->
+                <materialDesign:ColorZone CornerRadius="8" materialDesign:ShadowAssist.ShadowDepth="Depth2" Grid.Row="2" Margin="3 8 3 8" Width="Auto" Name="Grid"
+VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <ScrollViewer>
+                        <StackPanel>
+                            <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2" Width="Auto" Margin="8" VerticalAlignment="Top">
+                                <DataGrid Name="FinancialGrid" CanUserSortColumns="True" AutoGenerateColumns="False" CanUserAddRows="False" Width="Auto" 
+BeginningEdit="FinancialGrid_OnBeginningEdit" CanUserResizeColumns="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Binding="{Binding Name}"
+                                            Header="Name"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            />
+
+                                        <DataGridTextColumn Binding="{Binding DateOfAcquisition}"
+                                            Header="Date of acquisition"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            />
+
+                                        <DataGridTextColumn Binding="{Binding AcquisitionValue}"
+                                            Header="Cost value"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            />
+
+                                        <DataGridTextColumn Binding="{Binding BalanceValue}"
+                                            Header="Balance value"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            />
+
+                                        <DataGridTextColumn Binding="{Binding Appreciation}"
+                                            Header="Appreciation"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            />
+
+                                        <DataGridTextColumn Binding="{Binding Duration}"
+                                            Header="Depreciation duration"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            />
+
+                                        <DataGridTextColumn Binding="{Binding Percentage}"
+                                            Header="Depreciation %"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            />
+
+                                        <DataGridTextColumn Binding="{Binding Depreciation}"
+                                            Header="Depreciation value"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            />
+
+                                        <DataGridTextColumn Binding="{Binding Disposal}"
+                                            Header="Derecognition"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            />
+
+                                        <DataGridTextColumn Binding="{Binding AssetValue}"
+                                            Header="AssetValue"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </materialDesign:ColorZone>
+                        </StackPanel>
+                    </ScrollViewer>
+                </materialDesign:ColorZone>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</UserControl>
