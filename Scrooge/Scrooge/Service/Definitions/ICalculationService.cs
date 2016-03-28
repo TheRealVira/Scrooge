@@ -56,33 +56,19 @@
             int year);
 
         /// <summary>
-        ///     Calculates the VAT of a business operation having a specific net value.
+        /// Gets all inventory items that changed their value in the given year (also new acquistions and dispositions).
         /// </summary>
-        /// <param name="netValue">
-        ///     The net value of the business operation.
+        /// <param name="inventoryViewModels">
+        /// The inventory items to be checked against.
         /// </param>
-        /// <param name="benefited">
-        ///     A value indicating whether the products involved in the business operation are benefited by law (leads to lower tax
-        ///     rate).
+        /// <param name="year">
+        /// The year to be searched for.
         /// </param>
         /// <returns>
-        ///     The VAT of a business operation having a specific net value.
+        /// All inventory items that changed their value in the given year (also new acquistions and dispositions).
         /// </returns>
-        decimal GetVAT(decimal netValue, bool benefited);
-
-        /// <summary>
-        ///     Calculates the net value of a business operation having a specific gross value.
-        /// </summary>
-        /// <param name="grossValue">
-        ///     The gross value of the business operation.
-        /// </param>
-        /// <param name="benefited">
-        ///     A value indicating whether the products involved in the business operation are benefited by law (leads to lower tax
-        ///     rate).
-        /// </param>
-        /// <returns>
-        ///     The net value of a business operation having a specific net value.
-        /// </returns>
-        decimal GetNetValue(decimal grossValue, bool benefited);
+        IEnumerable<InventoryViewModel> GetChangedInventoryItems(
+            IEnumerable<InventoryViewModel> inventoryViewModels,
+            int year);
     }
 }

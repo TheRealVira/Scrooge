@@ -20,6 +20,11 @@ namespace Scrooge.Model
         public readonly decimal St;
         private bool isSelected;
 
+        /// <summary>
+        /// A value indicating whether this purchase or sale is a tax payment.
+        /// </summary>
+        private bool isTaxPayment;
+
         [Key]
         public uint ID { get; set; }
 
@@ -99,6 +104,28 @@ namespace Scrooge.Model
             {
                 if (this.receipt == value) return;
                 this.receipt = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this purchase or sale is a tax payment.
+        /// </summary>
+        public bool IsTaxPayment
+        {
+            get
+            {
+                return this.isTaxPayment;
+            }
+
+            set
+            {
+                if (this.isTaxPayment == value)
+                {
+                    return;
+                }
+
+                this.isTaxPayment = value;
                 this.OnPropertyChanged();
             }
         }
