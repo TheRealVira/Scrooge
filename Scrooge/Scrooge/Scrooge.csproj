@@ -276,6 +276,7 @@
     <Compile Include="Model\KilometerEntryViewModel.cs" />
     <Compile Include="Model\PurchaseAndSalesViewModel.cs" />
     <Compile Include="Model\EntryType.cs" />
+    <Compile Include="Model\TaxReport.cs" />
     <Compile Include="NotEmptyValidationRule.cs" />
     <Compile Include="PurchaseAndSales.xaml.cs">
       <DependentUpon>PurchaseAndSales.xaml</DependentUpon>
