@@ -24,7 +24,7 @@ namespace Scrooge.Model
             if (this.Acquisitions == null)
             {
                 this.Acquisitions = new List<Acquisition>();
-                this.AppreciationList=new ObservableCollection<Acquisition>();
+                this.AppreciationList=new ObservableCollection<Appreciation>();
             }
         }
 
@@ -80,19 +80,19 @@ namespace Scrooge.Model
         {
             get
             {
-                var years = DateTime.Now.Year - this.DateOfAcquisition.Year;
+                /*var years = DateTime.Now.Year - this.DateOfAcquisition.Year;
                 if (years <= this.Duration)
                 {
                     var firstDepreciation = this.DateOfAcquisition.Month > 6 ? this.Deprecation / 2 : this.Deprecation;
                     return this.AcquisitionValue + this.Appreciation - firstDepreciation - this.Deprecation * (years - 1);
-                }
+                }*/
 
                 return 0;
             }
         }
         
         public List<Acquisition> Acquisitions { get; set; }
-        public ObservableCollection<Acquisition> AppreciationList { get; set; }
+        public ObservableCollection<Appreciation> AppreciationList { get; set; }
 
         public decimal Duration
         {
@@ -133,7 +133,7 @@ namespace Scrooge.Model
         {
             get
             {
-                var years = DateTime.Now.Year - this.DateOfAcquisition.Year;
+                /*var years = DateTime.Now.Year - this.DateOfAcquisition.Year;
                 if (years < this.Duration)
                 {
                     if (this.DateOfAcquisition.Month > 6)
@@ -143,7 +143,7 @@ namespace Scrooge.Model
                     }
 
                     return this.AcquisitionValue + this.Appreciation - this.Disposal - this.Deprecation * years;
-                }
+                }*/
 
                 return 0;
             }
