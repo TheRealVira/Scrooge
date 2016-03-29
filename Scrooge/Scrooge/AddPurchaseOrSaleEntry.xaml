@@ -120,6 +120,12 @@
             </TextBox.Text>
         </TextBox>
 
+        <CheckBox Content="Is tax payment" Margin="8,322,-8,38" Grid.Row="2">
+            <CheckBox.IsChecked>
+                <Binding Path="IsTaxPayment" UpdateSourceTrigger="PropertyChanged"/>
+            </CheckBox.IsChecked>
+        </CheckBox>
+
         <Button IsDefault="True" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,87,8" materialDesign:ShadowAssist.ShadowDepth="Depth2">
             <Button.CommandParameter>
                 <system:Boolean>True</system:Boolean>
