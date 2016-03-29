@@ -37,7 +37,6 @@ namespace Scrooge.Service.Implementations
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                 FileName = report.Year + "-scrooge-financial-report",
                 DefaultExt = ".xlsx",
-                CheckFileExists = true,
                 CheckPathExists = true
             };
 
@@ -81,7 +80,6 @@ namespace Scrooge.Service.Implementations
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                 FileName = report.Year + "-scrooge-tax-report",
                 DefaultExt = ".xlsx",
-                CheckFileExists = true,
                 CheckPathExists = true
             };
 
