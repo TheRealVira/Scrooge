@@ -105,7 +105,7 @@
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding Depreciation, StringFormat={}{0:#.00}}"
+                                        <DataGridTextColumn Binding="{Binding Deprecation, StringFormat={}{0:#.00}}"
                                             Header="Depreciation value"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />

@@ -30,6 +30,9 @@ namespace Scrooge.Model
             }
         }
 
+        [NotMapped]
+        public decimal Appreciation => this.AppreciationList.Sum(x => x.Value);
+
         [Key]
         public uint ID { get; set; }
 

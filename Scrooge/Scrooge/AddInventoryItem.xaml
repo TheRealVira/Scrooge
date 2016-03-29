@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
 
         <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Padding="3" Margin="8" CornerRadius="8" FontSize="25" materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Stretch">
-            <TextBlock TextWrapping="Wrap" Text="New Invenotry Item" VerticalAlignment="Center" HorizontalAlignment="Center" Name="Title"/>
+            <TextBlock TextWrapping="Wrap" Text="New Inventory Item" VerticalAlignment="Center" HorizontalAlignment="Center" Name="Title"/>
         </materialDesign:ColorZone>
 
         <TextBlock Grid.Row="1"  Margin="8,10,358,0" Width="Auto" VerticalAlignment="Top" Text="The date of acquisition:"/>
