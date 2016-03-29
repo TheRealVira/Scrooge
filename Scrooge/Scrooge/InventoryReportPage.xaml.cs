@@ -54,9 +54,9 @@ namespace Scrooge
                         .GetChangedInventoryItems(Inventory._data, (int) this.SelectedYear.Value));
 
             this.InventoryGrid.ItemsSource = this.ReportData;
-            this.BalanceValue.Text = this.ReportData.Sum(x => x.BalanceValue) + "";
-            this.AcquisitionValue.Text = this.ReportData.Sum(x => x.AcquisitionValue) + "";
-            this.Deprecation.Text = this.ReportData.Sum(x => x.Deprecation) + "";
+            this.BalanceValue.Text = Math.Round(this.ReportData.Sum(x => x.BalanceValue),2)+"";
+            this.AcquisitionValue.Text = Math.Round(this.ReportData.Sum(x => x.AcquisitionValue), 2) + "";
+            this.Deprecation.Text = Math.Round(this.ReportData.Sum(x => x.Deprecation),2)+"";
         }
     }
 }
