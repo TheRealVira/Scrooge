@@ -311,6 +311,7 @@
     <Compile Include="Model\WarningViewModel.cs" />
     <Compile Include="Model\TaxReport.cs" />
     <Compile Include="NotEmptyValidationRule.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="PurchaseAndSales.xaml.cs">
       <DependentUpon>PurchaseAndSales.xaml</DependentUpon>
     </Compile>
