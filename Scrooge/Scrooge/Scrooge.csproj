@@ -277,6 +277,9 @@
     <Compile Include="GroupedSaleOrPurchase.xaml.cs">
       <DependentUpon>GroupedSaleOrPurchase.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InventoryReportPage.xaml.cs">
+      <DependentUpon>InventoryReportPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\ActionwindowType.cs" />
     <Compile Include="Model\AddPurchaseOrSaleViewModel.cs" />
     <Compile Include="Model\Appreciation.cs" />
@@ -363,6 +366,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GroupedSaleOrPurchase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InventoryReportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
