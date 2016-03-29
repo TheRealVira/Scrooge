@@ -10,10 +10,15 @@ namespace Scrooge.Service.Implementations.DataExporters
         public void SerializeFinancialReport(FinancialReport report, string filename)
         {
             var cellData = Singleton<DataSerializationHelper>.Instance.FinancialReportToCellData(report);
+            CSVDataSerializer.WriteToCSV(cellData, filename);
+        }
+
+        private static void WriteToCSV(DataCell[][] cells, string filename)
+        {
             using (var stream = new FileStream(filename, FileMode.Create))
             using (var writer = new StreamWriter(stream))
             {
-                foreach (var row in cellData)
+                foreach (var row in cells)
                 {
                     writer.WriteLine(row.Select(x => x.Content).Join(";"));
                 }

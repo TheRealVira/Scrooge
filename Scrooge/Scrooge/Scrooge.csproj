@@ -64,6 +64,9 @@
       <HintPath>..\packages\Dragablz.0.0.3.157\lib\net45\Dragablz.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\dependencies\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\MahApps.Metro.dll</HintPath>
       <Private>True</Private>
@@ -307,9 +310,12 @@
     <Compile Include="Service\Definitions\IStorageService.cs" />
     <Compile Include="Service\Implementations\DataExporters\CSVDataSerializer.cs" />
     <Compile Include="Service\Implementations\DataExporters\DataCell.cs" />
+    <Compile Include="Service\Implementations\DataExporters\DataCellOutline.cs" />
     <Compile Include="Service\Implementations\DataExporters\DataCellType.cs" />
     <Compile Include="Service\Implementations\DataExporters\DataSerializationHelper.cs" />
+    <Compile Include="Service\Implementations\DataExporters\ExcelCellEnumerator.cs" />
     <Compile Include="Service\Implementations\DataExporters\IDataSerializer.cs" />
+    <Compile Include="Service\Implementations\DataExporters\XLSXDataSerializer.cs" />
     <Compile Include="Service\Implementations\DataExportService.cs" />
     <Compile Include="Service\Implementations\DebugLoggingService.cs" />
     <Compile Include="Service\Implementations\Storage\EfSQLiteStorageService.cs" />

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,7 @@ namespace Scrooge.Service.Implementations
 
             this.serializers = new Dictionary<string, IDataSerializer>
             {
+                {"xlsx", new XLSXDataSerializer()},
                 {"csv", new CSVDataSerializer()}
             };
         }
@@ -31,7 +33,8 @@ namespace Scrooge.Service.Implementations
 
             var dialog = new SaveFileDialog
             {
-                Filter = this.GenerateFilter()
+                Filter = this.GenerateFilter(),
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
             };
 
             this.loggingService.WriteLine("Activating SaveFileDialog...");
