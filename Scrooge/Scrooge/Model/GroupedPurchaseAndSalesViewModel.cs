@@ -43,6 +43,8 @@ namespace Scrooge.Model
         [NotMapped]
         public decimal Sum => this.PurchaseAndSales.Sum(x => x.Value);
 
+        public decimal Taxes => this.PurchaseAndSales.Sum(x => x.Value * x.St / 100);
+
         public EntryType Type { get; protected set; }
 
         public string GroupName
