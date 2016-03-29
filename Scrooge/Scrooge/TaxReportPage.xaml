@@ -44,7 +44,7 @@ materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Center" Wi
                 <Button Click="ButtonBase_OnClick" Grid.Row="1" HorizontalAlignment="Left" Margin="8">Calculate</Button>
                 <controls:NumericUpDown Name="SelectedYear" Minimum="0" Interval="1" Grid.Row="1" HorizontalAlignment="Left" Width="120" FontSize="16" ToolTip="Pick a date to calculate the financialreport" Margin="131,8,0,8"/>
                 <Button ToolTip="Export" Name="ExportBtn" Click="ExportBtn_OnClick" Grid.Row="1" HorizontalAlignment="Right" Height="40" Width="40"  VerticalAlignment="Center" Style="{DynamicResource MaterialDesignToolButton}" Margin="8">
-                    <materialDesign:PackIcon Height="30" Width="30" Kind="Export" />
+                    <materialDesign:PackIcon Height="30" Width="30" Kind="Export" Foreground="White" />
                 </Button>
 
                 <!--Datalist:-->

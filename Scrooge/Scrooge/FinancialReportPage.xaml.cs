@@ -54,7 +54,10 @@ namespace Scrooge
 
         private void ExportBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            Singleton<ServiceController>.Instance.Get<IDataExportService>().ExportFinancialReport(this.ReportData);
+            if (this.ReportData != null)
+            {
+                Singleton<ServiceController>.Instance.Get<IDataExportService>().ExportFinancialReport(this.ReportData);
+            }
         }
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Scrooge.Model;
+using Scrooge.Service;
+using Scrooge.Service.Definitions;
 
 namespace Scrooge
 {
@@ -56,7 +58,10 @@ namespace Scrooge
 
         private void ExportBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            // TODO: Export
+            if (ReportData != null)
+            {
+                Singleton<ServiceController>.Instance.Get<IDataExportService>().ExportTaxReport(this.ReportData);
+            }
         }
     }
 }
