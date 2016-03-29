@@ -90,7 +90,7 @@
                             <scrooge:Inventory Margin="8 4 8 0" Width="Auto" Height="Auto"/>
                         </TabItem>
                         <TabItem Header="Reports" IsSelected="False">
-                            <scrooge:FinancialReportPage Margin="8 4 8 0" Width="Auto" Height="Auto"/>
+                            <scrooge:ReportPage Width="Auto" Height="Auto"/>
                         </TabItem>
                     </dragablz:TabablzControl>
                 </DockPanel>

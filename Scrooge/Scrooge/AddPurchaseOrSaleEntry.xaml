@@ -120,7 +120,7 @@
             </TextBox.Text>
         </TextBox>
 
-        <CheckBox Content="Is tax payment" Margin="8,322,-8,38" Grid.Row="2">
+        <CheckBox Content="Is tax payment" Name="TaxPayment" Click="ButtonBase_OnClick" Margin="8,322,-8,38" Grid.Row="2">
             <CheckBox.IsChecked>
                 <Binding Path="IsTaxPayment" UpdateSourceTrigger="PropertyChanged"/>
             </CheckBox.IsChecked>
