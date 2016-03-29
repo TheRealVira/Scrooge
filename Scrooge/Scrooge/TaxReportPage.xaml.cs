@@ -13,6 +13,12 @@ namespace Scrooge
             InitializeComponent();
         }
 
+        private void Changevis(Visibility vis)
+        {
+            this.Equation.Visibility = vis;
+            this.Grid.Visibility = vis;
+        }
+
         private void UstGrid_OnBeginningEdit(object sender, DataGridBeginningEditEventArgs e)
         {
             
