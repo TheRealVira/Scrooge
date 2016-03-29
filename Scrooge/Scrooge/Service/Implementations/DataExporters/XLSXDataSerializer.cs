@@ -13,10 +13,16 @@ namespace Scrooge.Service.Implementations.DataExporters
         public void SerializeFinancialReport(FinancialReport report, string filename)
         {
             var cellData = Singleton<DataSerializationHelper>.Instance.FinancialReportToCellData(report);
-            this.WriteToXLSX(cellData, filename);
+            XLSXDataSerializer.WriteToXLSX(cellData, filename);
         }
 
-        private void WriteToXLSX(DataCell[][] cells, string filename)
+        public void SerializeTaxReport(TaxReport report, string filename)
+        {
+            var cellData = Singleton<DataSerializationHelper>.Instance.TaxReportToCellData(report);
+            XLSXDataSerializer.WriteToXLSX(cellData, filename);
+        }
+
+        private static void WriteToXLSX(DataCell[][] cells, string filename)
         {
             var package = new ExcelPackage(new FileInfo(filename));
             var sheet = package.Workbook.Worksheets.Add("Content");
