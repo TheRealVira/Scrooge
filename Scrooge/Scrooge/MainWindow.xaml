@@ -17,9 +17,10 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"					  
         GlowBrush="{DynamicResource AccentColorBrush}"
         mc:Ignorable="d"
-        Title="Scrooge" Height="600" Width="1150" MinHeight="600" MinWidth="1150" ShowIconOnTitleBar="False" Closing="MetroWindow_Closing" Loaded="MetroWindow_Loaded">
+        Title="Scrooge" Height="600" Width="1150" MinHeight="600" MinWidth="1150" Closing="MetroWindow_Closing" Loaded="MetroWindow_Loaded">
 
     <!--TODO: Maybe add an dark/light toggle switch (or not xD)-->
+    <Grid>
     <Grid>
         <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" IsChecked="False"  x:Name="MenuToggleButton" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Margin="0,-1,0,0"/>
         <!--I'll draw all windows in the RootDialog, so the material design is able to do some magic.-->
@@ -96,5 +97,8 @@
                 </DockPanel>
             </materialDesign:DrawerHost>
         </materialDesign:DialogHost>
+    </Grid>
+
+        <Image Source="Scrooge.png" VerticalAlignment="Top" HorizontalAlignment="Right" Width="150"></Image>
     </Grid>
 </controls:MetroWindow>
