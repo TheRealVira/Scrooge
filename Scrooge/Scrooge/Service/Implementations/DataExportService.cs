@@ -34,7 +34,11 @@ namespace Scrooge.Service.Implementations
             var dialog = new SaveFileDialog
             {
                 Filter = this.GenerateFilter(),
-                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                FileName = report.Year + "-scrooge-financial-report",
+                DefaultExt = ".xlsx",
+                CheckFileExists = true,
+                CheckPathExists = true
             };
 
             this.loggingService.WriteLine("Activating SaveFileDialog...");
