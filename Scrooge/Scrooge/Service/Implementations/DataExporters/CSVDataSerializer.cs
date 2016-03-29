@@ -13,6 +13,12 @@ namespace Scrooge.Service.Implementations.DataExporters
             CSVDataSerializer.WriteToCSV(cellData, filename);
         }
 
+        public void SerializeTaxReport(TaxReport report, string filename)
+        {
+            var cellData = Singleton<DataSerializationHelper>.Instance.TaxReportToCellData(report);
+            CSVDataSerializer.WriteToCSV(cellData, filename);
+        }
+
         private static void WriteToCSV(DataCell[][] cells, string filename)
         {
             using (var stream = new FileStream(filename, FileMode.Create))

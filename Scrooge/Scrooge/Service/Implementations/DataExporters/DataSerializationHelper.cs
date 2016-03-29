@@ -73,5 +73,10 @@ namespace Scrooge.Service.Implementations.DataExporters
 
             return data.ToArray();
         }
+
+        public DataCell[][] TaxReportToCellData(TaxReport report)
+        {
+            return null;
+        }
     }
 }
