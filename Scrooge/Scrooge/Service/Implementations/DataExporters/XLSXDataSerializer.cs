@@ -24,6 +24,11 @@ namespace Scrooge.Service.Implementations.DataExporters
 
         private static void WriteToXLSX(DataCell[][] cells, string filename)
         {
+            if (File.Exists(filename))
+            {
+                File.Delete(filename);
+            }
+
             var package = new ExcelPackage(new FileInfo(filename));
             var sheet = package.Workbook.Worksheets.Add("Content");
 
@@ -84,10 +89,9 @@ namespace Scrooge.Service.Implementations.DataExporters
                 }
             }
 
-            for (var i = 1; i < sheet.Dimension.Columns + 1; i++)
+            for (var i = 1; i < cells.Max(x => x.Length); i++)
             {
-                sheet.Column(i).AutoFit(10.71);
-                    // 10.71 represents the default excel cell width, we do not want to go below that
+                sheet.Cells[2, i, sheet.Dimension.Rows, i].AutoFitColumns(10.71); // 10.71 represents the default excel cell width, we do not want to go below that
             }
 
             package.Save();

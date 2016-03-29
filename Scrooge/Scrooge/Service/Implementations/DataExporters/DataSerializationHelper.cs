@@ -12,7 +12,7 @@ namespace Scrooge.Service.Implementations.DataExporters
             {
                 new[]
                 {
-                    new DataCell("Annual report - " + report.Year, DataCellType.HeadingBig),
+                    new DataCell("Financial report - " + report.Year, DataCellType.HeadingBig),
                     DataCell.Empty,
                     DataCell.Empty
                 },
@@ -65,9 +65,9 @@ namespace Scrooge.Service.Implementations.DataExporters
             {
                 data.Add(new[]
                 {
-                    new DataCell("Loss", DataCellType.Heading),
+                    new DataCell("Loss", DataCellType.Heading, DataCellOutline.Top),
                     new DataCell("", DataCellType.Text, DataCellOutline.Top),
-                    new DataCell(report.Result.ToString(), DataCellType.ResultBad)
+                    new DataCell(report.Result.ToString(), DataCellType.ResultBad, DataCellOutline.Top)
                 });
             }
 
@@ -76,7 +76,24 @@ namespace Scrooge.Service.Implementations.DataExporters
 
         public DataCell[][] TaxReportToCellData(TaxReport report)
         {
-            return null;
+            var data = new List<DataCell[]>
+            {
+                new[]
+                {
+                    new DataCell("Tax report - " + report.Year, DataCellType.HeadingBig),
+                    DataCell.Empty
+                },
+                new[] {DataCell.Empty, DataCell.Empty},
+                new[] {new DataCell("Sales", DataCellType.Text), new DataCell(report.Sales.ToString(), DataCellType.Number)},
+                new[] {new DataCell("Net sales", DataCellType.Text), new DataCell(report.NetSales.ToString(), DataCellType.Number)},
+                new[] {new DataCell("Sales tax", DataCellType.Text), new DataCell(report.SalesTax.ToString(), DataCellType.Number, DataCellOutline.Top)},
+                new[] {new DataCell("- Input tax", DataCellType.Text), new DataCell(report.InputTax.ToString(), DataCellType.Number)},
+                new[] {new DataCell("Tax payable", DataCellType.Text), new DataCell(report.TaxPayable.ToString(), DataCellType.Number, DataCellOutline.Top)},
+                new[] {new DataCell("- Advanced tax payments", DataCellType.Text), new DataCell(report.AdvanceTaxPayements.ToString(), DataCellType.Number)},
+                new[] {new DataCell(report.OutstandingMoney >= 0 ? "Liability" : "Claim", DataCellType.Text), new DataCell(report.OutstandingMoney.ToString(), report.OutstandingMoney >= 0 ? DataCellType.ResultBad : DataCellType.ResultGood, DataCellOutline.Top)},
+            };
+
+            return data.ToArray();
         }
     }
 }
