@@ -1,5 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+using Scrooge.Model;
 
 namespace Scrooge
 {
@@ -11,6 +15,9 @@ namespace Scrooge
         public TaxReportPage()
         {
             InitializeComponent();
+
+            Changevis(Visibility.Hidden);
+            this.SelectedYear.Value = DateTime.Now.Year;
         }
 
         private void Changevis(Visibility vis)
@@ -21,13 +28,25 @@ namespace Scrooge
 
         private void UstGrid_OnBeginningEdit(object sender, DataGridBeginningEditEventArgs e)
         {
-            
+            e.Cancel = true;
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            Changevis(this.SelectedYear.Value != null ? Visibility.Visible : Visibility.Hidden);
+            if (this.Grid.Visibility == Visibility.Hidden) return;
+
+            this.ReportData = new TaxReport(PurchaseAndSales.GroupedData, (int)this.SelectedYear.Value);
+
+            this.UstGrid.ItemsSource = new ObservableCollection<GroupedPurchaseAndSalesViewModel>(this.ReportData.PurchasesAndSales.Where(x => x.Type == EntryType.Sale));
+            this.VstGrid.ItemsSource = new ObservableCollection<GroupedPurchaseAndSalesViewModel>(this.ReportData.PurchasesAndSales.Where(x => x.Type == EntryType.Purchase));
+            this.Sales.Text = this.ReportData.Sales + "";
+            this.NetSales.Text = this.ReportData.NetSales + "";
+            this.MinusVorraus.Text = this.ReportData.AdvanceTaxPayements + "";
+            this.Equals.Text = this.ReportData.OutstandingMoney + "";
         }
+
+        private TaxReport ReportData;
 
         private void ExportBtn_OnClick(object sender, RoutedEventArgs e)
         {

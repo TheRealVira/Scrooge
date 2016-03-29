@@ -132,13 +132,13 @@ materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Center" Wi
                         </StackPanel>
                     </materialDesign:ColorZone>
                     <materialDesign:ColorZone Mode="PrimaryDark" Margin="420,0,0,8" VerticalAlignment="Bottom" HorizontalAlignment="Left" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="0 0 0 0" ToolTip="Outstanding Money">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="0 0 0 0" ToolTip="Advance Taxpayments">
                             <materialDesign:PackIcon Kind="MinusBox" VerticalAlignment="Center" Height="32" Width="32"/>
                             <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="MinusVorraus" Text="" FontSize="15"/>
                         </StackPanel>
                     </materialDesign:ColorZone>
                     <materialDesign:ColorZone Mode="PrimaryDark" Margin="8" HorizontalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Right" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Income total">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Outstanding Money">
                             <materialDesign:PackIcon Kind="EqualBox" VerticalAlignment="Center" Height="32" Width="32"/>
                             <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Equals" Text="" FontSize="15"/>
                         </StackPanel>
