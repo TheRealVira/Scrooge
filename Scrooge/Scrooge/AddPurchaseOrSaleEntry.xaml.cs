@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
@@ -72,5 +73,17 @@ namespace Scrooge
                 this.MyEntryDate.SelectedDate != null && this.MyREDate.SelectedDate != null && this.MyType.Text != string.Empty &&
                 this.MyGroupName.Text != string.Empty && this.MyReceipt.Text != string.Empty &&
                 this.MySt.Text != string.Empty && this.MyValue.Text != string.Empty;
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (this.TaxPayment.IsChecked.Value)
+            {
+                this.MySt.Text = "0";
+                this.MySt.IsReadOnly = true;
+                return;
+            }
+
+            this.MySt.IsReadOnly = false;
+        }
     }
 }
