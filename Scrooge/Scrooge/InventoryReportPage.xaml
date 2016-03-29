@@ -1,15 +1,16 @@
-﻿<UserControl x:Class="Scrooge.Inventory"
+﻿<UserControl x:Class="Scrooge.InventoryReportPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:model="clr-namespace:Scrooge.Model"
+      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
       mc:Ignorable="d" 
       Height="500" Width="1060"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{StaticResource DefaultFont}"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}" Loaded="UserControl_Loaded">
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}">
 
     <Grid>
         <DockPanel x:Name="Load">
@@ -23,6 +24,7 @@
                     <!--Tools-->
                     <RowDefinition Height="*"/>
                     <!--List (of cards)-->
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Width="100" Height="70" Padding="3" Margin="8,8,0,0" CornerRadius="8" FontSize="50" materialDesign:ShadowAssist.ShadowDepth="Depth1" HorizontalAlignment="Left">
@@ -31,52 +33,25 @@
 
                 <!--Title:-->
                 <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Padding="3" Margin="8,8,0,8" CornerRadius="8" FontSize="50" materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Center" Width="700">
-                    <TextBlock TextWrapping="Wrap" Text="Inventory" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock TextWrapping="Wrap" Text="Inventory Report" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </materialDesign:ColorZone>
 
-                <!--Toolbar:-->
-                <ToolBarTray Grid.Row="1" Grid.Column="0" DockPanel.Dock="Top" Margin="0 8 0 0" IsLocked="True">
-                    <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
-                        <Button ToolTip="Add another item" Click="AddEntryBtn_OnClick">
-                            <materialDesign:PackIcon Height="20" Width="20" Kind="Plus"/>
-                        </Button>
-                        <Button ToolTip="Delete item" Click="DeleteEntryBtn_OnClick">
-                            <materialDesign:PackIcon Height="20" Width="20" Kind="Minus"/>
-                        </Button>
-                        <Button ToolTip="Save" Click="SaveBtn_OnClick">
-                            <materialDesign:PackIcon Height="20" Width="20" Kind="ContentSave"/>
-                        </Button>
-                    </ToolBar>
-                </ToolBarTray>
+                <Button Click="ButtonBase_OnClick" Grid.Row="1" HorizontalAlignment="Left" Margin="8">Calculate</Button>
+                <controls:NumericUpDown Name="SelectedYear" Minimum="0" Interval="1" Grid.Row="1" HorizontalAlignment="Left" Width="120" FontSize="16" ToolTip="Pick a date to calculate the financialreport" Margin="131,8,0,8"/>
+                <Button ToolTip="Export" Name="ExportBtn" Click="ExportBtn_OnClick" Grid.Row="1" HorizontalAlignment="Right" Height="40" Width="40"  VerticalAlignment="Center" Style="{DynamicResource MaterialDesignToolButton}" Margin="8">
+                    <materialDesign:PackIcon Height="30" Width="30" Kind="Export" />
+                </Button>
 
                 <!--Datalist:-->
-                <materialDesign:ColorZone CornerRadius="8" materialDesign:ShadowAssist.ShadowDepth="Depth2" Grid.Row="2" Margin="3 8 3 8" Width="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <materialDesign:ColorZone CornerRadius="8" Name="GridZone" materialDesign:ShadowAssist.ShadowDepth="Depth2" Grid.Row="2" Margin="3 8 3 8" Width="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <ScrollViewer >
                         <StackPanel>
                             <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2" Width="Auto" Margin="8" VerticalAlignment="Top">
                                 <DataGrid Name="InventoryGrid" CanUserSortColumns="True" AutoGenerateColumns="False" CanUserAddRows="False" Width="Auto" BeginningEdit="InventoryGrid_OnBeginningEdit" CanUserResizeColumns="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
 
                                     <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                                ElementStyle="{DynamicResource MaterialDesignDataGridCheckBoxColumnStyle}">
-                                            <!--EditingElementStyle="{DynamicResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">-->
-                                            <DataGridCheckBoxColumn.Header>
-                                                <!--padding to allow hit test to pass thru for sorting -->
-                                                <Border Background="Transparent" Padding="6 0 6 0" HorizontalAlignment="Center">
-                                                    <CheckBox HorizontalAlignment="Center"                                               
-                                              DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext}"
-                                              IsChecked="{Binding IsAllItemsSelected}" />
-                                                </Border>
-                                            </DataGridCheckBoxColumn.Header>
-                                        </DataGridCheckBoxColumn>
-
                                         <DataGridTextColumn Binding="{Binding Name}"
                                             Header="Item"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            />
-
-                                        <DataGridTextColumn Binding="{Binding DateOfAcquisition}"
-                                            Header="Date of acquisition"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
@@ -95,16 +70,6 @@
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding Duration}"
-                                            Header="Depreciation duration"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            />
-
-                                        <DataGridTextColumn Binding="{Binding Percentage, StringFormat={}{0:#.00}}"
-                                            Header="Depreciation %"
-                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            />
-
                                         <DataGridTextColumn Binding="{Binding Depreciation, StringFormat={}{0:#.00}}"
                                             Header="Depreciation value"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
@@ -119,27 +84,32 @@
                                             Header="AssetValue"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
-
-                                        <DataGridTemplateColumn Header="Edit">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <Button Click="ButtonBase_OnClick">Edit</Button>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
-
-                                        <DataGridTemplateColumn Header="Appreciate">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <Button Click="AppreciateBtn_Click">Appreciate</Button>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </materialDesign:ColorZone>
                         </StackPanel>
                     </ScrollViewer>
+                </materialDesign:ColorZone>
+
+                <materialDesign:ColorZone Grid.Row="3" Mode="PrimaryDark" Margin="8" Name="AcquisitionValueZone" HorizontalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Right" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="AcquisitionValue">
+                        <materialDesign:PackIcon Kind="EqualBox" VerticalAlignment="Center" Height="32" Width="32"/>
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="AcquisitionValue" Text="" FontSize="15"/>
+                    </StackPanel>
+                </materialDesign:ColorZone>
+
+                <materialDesign:ColorZone Grid.Row="3" Mode="PrimaryDark" Margin="8 8 250 8" Name="DeprecationZone" HorizontalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Right" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Deprecation">
+                        <materialDesign:PackIcon Kind="EqualBox" VerticalAlignment="Center" Height="32" Width="32"/>
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Deprecation" Text="" FontSize="15"/>
+                    </StackPanel>
+                </materialDesign:ColorZone>
+
+                <materialDesign:ColorZone Grid.Row="3" Mode="PrimaryDark" Margin="8 8 500 8" Name="BalanceValueZone" HorizontalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Right" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Balance Value">
+                        <materialDesign:PackIcon Kind="EqualBox" VerticalAlignment="Center" Height="32" Width="32"/>
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="BalanceValue" Text="" FontSize="15"/>
+                    </StackPanel>
                 </materialDesign:ColorZone>
             </Grid>
         </DockPanel>

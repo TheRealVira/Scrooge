@@ -66,12 +66,12 @@
         					EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                        <DataGridTextColumn Binding="{Binding Value}"
+                        <DataGridTextColumn Binding="{Binding Value, StringFormat={}{0:#.00}}"
         					Header="Value"
         					EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                        <DataGridTextColumn Binding="{Binding St}"
+                        <DataGridTextColumn Binding="{Binding St, StringFormat={}{0:#.00}}"
         					Header="Tax (input or sales)"
         					EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />

@@ -28,7 +28,7 @@
                     <scrooge:TaxReportPage Width="Auto" Height="Auto"/>
                 </TabItem>
                 <TabItem Header="Inventory" IsSelected="False">
-                    <scrooge:Inventory Width="Auto" Height="Auto"/>
+                    <scrooge:InventoryReportPage Width="Auto" Height="Auto"/>
                 </TabItem>
             </dragablz:TabablzControl>
         </DockPanel>

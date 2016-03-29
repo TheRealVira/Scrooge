@@ -16,16 +16,16 @@ namespace Scrooge
     /// </summary>
     public partial class Inventory
     {
-        private readonly ObservableCollection<InventoryViewModel> _data;
+        public static ObservableCollection<InventoryViewModel> _data;
         private readonly List<string> _nameHistory;
 
         public Inventory()
         {
             this.InitializeComponent();
 
-            this._data = new ObservableCollection<InventoryViewModel>();
+            _data = new ObservableCollection<InventoryViewModel>();
             this._nameHistory = new List<string>();
-            this.InventoryGrid.ItemsSource = this._data;
+            this.InventoryGrid.ItemsSource = _data;
 
             Singleton<ServiceController>.Instance.Get<IApplicationEventService>()
                 .RegisterApplicationCloseRequestHandler(this.CloseRequestHandler);
@@ -33,11 +33,11 @@ namespace Scrooge
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (this._data.Count != 0) return;
+            if (_data.Count != 0) return;
 
             foreach (var retrieveInventoryViewModel in MainWindow.StorageService.RetrieveInventoryViewModels())
             {
-                this._data.Add(retrieveInventoryViewModel);
+                _data.Add(retrieveInventoryViewModel);
                 if (!this._nameHistory.Contains(retrieveInventoryViewModel.Name))
                 {
                     this._nameHistory.Add(retrieveInventoryViewModel.Name);
@@ -61,9 +61,10 @@ namespace Scrooge
             var result = await DialogHost.Show(view, "RootDialog", view.DialogHost_OnDialogClosing);
             var outp = (InventoryViewModel) view.DataContext;
             if (!(bool) result || !view.AllSet || view.DataContext == null) return;
+            outp.DateOfAcquisition = view.MyDate.SelectedDate.Value;
 
             //outp.ID = _data.Count != 0 ? _data.Max(x => x.ID) + 1 : 0;
-            this._data.Add(outp);
+            _data.Add(outp);
             if (!this._nameHistory.Contains(outp.Name))
             {
                 this._nameHistory.Add(outp.Name);
@@ -72,12 +73,12 @@ namespace Scrooge
 
         private void DeleteEntryBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            for (var i = this._data.Count - 1; i > -1; i--)
+            for (var i = _data.Count - 1; i > -1; i--)
             {
-                if (!this._data[i].IsSelected) continue;
+                if (!_data[i].IsSelected) continue;
 
-                this._nameHistory.Remove(this._data[i].Name);
-                this._data.Remove(this._data[i]);
+                this._nameHistory.Remove(_data[i].Name);
+                _data.Remove(_data[i]);
             }
         }
 
@@ -95,12 +96,12 @@ namespace Scrooge
 
         private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            this._nameHistory.Remove(this._data[this.InventoryGrid.SelectedIndex].Name);
+            this._nameHistory.Remove(_data[this.InventoryGrid.SelectedIndex].Name);
             //#Model-View-Viewmodel xD
             //let's set up a little MVVM, cos that's what the cool kids are doing:
             var view = new AddInventoryItem(this._nameHistory, ActionwindowType.Edit)
             {
-                DataContext = this._data[this.InventoryGrid.SelectedIndex]
+                DataContext = _data[this.InventoryGrid.SelectedIndex]
             };
 
             //show the dialog
@@ -108,16 +109,16 @@ namespace Scrooge
             var outp = (InventoryViewModel) view.DataContext;
             if (!(bool) result || !view.AllSet || outp == null) return;
 
-            this._data[this.InventoryGrid.SelectedIndex] = outp;
+            _data[this.InventoryGrid.SelectedIndex] = outp;
             this._nameHistory.Add(outp.Name);
         }
 
         private async void AppreciateBtn_Click(object sender, RoutedEventArgs e)
         {
-            this._nameHistory.Remove(this._data[this.InventoryGrid.SelectedIndex].Name);
+            this._nameHistory.Remove(_data[this.InventoryGrid.SelectedIndex].Name);
             //#Model-View-Viewmodel xD
             //let's set up a little MVVM, cos that's what the cool kids are doing:
-            var view = new AppreciateAppreciation(this._data[this.InventoryGrid.SelectedIndex])
+            var view = new AppreciateAppreciation(_data[this.InventoryGrid.SelectedIndex])
             {
                 DataContext = new Appreciation()
             };
@@ -128,13 +129,13 @@ namespace Scrooge
             outp.DateTime = view.MySelectedDate;
             if (!(bool) result || !view.AllSet || outp == null) return;
 
-            this._data[this.InventoryGrid.SelectedIndex].AppreciationList.Add(outp);
+            _data[this.InventoryGrid.SelectedIndex].AppreciationList.Add(outp);
         }
 
         private async Task<bool> CloseRequestHandler()
         {
             var unsaved =
-                !this._data.SequenceEqual(MainWindow.StorageService.RetrieveInventoryViewModels());
+                !_data.SequenceEqual(MainWindow.StorageService.RetrieveInventoryViewModels());
 
             if (!unsaved) return true;
 
