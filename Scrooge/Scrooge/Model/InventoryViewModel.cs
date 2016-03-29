@@ -88,6 +88,8 @@ namespace Scrooge.Model
                     var firstDepreciation = this.DateOfAcquisition.Month > 6 ? this.Deprecation / 2 : this.Deprecation;
                     return this.AcquisitionValue + this.AppreciationList.Sum(x => x.Value) - firstDepreciation - this.Deprecation * (years - 1);
                 }
+
+                return 0;
             }
         }
         
@@ -144,6 +146,8 @@ namespace Scrooge.Model
 
                     return this.AcquisitionValue + this.AppreciationList.Sum(x => x.Value) - this.Disposal - this.Deprecation * years;
                 }
+
+                return 0;
             }
         }
 
