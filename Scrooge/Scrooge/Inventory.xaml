@@ -80,17 +80,17 @@
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding AcquisitionValue}"
+                                        <DataGridTextColumn Binding="{Binding AcquisitionValue, StringFormat={}{0:#.00}}"
                                             Header="Cost value"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding BalanceValue}"
+                                        <DataGridTextColumn Binding="{Binding BalanceValue, StringFormat={}{0:#.00}}"
                                             Header="Balance value"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding Appreciation}"
+                                        <DataGridTextColumn Binding="{Binding Appreciation, StringFormat={}{0:#.00}}"
                                             Header="Appreciation"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
@@ -100,22 +100,22 @@
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding Percentage}"
+                                        <DataGridTextColumn Binding="{Binding Percentage, StringFormat={}{0:#.00}}"
                                             Header="Depreciation %"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding Depreciation}"
+                                        <DataGridTextColumn Binding="{Binding Depreciation, StringFormat={}{0:#.00}}"
                                             Header="Depreciation value"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding Disposal}"
+                                        <DataGridTextColumn Binding="{Binding Disposal, StringFormat={}{0:#.00}}"
                                             Header="Derecognition"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding AssetValue}"
+                                        <DataGridTextColumn Binding="{Binding AssetValue, StringFormat={}{0:#.00}}"
                                             Header="AssetValue"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
