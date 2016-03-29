@@ -83,7 +83,7 @@
                         <TabItem Header="Purchases / Sales" IsSelected="True">
                             <scrooge:PurchaseAndSales Margin="8 4 8 0" Width="Auto" Height="Auto"/>
                         </TabItem>
-                        <TabItem Header="Kilometer Entry" IsSelected="False">
+                        <TabItem Header="Driver's log" IsSelected="False">
                             <scrooge:KilometerEntry Margin="8 4 8 0" Width="Auto" Height="Auto"/>
                         </TabItem>
                         <TabItem Header="Inventory" IsSelected="False">

@@ -339,6 +339,9 @@
     <Compile Include="WarningView.xaml.cs">
       <DependentUpon>WarningView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="YesNoMessageBox.xaml.cs">
+      <DependentUpon>YesNoMessageBox.xaml</DependentUpon>
+    </Compile>
     <Page Include="AddInventoryItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -404,6 +407,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WarningView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YesNoMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
