@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using MigraDoc.DocumentObjectModel;
@@ -23,6 +24,12 @@ namespace Scrooge.Service.Implementations.DataExporters
             PDFDataSerializer.WriteToPDF(cellData, filename);
         }
 
+        public void SerializeInventoryReport(IEnumerable<InventoryViewModel> report, int year, string filename)
+        {
+            var cellData = Singleton<DataSerializationHelper>.Instance.InventoryReportToCellData(report, year);
+            PDFDataSerializer.WriteToPDF(cellData, filename);
+        }
+
         private static void WriteToPDF(DataCell[][] dataCells, string filename)
         {
             if (File.Exists(filename))
@@ -34,13 +41,14 @@ namespace Scrooge.Service.Implementations.DataExporters
 
             var document = new Document();
             document.Styles["Normal"].Font.Name = "Arial";
+            document.DefaultPageSetup.LeftMargin -= Unit.FromCentimeter(1);
             var section = document.AddSection();
 
             var rightStyle = document.AddStyle("RightAligned", "Normal");
             rightStyle.ParagraphFormat.Alignment = ParagraphAlignment.Right;
 
             var headingStyle = document.AddStyle("Heading", "Normal");
-            headingStyle.Font.Size = Unit.FromPoint(12);
+            headingStyle.Font.Size = Unit.FromPoint(11);
 
             var headingBigStyle = document.AddStyle("HeadingBig", "Normal");
             headingBigStyle.Font.Size = Unit.FromPoint(16);
@@ -53,7 +61,7 @@ namespace Scrooge.Service.Implementations.DataExporters
 
             for (var i = 0; i < columnCount; i++)
             {
-                var column = table.AddColumn((17 / columnCount) + "cm");
+                var column = table.AddColumn((18.0 / columnCount) + "cm");
                 column.Format.Alignment = ParagraphAlignment.Left;
             }
 
@@ -113,13 +121,13 @@ namespace Scrooge.Service.Implementations.DataExporters
                             pdfCell.Style = "RightAligned";
                             break;
                         case DataCellType.ResultGood:
-                            PDFDataSerializer.SetCellResultStyle(pdfCell, Colors.Green);
+                            PDFDataSerializer.SetCellResultStyle(pdfCell, new Color(0xBC, 0xED, 0x91));
                             break;
                         case DataCellType.ResultNeutral:
-                            PDFDataSerializer.SetCellResultStyle(pdfCell, Colors.LightGoldenrodYellow);
+                            PDFDataSerializer.SetCellResultStyle(pdfCell, new Color(0xFF, 0xEC, 0xB3));
                             break;
                         case DataCellType.ResultBad:
-                            PDFDataSerializer.SetCellResultStyle(pdfCell, Colors.Red);
+                            PDFDataSerializer.SetCellResultStyle(pdfCell, new Color(0xFF, 0x8A, 0x65));
                             break;
                     }
 

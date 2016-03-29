@@ -1,4 +1,5 @@
-﻿using Scrooge.Model;
+﻿using System.Collections.Generic;
+using Scrooge.Model;
 
 namespace Scrooge.Service.Definitions
 {
@@ -7,5 +8,7 @@ namespace Scrooge.Service.Definitions
         IDataExportService ExportFinancialReport(FinancialReport report);
 
         IDataExportService ExportTaxReport(TaxReport report);
+
+        IDataExportService ExportInventoryReport(IEnumerable<InventoryViewModel> report, int year);
     }
 }

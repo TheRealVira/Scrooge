@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using Microsoft.Win32;
@@ -104,6 +105,49 @@ namespace Scrooge.Service.Implementations
 
                 this.loggingService.WriteLine("Using serializer: " + ext);
                 serializer.SerializeTaxReport(report, dialog.FileName);
+                this.loggingService.WriteLine("Exporting done.");
+            }
+            else
+            {
+                this.loggingService.WriteLine("Exporting aborted.");
+            }
+
+            return this;
+        }
+
+        public IDataExportService ExportInventoryReport(IEnumerable<InventoryViewModel> report, int year)
+        {
+            this.loggingService.WriteLine("Beginning export of tax report...");
+
+            var dialog = new SaveFileDialog
+            {
+                Filter = this.GenerateFilter(),
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                FileName = year + "-scrooge-inventory-report",
+                DefaultExt = ".xlsx",
+                CheckPathExists = true
+            };
+
+            this.loggingService.WriteLine("Activating SaveFileDialog...");
+            var result = dialog.ShowDialog();
+
+            if (result.GetValueOrDefault(false))
+            {
+                this.loggingService.WriteLine("User confirmed");
+                var ext = Path.GetExtension(dialog.FileName)?.Substring(1);
+                var serializer = ext == null
+                    ? null
+                    : (this.serializers.ContainsKey(ext) ? this.serializers[ext] : null);
+
+                if (serializer == null)
+                {
+                    this.loggingService.WriteLine("No file type specified - uh oh...");
+                    MessageBox.Show("You have to specify a file type!", "Error"); // No styling, shouldn't happen anyway
+                    return this;
+                }
+
+                this.loggingService.WriteLine("Using serializer: " + ext);
+                serializer.SerializeInventoryReport(report, year, dialog.FileName);
                 this.loggingService.WriteLine("Exporting done.");
             }
             else

@@ -107,9 +107,9 @@ namespace Scrooge.Model
             }
         }
 
-        public decimal Percentage => 100m/this.duration;
+        public decimal Percentage => this.duration == 0 ? 0m : 100m/this.duration;
 
-        public decimal Deprecation => this.AcquisitionValue/this.Duration;
+        public decimal Deprecation => this.duration == 0 ? 0m : this.AcquisitionValue/this.Duration;
 
         /// <summary>
         /// Gets the amount of value that wasn't removed from an already depreceated intentory item (otherwise 0).

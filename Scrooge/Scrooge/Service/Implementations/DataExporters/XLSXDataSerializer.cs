@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -19,6 +20,12 @@ namespace Scrooge.Service.Implementations.DataExporters
         public void SerializeTaxReport(TaxReport report, string filename)
         {
             var cellData = Singleton<DataSerializationHelper>.Instance.TaxReportToCellData(report);
+            XLSXDataSerializer.WriteToXLSX(cellData, filename);
+        }
+
+        public void SerializeInventoryReport(IEnumerable<InventoryViewModel> report, int year, string filename)
+        {
+            var cellData = Singleton<DataSerializationHelper>.Instance.InventoryReportToCellData(report, year);
             XLSXDataSerializer.WriteToXLSX(cellData, filename);
         }
 
@@ -51,13 +58,13 @@ namespace Scrooge.Service.Implementations.DataExporters
                         excelCell.Style.Font.Size = 12;
                         break;
                     case DataCellType.ResultGood:
-                        XLSXDataSerializer.SetResultCell(excelCell, Color.Green);
+                        XLSXDataSerializer.SetResultCell(excelCell, Color.FromArgb(0xBC, 0xED, 0x91));
                         break;
                     case DataCellType.ResultNeutral:
-                        XLSXDataSerializer.SetResultCell(excelCell, Color.LightGoldenrodYellow);
+                        XLSXDataSerializer.SetResultCell(excelCell, Color.FromArgb(0xFF, 0xEC, 0xB3));
                         break;
                     case DataCellType.ResultBad:
-                        XLSXDataSerializer.SetResultCell(excelCell, Color.Red);
+                        XLSXDataSerializer.SetResultCell(excelCell, Color.FromArgb(0xFF, 0x8A, 0x65));
                         break;
                     case DataCellType.Number:
                         excelCell.Value = double.Parse(excelCell.Value.ToString().Replace(",", "."), CultureInfo.InvariantCulture);
