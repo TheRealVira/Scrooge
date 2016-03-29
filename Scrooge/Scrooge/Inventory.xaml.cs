@@ -61,6 +61,7 @@ namespace Scrooge
             var result = await DialogHost.Show(view, "RootDialog", view.DialogHost_OnDialogClosing);
             var outp = (InventoryViewModel) view.DataContext;
             if (!(bool) result || !view.AllSet || view.DataContext == null) return;
+            outp.DateOfAcquisition = view.MyDate.SelectedDate.Value;
 
             //outp.ID = _data.Count != 0 ? _data.Max(x => x.ID) + 1 : 0;
             _data.Add(outp);

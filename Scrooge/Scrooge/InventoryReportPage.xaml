@@ -50,19 +50,6 @@
                                 <DataGrid Name="InventoryGrid" CanUserSortColumns="True" AutoGenerateColumns="False" CanUserAddRows="False" Width="Auto" BeginningEdit="InventoryGrid_OnBeginningEdit" CanUserResizeColumns="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
 
                                     <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                                ElementStyle="{DynamicResource MaterialDesignDataGridCheckBoxColumnStyle}">
-                                            <!--EditingElementStyle="{DynamicResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">-->
-                                            <DataGridCheckBoxColumn.Header>
-                                                <!--padding to allow hit test to pass thru for sorting -->
-                                                <Border Background="Transparent" Padding="6 0 6 0" HorizontalAlignment="Center">
-                                                    <CheckBox HorizontalAlignment="Center"                                               
-                                              DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext}"
-                                              IsChecked="{Binding IsAllItemsSelected}" />
-                                                </Border>
-                                            </DataGridCheckBoxColumn.Header>
-                                        </DataGridCheckBoxColumn>
-
                                         <DataGridTextColumn Binding="{Binding Name}"
                                             Header="Item"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
