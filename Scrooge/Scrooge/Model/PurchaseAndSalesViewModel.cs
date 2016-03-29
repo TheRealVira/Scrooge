@@ -17,7 +17,7 @@ namespace Scrooge.Model
         private string receipt;
         private string text;
         private decimal value;
-        public readonly decimal St;
+        private readonly decimal st;
         private bool isSelected;
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Scrooge.Model
 
         public PurchaseAndSalesViewModel(decimal steuer)
         {
-            this.St = steuer;
+            this.st = steuer;
         }
 
         // Explicit constructor needed for serialization, do not remove!
@@ -53,6 +53,9 @@ namespace Scrooge.Model
                 this.OnPropertyChanged();
             }
         }
+
+        public decimal St => this.st;
+
         public DateTime EntryDate
         {
             get { return this.entryDate; }

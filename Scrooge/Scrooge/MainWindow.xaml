@@ -77,10 +77,9 @@
                         <!--<dragablz:TabablzControl.InterTabController>
                             <dragablz:InterTabController />
                         </dragablz:TabablzControl.InterTabController>-->
-                        <TabItem Header="Test" IsSelected="False">
-                            <!--just a test control-->
+                        <!--<TabItem Header="Test" IsSelected="False">
                             <scrooge:TestPage Margin="8 4 8 0" Width="Auto" Height="Auto"/>
-                        </TabItem>
+                        </TabItem>-->
                         <TabItem Header="Purchase / Sales" IsSelected="True">
                             <scrooge:PurchaseAndSales Margin="8 4 8 0" Width="Auto" Height="Auto"/>
                         </TabItem>
