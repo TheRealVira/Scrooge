@@ -8,6 +8,8 @@ using System.Runtime.CompilerServices;
 
 namespace Scrooge.Model
 {
+    using System.Linq;
+
     public class InventoryViewModel : INotifyPropertyChanged, IEquatable<InventoryViewModel>
     {
         private decimal acquisitionValue;
@@ -80,14 +82,12 @@ namespace Scrooge.Model
         {
             get
             {
-                /*var years = DateTime.Now.Year - this.DateOfAcquisition.Year;
+                var years = DateTime.Now.Year - this.DateOfAcquisition.Year;
                 if (years <= this.Duration)
                 {
                     var firstDepreciation = this.DateOfAcquisition.Month > 6 ? this.Deprecation / 2 : this.Deprecation;
-                    return this.AcquisitionValue + this.Appreciation - firstDepreciation - this.Deprecation * (years - 1);
-                }*/
-
-                return 0;
+                    return this.AcquisitionValue + this.AppreciationList.Sum(x => x.Value) - firstDepreciation - this.Deprecation * (years - 1);
+                }
             }
         }
         
@@ -133,19 +133,17 @@ namespace Scrooge.Model
         {
             get
             {
-                /*var years = DateTime.Now.Year - this.DateOfAcquisition.Year;
+                var years = DateTime.Now.Year - this.DateOfAcquisition.Year;
                 if (years < this.Duration)
                 {
                     if (this.DateOfAcquisition.Month > 6)
                     {
-                        return this.AcquisitionValue + this.Appreciation - this.Disposal
+                        return this.AcquisitionValue + this.AppreciationList.Sum(x => x.Value) - this.Disposal
                                - this.Deprecation * (years - 1);
                     }
 
-                    return this.AcquisitionValue + this.Appreciation - this.Disposal - this.Deprecation * years;
-                }*/
-
-                return 0;
+                    return this.AcquisitionValue + this.AppreciationList.Sum(x => x.Value) - this.Disposal - this.Deprecation * years;
+                }
             }
         }
 
