@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      xmlns:model="clr-namespace:Scrooge.Model"
+      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
       mc:Ignorable="d" 
       Height="500" Width="1060"
         Background="{DynamicResource MaterialDesignPaper}"
@@ -23,7 +23,7 @@
                     <!--Tools-->
                     <RowDefinition Height="*"/>
                     <!--List (of cards)-->
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Width="100" Height="70" Padding="3" Margin="8,8,0,0" CornerRadius="8" FontSize="50" 
@@ -42,8 +42,7 @@ materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Center" Wi
                 </materialDesign:ColorZone>
 
                 <Button Click="ButtonBase_OnClick" Grid.Row="1" HorizontalAlignment="Left" Margin="8">Calculate</Button>
-                <DatePicker Name="Date" materialDesign:TextFieldAssist.Hint="Pick a date to calculate the financialreport" Grid.Row="1" HorizontalAlignment="Left" Width="280" ToolTip="Pick a date to calculate the financialreport" Margin="131,8,0,8"/>
-
+                <controls:NumericUpDown Name="SelectedYear" Minimum="0" Interval="1" Grid.Row="1" HorizontalAlignment="Left" Width="280" ToolTip="Pick a date to calculate the financialreport" Margin="131,8,0,8"/>
                 <Button ToolTip="Export" Name="ExportBtn" Click="ExportBtn_OnClick" Grid.Row="1" HorizontalAlignment="Right" Height="40" Width="40"  VerticalAlignment="Center" Style="{DynamicResource MaterialDesignToolButton}" Margin="8">
                     <materialDesign:PackIcon Height="30" Width="30" Kind="Export" />
                 </Button>
@@ -80,7 +79,8 @@ BeginningEdit="FinancialGrid_OnBeginningEdit" CanUserResizeColumns="True" Vertic
                     </ScrollViewer>
                 </materialDesign:ColorZone>
 
-                <materialDesign:ColorZone Mode="PrimaryDark" Margin="10,0,0,8" Grid.Row="3" VerticalAlignment="Bottom" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1" HorizontalAlignment="Left" Width="76">
+                <Grid Grid.Row="3" Name="Equation">
+                    <materialDesign:ColorZone Mode="PrimaryDark" Margin="10,0,0,8"  VerticalAlignment="Bottom" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1" HorizontalAlignment="Left" Width="76">
                     <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Income total">
                         <materialDesign:PackIcon Kind="PlusBox" VerticalAlignment="Center" Height="32" Width="32"/>
                         <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Plus" Text="" FontSize="15"/>
@@ -88,16 +88,17 @@ BeginningEdit="FinancialGrid_OnBeginningEdit" CanUserResizeColumns="True" Vertic
                 </materialDesign:ColorZone>
                 <materialDesign:ColorZone Mode="PrimaryDark" Margin="276,0,0,8" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
                     <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Income total">
-                        <materialDesign:PackIcon Kind="PlusBox" VerticalAlignment="Center" Height="32" Width="32"/>
+                        <materialDesign:PackIcon Kind="MinusBox" VerticalAlignment="Center" Height="32" Width="32"/>
                         <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Minus" Text="" FontSize="15"/>
                     </StackPanel>
                 </materialDesign:ColorZone>
-                <materialDesign:ColorZone Mode="PrimaryDark" Margin="8" HorizontalContentAlignment="Center" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Income total">
-                        <materialDesign:PackIcon Kind="EqualBox" VerticalAlignment="Center" Height="32" Width="32"/>
-                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Equals" Text="" FontSize="15"/>
-                    </StackPanel>
-                </materialDesign:ColorZone>
+                    <materialDesign:ColorZone Mode="PrimaryDark" Margin="8" HorizontalContentAlignment="Center" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Income total">
+                            <materialDesign:PackIcon Kind="EqualBox" VerticalAlignment="Center" Height="32" Width="32"/>
+                            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Equals" Text="" FontSize="15"/>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                </Grid>
             </Grid>
         </DockPanel>
     </Grid>
