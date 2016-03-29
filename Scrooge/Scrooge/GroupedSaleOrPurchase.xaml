@@ -72,7 +72,7 @@
                                             />
 
                         <DataGridTextColumn Binding="{Binding St}"
-        					Header="USt/VSt"
+        					Header="Tax (input or sales)"
         					EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
                     </DataGrid.Columns>
