@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Microsoft.EntityFrameworkCore.Internal;
 using Scrooge.Model;
@@ -16,6 +17,12 @@ namespace Scrooge.Service.Implementations.DataExporters
         public void SerializeTaxReport(TaxReport report, string filename)
         {
             var cellData = Singleton<DataSerializationHelper>.Instance.TaxReportToCellData(report);
+            CSVDataSerializer.WriteToCSV(cellData, filename);
+        }
+
+        public void SerializeInventoryReport(IEnumerable<InventoryViewModel> report, int year, string filename)
+        {
+            var cellData = Singleton<DataSerializationHelper>.Instance.InventoryReportToCellData(report, year);
             CSVDataSerializer.WriteToCSV(cellData, filename);
         }
 
