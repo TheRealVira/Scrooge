@@ -67,7 +67,7 @@ namespace Scrooge.Service.Implementations.DataExporters
                 {
                     new DataCell("Loss", DataCellType.Heading, DataCellOutline.Top),
                     new DataCell("", DataCellType.Text, DataCellOutline.Top),
-                    new DataCell(report.Result.ToString(), DataCellType.ResultBad, DataCellOutline.Top)
+                    new DataCell((-report.Result).ToString(), DataCellType.ResultBad, DataCellOutline.Top)
                 });
             }
 
@@ -86,11 +86,11 @@ namespace Scrooge.Service.Implementations.DataExporters
                 new[] {DataCell.Empty, DataCell.Empty},
                 new[] {new DataCell("Sales", DataCellType.Text), new DataCell(report.Sales.ToString(), DataCellType.Number)},
                 new[] {new DataCell("Net sales", DataCellType.Text), new DataCell(report.NetSales.ToString(), DataCellType.Number)},
-                new[] {new DataCell("Sales tax", DataCellType.Text), new DataCell(report.SalesTax.ToString(), DataCellType.Number, DataCellOutline.Top)},
+                new[] {new DataCell("Sales tax", DataCellType.Text, DataCellOutline.Top), new DataCell(report.SalesTax.ToString(), DataCellType.Number, DataCellOutline.Top)},
                 new[] {new DataCell("- Input tax", DataCellType.Text), new DataCell(report.InputTax.ToString(), DataCellType.Number)},
-                new[] {new DataCell("Tax payable", DataCellType.Text), new DataCell(report.TaxPayable.ToString(), DataCellType.Number, DataCellOutline.Top)},
+                new[] {new DataCell("Tax payable", DataCellType.Text, DataCellOutline.Top), new DataCell(report.TaxPayable.ToString(), DataCellType.Number, DataCellOutline.Top)},
                 new[] {new DataCell("- Advanced tax payments", DataCellType.Text), new DataCell(report.AdvanceTaxPayements.ToString(), DataCellType.Number)},
-                new[] {new DataCell(report.OutstandingMoney >= 0 ? "Liability" : "Claim", DataCellType.Text), new DataCell(report.OutstandingMoney.ToString(), report.OutstandingMoney >= 0 ? DataCellType.ResultBad : DataCellType.ResultGood, DataCellOutline.Top)},
+                new[] {new DataCell(report.OutstandingMoney >= 0 ? "Liability" : "Claim", DataCellType.Text, DataCellOutline.Top), new DataCell(report.OutstandingMoney >= 0 ? report.OutstandingMoney.ToString() : (-report.OutstandingMoney).ToString(), report.OutstandingMoney >= 0 ? DataCellType.ResultBad : DataCellType.ResultGood, DataCellOutline.Top)},
             };
 
             return data.ToArray();

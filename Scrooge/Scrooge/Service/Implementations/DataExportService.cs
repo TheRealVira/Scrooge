@@ -23,6 +23,7 @@ namespace Scrooge.Service.Implementations
             this.serializers = new Dictionary<string, IDataSerializer>
             {
                 {"xlsx", new XLSXDataSerializer()},
+                {"pdf", new PDFDataSerializer()},
                 {"csv", new CSVDataSerializer()}
             };
         }
