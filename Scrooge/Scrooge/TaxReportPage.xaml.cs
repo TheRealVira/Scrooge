@@ -24,6 +24,7 @@ namespace Scrooge
         {
             this.Equation.Visibility = vis;
             this.Grid.Visibility = vis;
+            this.ExportBtn.Visibility = vis;
         }
 
         private void UstGrid_OnBeginningEdit(object sender, DataGridBeginningEditEventArgs e)
@@ -40,9 +41,14 @@ namespace Scrooge
 
             this.UstGrid.ItemsSource = new ObservableCollection<GroupedPurchaseAndSalesViewModel>(this.ReportData.PurchasesAndSales.Where(x => x.Type == EntryType.Sale));
             this.VstGrid.ItemsSource = new ObservableCollection<GroupedPurchaseAndSalesViewModel>(this.ReportData.PurchasesAndSales.Where(x => x.Type == EntryType.Purchase));
+            this.MyUStSum.Text = this.ReportData.PurchasesAndSales.Where(x => x.Type == EntryType.Sale)
+                .Sum(x => x.Taxes)+"";
+            this.MyVStSum.Text = this.ReportData.PurchasesAndSales.Where(x => x.Type == EntryType.Purchase)
+                .Sum(x => x.Taxes) + "";
             this.Sales.Text = this.ReportData.Sales + "";
             this.NetSales.Text = this.ReportData.NetSales + "";
             this.MinusVorraus.Text = this.ReportData.AdvanceTaxPayements + "";
+            this.MinusVSt.Text = this.MyVStSum.Text;
             this.Equals.Text = this.ReportData.OutstandingMoney + "";
         }
 
