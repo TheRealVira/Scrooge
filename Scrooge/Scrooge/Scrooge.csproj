@@ -301,6 +301,9 @@
     <Compile Include="Model\Acquisition.cs" />
     <Compile Include="Model\Internal\IApplicationEventListener.cs" />
     <Compile Include="Model\InventoryViewModel.cs" />
+    <Compile Include="ReportPage.xaml.cs">
+      <DependentUpon>ReportPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Service\Definitions\ICalculationService.cs" />
     <Compile Include="Service\Definitions\IDataExportService.cs" />
     <Compile Include="Service\Definitions\IWarningService.cs" />
@@ -324,6 +327,9 @@
     <Compile Include="Service\Implementations\WarningService.cs" />
     <Compile Include="Service\ServiceController.cs" />
     <Compile Include="Singleton.cs" />
+    <Compile Include="TaxReportPage.xaml.cs">
+      <DependentUpon>TaxReportPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestPage.xaml.cs">
       <DependentUpon>TestPage.xaml</DependentUpon>
     </Compile>
@@ -381,6 +387,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ReportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TaxReportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
