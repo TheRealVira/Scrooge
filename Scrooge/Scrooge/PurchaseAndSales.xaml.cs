@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using MaterialDesignThemes.Wpf;
@@ -18,31 +19,37 @@ namespace Scrooge
     {
         private static ObservableCollection<GroupedSaleOrPurchase> _data;
 
-        public static ObservableCollection<GroupedPurchaseAndSalesViewModel> GroupedData => new ObservableCollection<GroupedPurchaseAndSalesViewModel>(_data.Select(x=>x.Data));
         public PurchaseAndSales()
         {
             this.InitializeComponent();
 
-            _data = new ObservableCollection<GroupedSaleOrPurchase>();
+            PurchaseAndSales._data = new ObservableCollection<GroupedSaleOrPurchase>();
 
-            this.GroupedItems.ItemsSource = _data;
+            this.GroupedItems.ItemsSource = PurchaseAndSales._data;
+
+            Singleton<ServiceController>.Instance.Get<IApplicationEventService>()
+                .RegisterApplicationCloseRequestHandler(this.CloseRequestHandler);
         }
+
+        public static ObservableCollection<GroupedPurchaseAndSalesViewModel> GroupedData
+            => new ObservableCollection<GroupedPurchaseAndSalesViewModel>(PurchaseAndSales._data.Select(x => x.Data));
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (_data.Count != 0) return;
+            if (PurchaseAndSales._data.Count != 0) return;
             foreach (
                 var viewModel in
                     MainWindow.StorageService.RetrieveGroupedPurchaseAndSalesViewModels())
             {
-                _data.Add(new GroupedSaleOrPurchase(viewModel));
+                PurchaseAndSales._data.Add(new GroupedSaleOrPurchase(viewModel));
             }
 
             this.Plus.Text =
-                _data.Where(x => x.Data.Type == EntryType.Sale).Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) +
+                PurchaseAndSales._data.Where(x => x.Data.Type == EntryType.Sale)
+                    .Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) +
                 "";
             this.Minus.Text =
-                _data.Where(x => x.Data.Type == EntryType.Purchase)
+                PurchaseAndSales._data.Where(x => x.Data.Type == EntryType.Purchase)
                     .Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) + "";
 
             this.UpdateSumAndTaxPayable();
@@ -52,7 +59,7 @@ namespace Scrooge
         {
             //#Model-View-Viewmodel xD
             //let's set up a little MVVM, cos that's what the cool kids are doing:
-            var view = new AddPurchaseOrSaleEntry(_data.Select(x => x.GroupeName.Text).ToList())
+            var view = new AddPurchaseOrSaleEntry(PurchaseAndSales._data.Select(x => x.GroupeName.Text).ToList())
             {
                 DataContext = new AddPurchaseOrSaleViewModel()
             };
@@ -64,17 +71,20 @@ namespace Scrooge
 
             //view.Output.ID = _data.Count != 0 ? _data.Max(x => x.Data.PurchaseAndSales.Max(y=>y.ID)) + 1 : 0; // may come back to us one day, for now it also works without
 
-            if (_data.Any(x => x.Data.GroupName == view.Output.GroupName && x.Data.Type == view.Output.Type))
+            if (
+                PurchaseAndSales._data.Any(
+                    x => x.Data.GroupName == view.Output.GroupName && x.Data.Type == view.Output.Type))
             {
                 var current =
-                    _data.First(x => x.GroupeName.Text == view.Output.GroupName && x.Data.Type == view.Output.Type);
+                    PurchaseAndSales._data.First(
+                        x => x.GroupeName.Text == view.Output.GroupName && x.Data.Type == view.Output.Type);
                 current.Data.PurchaseAndSales.Add(view.Output.PurchaseAndSales[0]);
                 current.MySum.Text = current.Data.PurchaseAndSales.Sum(x => x.Value) + "";
                 this.UpdateCalculations(current.Data.Type);
             }
             else
             {
-                _data.Add(new GroupedSaleOrPurchase(view.Output));
+                PurchaseAndSales._data.Add(new GroupedSaleOrPurchase(view.Output));
                 this.UpdateCalculations(view.Output.Type);
             }
         }
@@ -84,13 +94,13 @@ namespace Scrooge
             if (whichSideToUpdate == EntryType.Sale)
             {
                 this.Plus.Text =
-                    _data.Where(x => x.Data.Type == EntryType.Sale)
+                    PurchaseAndSales._data.Where(x => x.Data.Type == EntryType.Sale)
                         .Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) + "";
             }
             else
             {
                 this.Minus.Text =
-                    _data.Where(x => x.Data.Type == EntryType.Purchase)
+                    PurchaseAndSales._data.Where(x => x.Data.Type == EntryType.Purchase)
                         .Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) + "";
             }
 
@@ -99,29 +109,31 @@ namespace Scrooge
 
         private void DeleteEntryBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            for (var i = _data.Count - 1; i > -1; i--)
+            for (var i = PurchaseAndSales._data.Count - 1; i > -1; i--)
             {
-                var isChecked = _data[i].ImSelected.IsChecked;
+                var isChecked = PurchaseAndSales._data[i].ImSelected.IsChecked;
                 if (isChecked != null && (bool) isChecked)
                 {
-                    _data.Remove(_data[i]);
+                    PurchaseAndSales._data.Remove(PurchaseAndSales._data[i]);
                     continue;
                 }
 
-                for (var i2 = _data[i].Data.PurchaseAndSales.Count - 1; i2 > -1; i2--)
+                for (var i2 = PurchaseAndSales._data[i].Data.PurchaseAndSales.Count - 1; i2 > -1; i2--)
                 {
-                    if (_data[i].Data.PurchaseAndSales[i2].IsSelected)
+                    if (PurchaseAndSales._data[i].Data.PurchaseAndSales[i2].IsSelected)
                     {
-                        _data[i].Data.PurchaseAndSales.Remove(_data[i].Data.PurchaseAndSales[i2]);
+                        PurchaseAndSales._data[i].Data.PurchaseAndSales.Remove(
+                            PurchaseAndSales._data[i].Data.PurchaseAndSales[i2]);
                     }
                 }
             }
 
             this.Plus.Text =
-                _data.Where(x => x.Data.Type == EntryType.Sale).Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) +
+                PurchaseAndSales._data.Where(x => x.Data.Type == EntryType.Sale)
+                    .Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) +
                 "";
             this.Minus.Text =
-                _data.Where(x => x.Data.Type == EntryType.Purchase)
+                PurchaseAndSales._data.Where(x => x.Data.Type == EntryType.Purchase)
                     .Sum(x => x.Data.PurchaseAndSales.Sum(y => y.Value)) + "";
             this.UpdateSumAndTaxPayable();
         }
@@ -138,13 +150,33 @@ namespace Scrooge
             this.Summ.Text = (decimal.Parse(this.Plus.Text) - decimal.Parse(this.Minus.Text)) + "";
             this.TaxPayable.Text =
                 Singleton<ServiceController>.Instance.Get<ICalculationService>()
-                    .CalculateTaxPayable(_data.Select(x => x.Data), DateTime.Now.Year)
+                    .CalculateTaxPayable(PurchaseAndSales._data.Select(x => x.Data), DateTime.Now.Year)
                     .ToString();
         }
 
         private void InventoryGrid_OnBeginningEdit(object sender, DataGridBeginningEditEventArgs e)
         {
             e.Cancel = true;
+        }
+
+        private async Task<bool> CloseRequestHandler()
+        {
+            var unsaved =
+                !PurchaseAndSales._data.Select(x => x.Data)
+                    .SequenceEqual(MainWindow.StorageService.RetrieveGroupedPurchaseAndSalesViewModels());
+
+            if (!unsaved) return true;
+
+            YesNoMessageBox dialog = null;
+            await this.Dispatcher.Invoke(async () =>
+            {
+                dialog =
+                    new YesNoMessageBox(
+                        "You have unsaved data in the Purchases and Sales tab. Do you want to proceed with exiting and ignore your changes?");
+                await DialogHost.Show(dialog, "RootDialog");
+            });
+
+            return dialog?.ResultIsYes.GetValueOrDefault(false) ?? false;
         }
     }
 }

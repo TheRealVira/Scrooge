@@ -35,18 +35,14 @@
                 </materialDesign:ColorZone>
 
                 <!--Toolbar:-->
-                <ToolBarTray Grid.Row="1" Grid.Column="0" DockPanel.Dock="Top" Margin="0 8 0 0">
+                <ToolBarTray Grid.Row="1" Grid.Column="0" DockPanel.Dock="Top" Margin="0 8 0 0" IsLocked="True">
                     <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
                         <Button ToolTip="Add another item" Click="AddEntryBtn_OnClick">
                             <materialDesign:PackIcon Height="20" Width="20" Kind="Plus"/>
                         </Button>
-                    </ToolBar>
-                    <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
                         <Button ToolTip="Delete item" Click="DeleteEntryBtn_OnClick">
                             <materialDesign:PackIcon Height="20" Width="20" Kind="Minus"/>
                         </Button>
-                    </ToolBar>
-                    <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
                         <Button ToolTip="Save" Click="SaveBtn_OnClick">
                             <materialDesign:PackIcon Height="20" Width="20" Kind="ContentSave"/>
                         </Button>

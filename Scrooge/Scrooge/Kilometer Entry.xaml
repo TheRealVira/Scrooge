@@ -31,22 +31,18 @@
 
                 <!--Title:-->
                 <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Padding="3" Margin="8,8,0,8" CornerRadius="8" FontSize="50" materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Center" Width="700">
-                    <TextBlock TextWrapping="Wrap" Text="Kilometer Entry" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock TextWrapping="Wrap" Text="Driver's log" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </materialDesign:ColorZone>
 
                 <!--Toolbar:-->
-                <ToolBarTray Grid.Row="1" Grid.Column="0" DockPanel.Dock="Top" Margin="0 8 0 0">
+                <ToolBarTray Grid.Row="1" Grid.Column="0" DockPanel.Dock="Top" Margin="0 8 0 0" IsLocked="True">
                     <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
                         <Button ToolTip="Add another item" Click="AddEntryBtn_OnClick">
                             <materialDesign:PackIcon Height="20" Width="20" Kind="Plus"/>
                         </Button>
-                    </ToolBar>
-                    <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
                         <Button ToolTip="Delete item" Click="DeleteEntryBtn_OnClick">
                             <materialDesign:PackIcon Height="20" Width="20" Kind="Minus"/>
                         </Button>
-                    </ToolBar>
-                    <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
                         <Button ToolTip="Save" Click="SaveBtn_OnClick">
                             <materialDesign:PackIcon Height="20" Width="20" Kind="ContentSave"/>
                         </Button>
@@ -54,7 +50,7 @@
                 </ToolBarTray>
                 <materialDesign:ColorZone Mode="Accent" Margin="8" Grid.Row="1" HorizontalAlignment="Right" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
                     <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0">
-                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8" Text="Sum of the driven Kilometers" FontSize="15"/>
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8" Text="Total driven km" FontSize="15"/>
                         <materialDesign:PackIcon Kind="Equal" VerticalAlignment="Center" Height="32" Width="32"/>
                         <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8" Name="SumOfKilometers" Text="" FontSize="15" />
                     </StackPanel>

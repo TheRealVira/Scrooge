@@ -14,6 +14,7 @@ namespace Scrooge
     {
         public static IStorageService StorageService;
         private readonly IApplicationEventService service;
+        private bool cancelClosing = true;
 
         public MainWindow()
         {
@@ -40,6 +41,21 @@ namespace Scrooge
 
         private void MetroWindow_Closing(object sender, CancelEventArgs e)
         {
+            e.Cancel = this.cancelClosing;
+            if (this.cancelClosing)
+            {
+                Task.Run(async () =>
+                {
+                    if (await this.service.ApplicationCloseRequest())
+                    {
+                        this.cancelClosing = false;
+                        this.Dispatcher.Invoke(this.Close);
+                    }
+                });
+
+                return;
+            }
+
             this.service.TriggerApplicationClosing();
         }
 
