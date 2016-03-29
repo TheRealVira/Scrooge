@@ -52,6 +52,11 @@ namespace Scrooge.Model
         }
 
         /// <summary>
+        /// Returns the <see cref="FinancialReport.Sales"/> (needed for financial authority).
+        /// </summary>
+        public decimal Sales => new FinancialReport(this.purchasesAndSales, this.Year).Sales;
+
+        /// <summary>
         /// Retunrs the total revenues minus the total sales tax.
         /// </summary>
         public decimal NetSales
