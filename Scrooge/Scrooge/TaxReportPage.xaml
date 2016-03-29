@@ -52,40 +52,92 @@ materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Center" Wi
                     VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <ScrollViewer>
                         <StackPanel>
-                            <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2" Width="Auto" Margin="8" VerticalAlignment="Top">
-                                <DataGrid Name="UstGrid" CanUserSortColumns="True" AutoGenerateColumns="False" CanUserAddRows="False" Width="Auto" BeginningEdit="UstGrid_OnBeginningEdit" CanUserResizeColumns="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                            <StackPanel>
+                                <materialDesign:ColorZone Mode="PrimaryMid" Margin="8" HorizontalAlignment="Left" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                                    <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8" Text="USt" FontSize="15" />
+                                </materialDesign:ColorZone>
+                                <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2" Width="Auto" Margin="8" VerticalAlignment="Top">
+                                    <DataGrid Name="UstGrid" CanUserSortColumns="True" AutoGenerateColumns="False" CanUserAddRows="False" Width="Auto" BeginningEdit="UstGrid_OnBeginningEdit" CanUserResizeColumns="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
 
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Binding="{Binding GroupName}"
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Binding="{Binding GroupName}"
                                             Header="Name"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
 
-                                        <DataGridTextColumn Binding="{Binding Sum}"
+                                            <DataGridTextColumn Binding="{Binding Sum}"
                                             Header="Value"
                                             EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             />
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </materialDesign:ColorZone>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </materialDesign:ColorZone>
+                                <materialDesign:ColorZone Mode="PrimaryMid" Margin="8" HorizontalAlignment="Right" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0">
+                                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="0 0 8 0" Text="Sum" FontSize="15"/>
+                                        <materialDesign:PackIcon Kind="EqualBox" VerticalAlignment="Center" Height="32" Width="32"/>
+                                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8" Text="{Binding Sum, UpdateSourceTrigger=PropertyChanged}" x:Name="MyUStSum" FontSize="15"/>
+                                    </StackPanel>
+                                </materialDesign:ColorZone>
+                            </StackPanel>
+                            <StackPanel>
+                                <materialDesign:ColorZone Mode="PrimaryMid" Margin="8" HorizontalAlignment="Left" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                                    <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8" Text="VSt" FontSize="15" />
+                                </materialDesign:ColorZone>
+                                <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2" Width="Auto" Margin="8" VerticalAlignment="Top">
+                                    <DataGrid Name="VstGrid" CanUserSortColumns="True" AutoGenerateColumns="False" CanUserAddRows="False" Width="Auto" BeginningEdit="UstGrid_OnBeginningEdit" CanUserResizeColumns="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Binding="{Binding GroupName}"
+                                            Header="Name"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            />
+
+                                            <DataGridTextColumn Binding="{Binding Sum}"
+                                            Header="Value"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </materialDesign:ColorZone>
+
+                                <materialDesign:ColorZone Mode="PrimaryMid" Margin="8" HorizontalAlignment="Right" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0">
+                                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="0 0 8 0" Text="Sum" FontSize="15"/>
+                                        <materialDesign:PackIcon Kind="EqualBox" VerticalAlignment="Center" Height="32" Width="32"/>
+                                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8" Text="{Binding Sum, UpdateSourceTrigger=PropertyChanged}" x:Name="MyVStSum" FontSize="15"/>
+                                    </StackPanel>
+                                </materialDesign:ColorZone>
+                            </StackPanel>
                         </StackPanel>
                     </ScrollViewer>
                 </materialDesign:ColorZone>
 
                 <Grid Grid.Row="3" Name="Equation">
                     <materialDesign:ColorZone Mode="PrimaryDark" Margin="10,0,0,8"  VerticalAlignment="Bottom" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1" HorizontalAlignment="Left">
-                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Income total">
-                            <materialDesign:PackIcon Kind="PlusBox" VerticalAlignment="Center" Height="32" Width="32"/>
-                            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Plus" Text="" FontSize="15"/>
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="0 0 0 0" ToolTip="Sales">
+                            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 8 8" Name="Sales" Text="" FontSize="15"/>
                         </StackPanel>
                     </materialDesign:ColorZone>
-                    <materialDesign:ColorZone Mode="PrimaryDark" Margin="276,0,0,8" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Income total">
+                    <materialDesign:ColorZone Mode="PrimaryDark" Margin="220,0,0,8"  VerticalAlignment="Bottom" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1" HorizontalAlignment="Left">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="0 0 0 0" ToolTip="Netto Sales">
                             <materialDesign:PackIcon Kind="MinusBox" VerticalAlignment="Center" Height="32" Width="32"/>
-                            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Minus" Text="" FontSize="15"/>
+                            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="NetSales" Text="" FontSize="15"/>
                         </StackPanel>
                     </materialDesign:ColorZone>
-                    <materialDesign:ColorZone Mode="PrimaryDark" Margin="8" HorizontalContentAlignment="Center" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                    <materialDesign:ColorZone Mode="PrimaryDark" Margin="420,0,0,8" VerticalAlignment="Bottom" HorizontalAlignment="Left" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="0 0 0 0" ToolTip="Taxpayable">
+                            <materialDesign:PackIcon Kind="MinusBox" VerticalAlignment="Center" Height="32" Width="32"/>
+                            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="MinusVst" Text="" FontSize="15"/>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                    <materialDesign:ColorZone Mode="PrimaryDark" Margin="420,0,0,8" VerticalAlignment="Bottom" HorizontalAlignment="Left" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="0 0 0 0" ToolTip="Outstanding Money">
+                            <materialDesign:PackIcon Kind="MinusBox" VerticalAlignment="Center" Height="32" Width="32"/>
+                            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="MinusVorraus" Text="" FontSize="15"/>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                    <materialDesign:ColorZone Mode="PrimaryDark" Margin="8" HorizontalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Right" CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
                         <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0" ToolTip="Income total">
                             <materialDesign:PackIcon Kind="EqualBox" VerticalAlignment="Center" Height="32" Width="32"/>
                             <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Equals" Text="" FontSize="15"/>
