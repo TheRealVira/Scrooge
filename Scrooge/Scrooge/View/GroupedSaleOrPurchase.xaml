@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="Scrooge.GroupedSaleOrPurchase"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Scrooge"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{StaticResource DefaultFont}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}" d:DesignWidth="300">
+    <materialDesign:ColorZone CornerRadius="8" materialDesign:ShadowAssist.ShadowDepth="Depth2" Margin="3 8 3 8"
+                              Width="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <!--Title-->
+                <RowDefinition Height="Auto" />
+                <!--Tools-->
+                <RowDefinition Height="*" />
+                <!--List (of cards)-->
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <CheckBox Grid.Row="0" Name="ImSelected" HorizontalAlignment="Right" VerticalAlignment="Top" />
+
+            <materialDesign:ColorZone Grid.Row="1" Mode="PrimaryMid" Margin="8" HorizontalAlignment="Left"
+                                      CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8" Text="Grupe Name"
+                           x:Name="GroupeName" FontSize="15" />
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone Grid.Row="1" Mode="Accent" Margin="8" HorizontalAlignment="Right"
+                                      CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8" Text="" x:Name="SomeCallMeType"
+                           FontSize="15" />
+            </materialDesign:ColorZone>
+
+            <materialDesign:ColorZone Grid.Row="2" materialDesign:ShadowAssist.ShadowDepth="Depth2" Width="Auto"
+                                      Margin="8" VerticalAlignment="Top">
+                <DataGrid x:Name="SaleOrPurchaseGrid" CanUserSortColumns="True" AutoGenerateColumns="False"
+                          BeginningEdit="SaleOrPurchaseGrid_OnBeginningEdit" CanUserAddRows="False" Width="Auto"
+                          CanUserResizeColumns="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn
+                            Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ElementStyle="{DynamicResource MaterialDesignDataGridCheckBoxColumnStyle}">
+                            <!--EditingElementStyle="{DynamicResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">-->
+                            <DataGridCheckBoxColumn.Header>
+                                <!--padding to allow hit test to pass thru for sorting -->
+                                <Border Background="Transparent" Padding="6 0 6 0" HorizontalAlignment="Center">
+                                    <CheckBox HorizontalAlignment="Center"
+                                              DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                              IsChecked="{Binding IsAllItemsSelected}" />
+                                </Border>
+                            </DataGridCheckBoxColumn.Header>
+                        </DataGridCheckBoxColumn>
+
+                        <DataGridTextColumn Binding="{Binding Receipt}"
+                                            Header="Receipt"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}" />
+
+                        <DataGridTextColumn Binding="{Binding REDate}"
+                                            Header="RE-Date"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}" />
+
+                        <DataGridTextColumn Binding="{Binding EntryDate}"
+                                            Header="Entry Date"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}" />
+
+                        <DataGridTextColumn Binding="{Binding Text}"
+                                            Header="Text"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}" />
+
+                        <DataGridTextColumn Binding="{Binding Value, StringFormat={}{0:#.00}}"
+                                            Header="Value"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}" />
+
+                        <DataGridTextColumn Binding="{Binding St, StringFormat={}{0:#.00}}"
+                                            Header="Tax (input or sales)"
+                                            EditingElementStyle="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone Grid.Row="3" Mode="PrimaryMid" Margin="8" HorizontalAlignment="Right"
+                                      CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0">
+                    <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="0 0 8 0" Text="Sum" FontSize="15" />
+                    <materialDesign:PackIcon Kind="EqualBox" VerticalAlignment="Center" Height="32" Width="32" />
+                    <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8"
+                               Text="{Binding Sum, UpdateSourceTrigger=PropertyChanged}" x:Name="MySum" FontSize="15" />
+                </StackPanel>
+            </materialDesign:ColorZone>
+        </Grid>
+    </materialDesign:ColorZone>
+</UserControl>

@@ -147,7 +147,8 @@ namespace Scrooge.Service.Implementations.DataExporters
                 new[]
                 {
                     new DataCell("Item", DataCellType.Heading, DataCellOutline.Bottom | DataCellOutline.Right),
-                    new DataCell("Aquisitions value", DataCellType.Heading, DataCellOutline.Bottom | DataCellOutline.Right),
+                    new DataCell("Aquisitions value", DataCellType.Heading,
+                        DataCellOutline.Bottom | DataCellOutline.Right),
                     new DataCell("Asset value (1.1.)", DataCellType.Heading,
                         DataCellOutline.Bottom | DataCellOutline.Right),
                     new DataCell("Appreciation", DataCellType.Heading, DataCellOutline.Bottom | DataCellOutline.Right),
@@ -162,20 +163,27 @@ namespace Scrooge.Service.Implementations.DataExporters
                 new DataCell(item.Name, DataCellType.Text, DataCellOutline.Right),
                 new DataCell(item.AcquisitionValue.ToString(), DataCellType.Number, DataCellOutline.Right),
                 new DataCell(item.BalanceValue.ToString(), DataCellType.Number, DataCellOutline.Right),
-                new DataCell(item.AppreciationList.Sum(x => x.DateTime.Year == year ? x.Value : 0).ToString(), DataCellType.Number, DataCellOutline.Right),
+                new DataCell(item.AppreciationList.Sum(x => x.DateTime.Year == year ? x.Value : 0).ToString(),
+                    DataCellType.Number, DataCellOutline.Right),
                 new DataCell(item.Deprecation.ToString(), DataCellType.Number, DataCellOutline.Right),
                 new DataCell(item.Disposal.ToString(), DataCellType.Number, DataCellOutline.Right),
                 new DataCell(item.AssetValue.ToString(), DataCellType.Number)
             }));
 
-            data.Add(new []
+            data.Add(new[]
             {
                 new DataCell("Sum", DataCellType.Heading, DataCellOutline.Top | DataCellOutline.Right),
-                new DataCell(report.Sum(x => x.AcquisitionValue).ToString(), DataCellType.ResultNeutral, DataCellOutline.Top | DataCellOutline.Right),
-                new DataCell(report.Sum(x => x.BalanceValue).ToString(), DataCellType.ResultNeutral, DataCellOutline.Top | DataCellOutline.Right),
-                new DataCell(report.Sum(x => x.AppreciationList.Sum(y => y.DateTime.Year == year ? y.Value : 0)).ToString(), DataCellType.ResultNeutral, DataCellOutline.Top | DataCellOutline.Right),
-                new DataCell(report.Sum(x => x.Deprecation).ToString(), DataCellType.ResultNeutral, DataCellOutline.Top | DataCellOutline.Right),
-                new DataCell(report.Sum(x => x.Disposal).ToString(), DataCellType.ResultNeutral, DataCellOutline.Top | DataCellOutline.Right),
+                new DataCell(report.Sum(x => x.AcquisitionValue).ToString(), DataCellType.ResultNeutral,
+                    DataCellOutline.Top | DataCellOutline.Right),
+                new DataCell(report.Sum(x => x.BalanceValue).ToString(), DataCellType.ResultNeutral,
+                    DataCellOutline.Top | DataCellOutline.Right),
+                new DataCell(
+                    report.Sum(x => x.AppreciationList.Sum(y => y.DateTime.Year == year ? y.Value : 0)).ToString(),
+                    DataCellType.ResultNeutral, DataCellOutline.Top | DataCellOutline.Right),
+                new DataCell(report.Sum(x => x.Deprecation).ToString(), DataCellType.ResultNeutral,
+                    DataCellOutline.Top | DataCellOutline.Right),
+                new DataCell(report.Sum(x => x.Disposal).ToString(), DataCellType.ResultNeutral,
+                    DataCellOutline.Top | DataCellOutline.Right),
                 new DataCell(report.Sum(x => x.AssetValue).ToString(), DataCellType.ResultNeutral, DataCellOutline.Top),
             });
 

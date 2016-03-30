@@ -22,9 +22,30 @@ namespace DatabaseTest
 
             var list = new List<KilometerEntryViewModel>
             {
-                new KilometerEntryViewModel() { Date = DateTime.Now, DrivenRoute = "Driven1", NewKilometerCount = 1000, StartedKilometerCount = 800, Purpose = "Purpose1"},
-                new KilometerEntryViewModel() { Date = DateTime.Now, DrivenRoute = "Driven2", NewKilometerCount = 200, StartedKilometerCount = 100, Purpose = "Purpose2"},
-                new KilometerEntryViewModel() { Date = DateTime.Now, DrivenRoute = "Driven3", NewKilometerCount = 600, StartedKilometerCount = 400, Purpose = "Purpose3"}
+                new KilometerEntryViewModel()
+                {
+                    Date = DateTime.Now,
+                    DrivenRoute = "Driven1",
+                    NewKilometerCount = 1000,
+                    StartedKilometerCount = 800,
+                    Purpose = "Purpose1"
+                },
+                new KilometerEntryViewModel()
+                {
+                    Date = DateTime.Now,
+                    DrivenRoute = "Driven2",
+                    NewKilometerCount = 200,
+                    StartedKilometerCount = 100,
+                    Purpose = "Purpose2"
+                },
+                new KilometerEntryViewModel()
+                {
+                    Date = DateTime.Now,
+                    DrivenRoute = "Driven3",
+                    NewKilometerCount = 600,
+                    StartedKilometerCount = 400,
+                    Purpose = "Purpose3"
+                }
             };
 
             instance.UpdateKilometerEntry(list);
@@ -50,9 +71,30 @@ namespace DatabaseTest
 
             var list = new List<KilometerEntryViewModel>
             {
-                new KilometerEntryViewModel() { Date = DateTime.Now, DrivenRoute = "Driven1", NewKilometerCount = 1000, StartedKilometerCount = 800, Purpose = "Purpose1"},
-                new KilometerEntryViewModel() { Date = DateTime.Now, DrivenRoute = "Driven2", NewKilometerCount = 200, StartedKilometerCount = 100, Purpose = "Purpose2"},
-                new KilometerEntryViewModel() { Date = DateTime.Now, DrivenRoute = "Driven3", NewKilometerCount = 600, StartedKilometerCount = 400, Purpose = "Purpose3"}
+                new KilometerEntryViewModel()
+                {
+                    Date = DateTime.Now,
+                    DrivenRoute = "Driven1",
+                    NewKilometerCount = 1000,
+                    StartedKilometerCount = 800,
+                    Purpose = "Purpose1"
+                },
+                new KilometerEntryViewModel()
+                {
+                    Date = DateTime.Now,
+                    DrivenRoute = "Driven2",
+                    NewKilometerCount = 200,
+                    StartedKilometerCount = 100,
+                    Purpose = "Purpose2"
+                },
+                new KilometerEntryViewModel()
+                {
+                    Date = DateTime.Now,
+                    DrivenRoute = "Driven3",
+                    NewKilometerCount = 600,
+                    StartedKilometerCount = 400,
+                    Purpose = "Purpose3"
+                }
             };
 
             instance.UpdateKilometerEntry(list);
@@ -86,7 +128,14 @@ namespace DatabaseTest
 
             var list = new List<KilometerEntryViewModel>
             {
-                new KilometerEntryViewModel() { Date = DateTime.Now, DrivenRoute = "Driven1", NewKilometerCount = 1000, StartedKilometerCount = 800, Purpose = "Purpose1"}
+                new KilometerEntryViewModel()
+                {
+                    Date = DateTime.Now,
+                    DrivenRoute = "Driven1",
+                    NewKilometerCount = 1000,
+                    StartedKilometerCount = 800,
+                    Purpose = "Purpose1"
+                }
             };
 
             instance.UpdateKilometerEntry(list);
@@ -116,7 +165,13 @@ namespace DatabaseTest
 
             var list = new List<InventoryViewModel>
             {
-                new InventoryViewModel() { Name = "Getscho", AcquisitionValue = 10, DateOfAcquisition = DateTime.Now, Duration = 12 }
+                new InventoryViewModel()
+                {
+                    Name = "Getscho",
+                    AcquisitionValue = 10,
+                    DateOfAcquisition = DateTime.Now,
+                    Duration = 12
+                }
             };
 
             instance.UpdateInventory(list);
@@ -150,7 +205,13 @@ namespace DatabaseTest
 
             var list = new List<InventoryViewModel>
             {
-                new InventoryViewModel() { Name = "Getscho", AcquisitionValue = 10, DateOfAcquisition = DateTime.Now, Duration = 12 }
+                new InventoryViewModel()
+                {
+                    Name = "Getscho",
+                    AcquisitionValue = 10,
+                    DateOfAcquisition = DateTime.Now,
+                    Duration = 12
+                }
             };
 
             instance.UpdateInventory(list);

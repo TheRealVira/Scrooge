@@ -72,7 +72,11 @@ namespace Scrooge.Service.Implementations.Storage
         public IList<InventoryViewModel> RetrieveInventoryViewModels()
         {
             this.loggingService.WriteLine("Retrieving inventory items...");
-            return this.context.Set<InventoryViewModel>().Include(x => x.Acquisitions).Include(x => x.AppreciationList).ToList();
+            return
+                this.context.Set<InventoryViewModel>()
+                    .Include(x => x.Acquisitions)
+                    .Include(x => x.AppreciationList)
+                    .ToList();
         }
 
         public IStorageService UpdateGroupedPurchaseAndSales(IEnumerable<GroupedPurchaseAndSalesViewModel> items)

@@ -2,7 +2,7 @@
 {
     public enum EntryType
     {
-        Purchase=0,
-        Sale=1
+        Purchase = 0,
+        Sale = 1
     }
 }

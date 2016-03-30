@@ -22,6 +22,7 @@ namespace Scrooge.Model
         public decimal Value { get; set; }
 
         public uint InventoryViewModelForeignKey { get; set; }
+
         [ForeignKey("InventoryViewModelForeignKey")]
         public InventoryViewModel InventoryViewModel { get; set; }
 

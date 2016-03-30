@@ -18,7 +18,7 @@ namespace Scrooge.Model
         private decimal disposal;
         private decimal duration;
         private bool isSelected;
-        private string name; 
+        private string name;
 
         // Explicit constructor needed for serialization, do not remove!
         public InventoryViewModel()
@@ -26,7 +26,7 @@ namespace Scrooge.Model
             if (this.Acquisitions == null)
             {
                 this.Acquisitions = new List<Acquisition>();
-                this.AppreciationList=new ObservableCollection<Appreciation>();
+                this.AppreciationList = new ObservableCollection<Appreciation>();
             }
         }
 
@@ -88,14 +88,15 @@ namespace Scrooge.Model
                 var years = DateTime.Now.Year - this.DateOfAcquisition.Year;
                 if (years <= this.Duration)
                 {
-                    var firstDepreciation = this.DateOfAcquisition.Month > 6 ? this.Deprecation / 2 : this.Deprecation;
-                    return this.AcquisitionValue + this.AppreciationList.Sum(x => x.Value) - firstDepreciation - this.Deprecation * (years - 1);
+                    var firstDepreciation = this.DateOfAcquisition.Month > 6 ? this.Deprecation/2 : this.Deprecation;
+                    return this.AcquisitionValue + this.AppreciationList.Sum(x => x.Value) - firstDepreciation -
+                           this.Deprecation*(years - 1);
                 }
 
                 return 0;
             }
         }
-        
+
         public List<Acquisition> Acquisitions { get; set; }
         public ObservableCollection<Appreciation> AppreciationList { get; set; }
 
@@ -144,10 +145,11 @@ namespace Scrooge.Model
                     if (this.DateOfAcquisition.Month > 6)
                     {
                         return this.AcquisitionValue + this.AppreciationList.Sum(x => x.Value) - this.Disposal
-                               - this.Deprecation * (years - 1);
+                               - this.Deprecation*(years - 1);
                     }
 
-                    return this.AcquisitionValue + this.AppreciationList.Sum(x => x.Value) - this.Disposal - this.Deprecation * years;
+                    return this.AcquisitionValue + this.AppreciationList.Sum(x => x.Value) - this.Disposal -
+                           this.Deprecation*years;
                 }
 
                 return 0;

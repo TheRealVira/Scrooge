@@ -20,7 +20,8 @@ namespace Scrooge.Service.Implementations
             var frame = new StackFrame(1);
             var method = frame.GetMethod();
             var type = method?.DeclaringType;
-            Debug.WriteLine($"[{DateTime.Now.ToLongTimeString()}/{type?.Name ?? "unknown"}.{method?.Name ?? "unknown"}] {o}");
+            Debug.WriteLine(
+                $"[{DateTime.Now.ToLongTimeString()}/{type?.Name ?? "unknown"}.{method?.Name ?? "unknown"}] {o}");
         }
     }
 }

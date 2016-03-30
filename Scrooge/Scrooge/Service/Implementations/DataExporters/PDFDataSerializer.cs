@@ -61,7 +61,7 @@ namespace Scrooge.Service.Implementations.DataExporters
 
             for (var i = 0; i < columnCount; i++)
             {
-                var column = table.AddColumn((18.0 / columnCount) + "cm");
+                var column = table.AddColumn((18.0/columnCount) + "cm");
                 column.Format.Alignment = ParagraphAlignment.Left;
             }
 

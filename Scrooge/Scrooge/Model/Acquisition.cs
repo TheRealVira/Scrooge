@@ -7,7 +7,7 @@ using Scrooge.Annotations;
 
 namespace Scrooge.Model
 {
-    public class Acquisition:INotifyPropertyChanged
+    public class Acquisition : INotifyPropertyChanged
     {
         // Explicit constructor needed for serialization, do not remove!
         public Acquisition()
@@ -21,6 +21,7 @@ namespace Scrooge.Model
         public decimal Value { get; set; }
 
         public uint InventoryViewModelForeignKey { get; set; }
+
         [ForeignKey("InventoryViewModelForeignKey")]
         public InventoryViewModel InventoryViewModel { get; set; }
 

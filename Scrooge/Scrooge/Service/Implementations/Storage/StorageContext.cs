@@ -39,7 +39,7 @@ namespace Scrooge.Service.Implementations.Storage
             var loggingService = Singleton<ServiceController>.Instance.Get<ILoggingService>();
 
             loggingService.WriteLine("Configuring relationships...");
-                
+
             base.OnModelCreating(modelBuilder);
 
             loggingService.WriteLine("Configuring done");

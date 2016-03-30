@@ -67,7 +67,8 @@ namespace Scrooge.Service.Implementations.DataExporters
                         XLSXDataSerializer.SetResultCell(excelCell, Color.FromArgb(0xFF, 0x8A, 0x65));
                         break;
                     case DataCellType.Number:
-                        excelCell.Value = double.Parse(excelCell.Value.ToString().Replace(",", "."), CultureInfo.InvariantCulture);
+                        excelCell.Value = double.Parse(excelCell.Value.ToString().Replace(",", "."),
+                            CultureInfo.InvariantCulture);
                         break;
                 }
 
@@ -98,7 +99,8 @@ namespace Scrooge.Service.Implementations.DataExporters
 
             for (var i = 1; i < cells.Max(x => x.Length); i++)
             {
-                sheet.Cells[2, i, sheet.Dimension.Rows, i].AutoFitColumns(10.71); // 10.71 represents the default excel cell width, we do not want to go below that
+                sheet.Cells[2, i, sheet.Dimension.Rows, i].AutoFitColumns(10.71);
+                    // 10.71 represents the default excel cell width, we do not want to go below that
             }
 
             package.Save();

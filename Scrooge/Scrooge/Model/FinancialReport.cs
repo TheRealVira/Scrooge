@@ -28,7 +28,7 @@
             this.purchasesAndSales = new List<GroupedPurchaseAndSalesViewModel>(purchasesAndSales);
             this.Year = year;
         }
-        
+
         /// <summary>
         /// Gets or sets the expenses of the financial year.
         /// </summary>
@@ -37,7 +37,9 @@
             get
             {
                 decimal sum = 0;
-                foreach (var purchasesAndSale in this.purchasesAndSales.Where(purchasesAndSale => purchasesAndSale.Type == EntryType.Purchase))
+                foreach (
+                    var purchasesAndSale in
+                        this.purchasesAndSales.Where(purchasesAndSale => purchasesAndSale.Type == EntryType.Purchase))
                 {
                     purchasesAndSale.PurchaseAndSales.ToList().
                         ForEach(p => sum += p.EntryDate.Year == this.Year ? p.Value : 0);
@@ -52,15 +54,9 @@
         /// </summary>
         public Collection<GroupedPurchaseAndSalesViewModel> PurchasesAndSales
         {
-            get
-            {
-                return new Collection<GroupedPurchaseAndSalesViewModel>(this.purchasesAndSales);
-            }
+            get { return new Collection<GroupedPurchaseAndSalesViewModel>(this.purchasesAndSales); }
 
-            private set
-            {
-                this.purchasesAndSales = new List<GroupedPurchaseAndSalesViewModel>(value);
-            }
+            private set { this.purchasesAndSales = new List<GroupedPurchaseAndSalesViewModel>(value); }
         }
 
         /// <summary>

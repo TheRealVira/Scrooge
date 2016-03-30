@@ -56,6 +56,7 @@ namespace Scrooge.Model
                 this.OnPropertyChanged();
             }
         }
+
         public decimal NewKilometerCount
         {
             get { return this.newKilometerCount; }
@@ -78,7 +79,7 @@ namespace Scrooge.Model
             }
         }
 
-        public decimal DrivenKilometers => NewKilometerCount-StartedKilometerCount; // TODO
+        public decimal DrivenKilometers => NewKilometerCount - StartedKilometerCount; // TODO
 
         public string DrivenRoute
         {

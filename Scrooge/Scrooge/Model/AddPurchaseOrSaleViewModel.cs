@@ -29,6 +29,7 @@ namespace Scrooge.Model
                 this.OnPropertyChanged();
             }
         }
+
         public DateTime REDate
         {
             get { return this.rEDate; }
@@ -39,6 +40,7 @@ namespace Scrooge.Model
                 this.OnPropertyChanged();
             }
         }
+
         public string Receipt
         {
             get { return this.receipt; }
@@ -49,6 +51,7 @@ namespace Scrooge.Model
                 this.OnPropertyChanged();
             }
         }
+
         public string Text
         {
             get { return this.text; }
@@ -59,6 +62,7 @@ namespace Scrooge.Model
                 this.OnPropertyChanged();
             }
         }
+
         public string GroupName
         {
             get { return this.groupName; }
@@ -69,6 +73,7 @@ namespace Scrooge.Model
                 this.OnPropertyChanged();
             }
         }
+
         public EntryType Type
         {
             get { return this._type; }
@@ -79,6 +84,7 @@ namespace Scrooge.Model
                 this.OnPropertyChanged();
             }
         }
+
         public decimal St
         {
             get { return this.st; }
@@ -89,6 +95,7 @@ namespace Scrooge.Model
                 this.OnPropertyChanged();
             }
         }
+
         public decimal Value
         {
             get { return this.value; }
@@ -99,6 +106,7 @@ namespace Scrooge.Model
                 this.OnPropertyChanged();
             }
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)

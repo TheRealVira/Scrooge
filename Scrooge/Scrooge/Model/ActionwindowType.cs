@@ -8,7 +8,7 @@ namespace Scrooge.Model
 {
     public enum ActionwindowType
     {
-        Add=0,
-        Edit=1
+        Add = 0,
+        Edit = 1
     }
 }

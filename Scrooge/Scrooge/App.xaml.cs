@@ -17,10 +17,7 @@ namespace Scrooge
     {
         public App()
         {
-            this.Startup += (sender, args) =>
-            {
-                Singleton<ServiceController>.Instance.InitializeServices();
-            };
+            this.Startup += (sender, args) => { Singleton<ServiceController>.Instance.InitializeServices(); };
         }
     }
 }

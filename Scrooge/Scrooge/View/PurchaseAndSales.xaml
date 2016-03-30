@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="Scrooge.PurchaseAndSales"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:model="clr-namespace:Scrooge.Model"
+             mc:Ignorable="d"
+             Height="500" Width="1060"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{StaticResource DefaultFont}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}" Loaded="UserControl_Loaded">
+
+    <Grid>
+        <DockPanel x:Name="Load">
+            <!--DataGrid-->
+
+            <Grid VerticalAlignment="Stretch" Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <!--Title-->
+                    <RowDefinition Height="Auto" />
+                    <!--Infos-->
+                    <RowDefinition Height="Auto" />
+                    <!--Tools-->
+                    <RowDefinition Height="*" />
+                    <!--List (of cards)-->
+                </Grid.RowDefinitions>
+
+                <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Width="100" Height="70" Padding="3"
+                                          Margin="8,8,0,0" CornerRadius="8" FontSize="50"
+                                          materialDesign:ShadowAssist.ShadowDepth="Depth1" HorizontalAlignment="Left">
+                    <materialDesign:PackIcon Kind="Book" Height="Auto" Width="Auto" HorizontalAlignment="Center"
+                                             VerticalAlignment="Center" />
+                </materialDesign:ColorZone>
+
+                <!--Title:-->
+                <materialDesign:ColorZone Grid.Row="0" VerticalAlignment="Top" Padding="3" Margin="8,8,0,8"
+                                          CornerRadius="8" FontSize="50"
+                                          materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Center"
+                                          Width="700">
+                    <TextBlock TextWrapping="Wrap" Text="Purchase and Sales" VerticalAlignment="Center"
+                               HorizontalAlignment="Center" />
+                </materialDesign:ColorZone>
+
+                <materialDesign:ColorZone Mode="PrimaryDark" Margin="8" Grid.Row="1" HorizontalAlignment="Left"
+                                          CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0"
+                                ToolTip="Expenses total">
+                        <materialDesign:PackIcon Kind="MinusBox" VerticalAlignment="Center" Height="32" Width="32" />
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Minus"
+                                   Text="" FontSize="15" />
+                    </StackPanel>
+                </materialDesign:ColorZone>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                    <materialDesign:ColorZone Mode="PrimaryDark" Margin="8" CornerRadius="4"
+                                              materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0"
+                                    ToolTip="Sum total">
+                            <materialDesign:PackIcon Kind="EqualBox" VerticalAlignment="Center" Height="32" Width="32" />
+                            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Summ"
+                                       Text="" FontSize="15" />
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+
+                    <materialDesign:ColorZone Mode="PrimaryDark" Margin="8" CornerRadius="4"
+                                              materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0"
+                                    ToolTip="Tax payable total">
+                            <materialDesign:PackIcon Kind="Bank" VerticalAlignment="Center" Height="32" Width="32" />
+                            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8"
+                                       Name="TaxPayable" Text="" FontSize="15" />
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                </StackPanel>
+
+                <materialDesign:ColorZone Mode="PrimaryDark" Margin="8" Grid.Row="1" HorizontalAlignment="Right"
+                                          CornerRadius="4" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="16 0 0 0"
+                                ToolTip="Income total">
+                        <materialDesign:PackIcon Kind="PlusBox" VerticalAlignment="Center" Height="32" Width="32" />
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="8 8 20 8" Name="Plus" Text=""
+                                   FontSize="15" />
+                    </StackPanel>
+                </materialDesign:ColorZone>
+
+                <!--Toolbar:-->
+                <ToolBarTray Grid.Row="2" Grid.Column="0" DockPanel.Dock="Top" Margin="0 8 0 0" IsLocked="True">
+                    <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
+                        <Button ToolTip="Add another item" Click="AddEntryBtn_OnClick">
+                            <materialDesign:PackIcon Height="20" Width="20" Kind="Plus" />
+                        </Button>
+                        <Button ToolTip="Delete item" Click="DeleteEntryBtn_OnClick">
+                            <materialDesign:PackIcon Height="20" Width="20" Kind="Minus" />
+                        </Button>
+                        <Button ToolTip="Save" Click="SaveBtn_OnClick">
+                            <materialDesign:PackIcon Height="20" Width="20" Kind="ContentSave" />
+                        </Button>
+                    </ToolBar>
+                </ToolBarTray>
+
+                <!--Datalist:-->
+                <ScrollViewer Grid.Row="3" Margin="3 8 3 8" Width="Auto" VerticalAlignment="Stretch">
+                    <ItemsControl Width="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                  Name="GroupedItems" />
+                </ScrollViewer>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</UserControl>

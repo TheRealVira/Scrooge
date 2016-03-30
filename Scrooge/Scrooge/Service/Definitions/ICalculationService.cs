@@ -1,7 +1,6 @@
 ﻿namespace Scrooge.Service.Definitions
 {
     using System.Collections.Generic;
-
     using Scrooge.Model;
 
     /// <summary>

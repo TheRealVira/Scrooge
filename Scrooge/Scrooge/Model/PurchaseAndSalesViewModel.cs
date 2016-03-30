@@ -28,6 +28,7 @@ namespace Scrooge.Model
         public uint ID { get; set; }
 
         public uint GroupedPurchaseAndSalesViewModelForeignKey { get; set; }
+
         [ForeignKey("GroupedPurchaseAndSalesViewModelForeignKey")]
         public GroupedPurchaseAndSalesViewModel GroupedPurchaseAndSalesViewModel { get; set; }
 
@@ -115,10 +116,7 @@ namespace Scrooge.Model
         /// </summary>
         public bool IsTaxPayment
         {
-            get
-            {
-                return this.isTaxPayment;
-            }
+            get { return this.isTaxPayment; }
 
             set
             {

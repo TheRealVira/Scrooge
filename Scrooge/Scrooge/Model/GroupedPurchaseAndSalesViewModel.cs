@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Scrooge.Model
 {
-    public class GroupedPurchaseAndSalesViewModel: INotifyPropertyChanged, IEquatable<GroupedPurchaseAndSalesViewModel>
+    public class GroupedPurchaseAndSalesViewModel : INotifyPropertyChanged, IEquatable<GroupedPurchaseAndSalesViewModel>
     {
         private string groupName;
         private bool isSelected;
@@ -43,7 +43,7 @@ namespace Scrooge.Model
         [NotMapped]
         public decimal Sum => this.PurchaseAndSales.Sum(x => x.Value);
 
-        public decimal Taxes => this.PurchaseAndSales.Sum(x => x.Value * x.St / 100);
+        public decimal Taxes => this.PurchaseAndSales.Sum(x => x.Value*x.St/100);
 
         public EntryType Type { get; protected set; }
 

@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
     using Scrooge.Model;
     using Scrooge.Service.Definitions;
 
@@ -83,7 +82,10 @@
             IEnumerable<InventoryViewModel> inventoryViewModels,
             int year)
         {
-            return inventoryViewModels.Where(inventoryViewModel => year - inventoryViewModel.DateOfAcquisition.Year <= inventoryViewModel.Duration);
+            return
+                inventoryViewModels.Where(
+                    inventoryViewModel =>
+                        year - inventoryViewModel.DateOfAcquisition.Year <= inventoryViewModel.Duration);
         }
     }
 }

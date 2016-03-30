@@ -7,6 +7,7 @@ namespace Scrooge.Service.Definitions
     public interface IStorageService
     {
         #region Inventory Services
+
         //IStorageService AddInventoryItem(InventoryViewModel item);
 
         /// <summary>
@@ -29,9 +30,11 @@ namespace Scrooge.Service.Definitions
         ///// <param name="filter">The filter.</param>
         ///// <returns>The retrieved inventory view models from the DB (with the applied filter).</returns>
         //IEnumerable<InventoryViewModel> RetrieveInventoryViewModels(Predicate<InventoryViewModel> filter); // copy
+
         #endregion
 
         #region Purchase and Sales Services
+
         //IStorageService AddGroupedPurchaseAndSalesViewModelItem(PurchaseAndSalesViewModel item);
 
         /// <summary>
@@ -54,9 +57,11 @@ namespace Scrooge.Service.Definitions
         ///// <param name="filter">The filter.</param>
         ///// <returns>The retrieved purchase and sales view models from the DB (with the applied filter).</returns>
         //IEnumerable<GroupedPurchaseAndSalesViewModel> RetrieveGroupedPurchaseAndSalesViewModel(Predicate<GroupedPurchaseAndSalesViewModel> filter); // copy
+
         #endregion
 
         #region Kilometer Entry Services
+
         //IStorageService AddKilometerEntryItem(InventoryViewModel item);
 
         /// <summary>
@@ -79,6 +84,7 @@ namespace Scrooge.Service.Definitions
         ///// <param name="filter">The filter.</param>
         ///// <returns>The retrieved entry view models from the DB (with the applied filter).</returns>
         //IEnumerable<KilometerEntryViewModel> RetrieveInventoryViewModels(Predicate<KilometerEntryViewModel> filter); // copy
+
         #endregion
 
         #region Warnings
