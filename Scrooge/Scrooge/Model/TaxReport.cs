@@ -124,7 +124,8 @@ namespace Scrooge.Model
                         this.purchasesAndSales.Where(purchasesAndSale => purchasesAndSale.Type == EntryType.Sale))
                 {
                     purchasesAndSale.PurchaseAndSales.ToList().
-                        ForEach(s => sum += s.EntryDate.Year == this.Year && !s.IsTaxPayment ? s.Value*(s.St/100) : 0);
+                        ForEach(
+                            s => sum += s.EntryDate.Year == this.Year && !s.IsTaxPayment ? s.Value * (s.St / 100) : 0);
                 }
 
                 return sum;
